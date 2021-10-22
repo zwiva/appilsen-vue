@@ -5,8 +5,16 @@
       <router-link to="/login">Login</router-link>
     </div>
     <router-view />
+    <Footer />
   </div>
 </template>
+<script>
+import Footer from "./components/shared/Footer.vue";
+
+export default {
+  components: { Footer },
+};
+</script>
 
 <style lang="scss">
 #app {
