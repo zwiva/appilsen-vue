@@ -1,28 +1,30 @@
 <template>
 <div>
       <h1>este el footer</h1>
-  <v-footer
-    dark
+  <v-container>    
+  <v-footer 
+   dark
     padless
   >
     <v-card
       class="flex"
       flat
-      tile
-    >
-      <v-card-title class="teal">
-        <strong class="subheading">Get connected with us on social networks!</strong>
+      tile>
+      <v-card-title class="amber">
+        <strong class="subheading" color="amber">Conectate con nosotros en nuestras redes sociales!</strong>
 
         <v-spacer></v-spacer>
 
-        <v-btn
+        <v-btn 
+        color="amber"
+        class="icons mx-4"
           v-for="icon in icons"
           :key="icon"
-          class="mx-4"
-          dark
           icon
         >
-          <v-icon size="24px">
+          <v-icon
+          color="amber"
+          size="24px">
              {{ icon }} 
           </v-icon>
         </v-btn>
@@ -33,6 +35,7 @@
       </v-card-text>
     </v-card>
   </v-footer>
+  </v-container>
 </div>
 </template>
 
@@ -44,14 +47,17 @@ export default {
       icons: [
         'mdi-facebook',
         'mdi-twitter',
-        'mdi-linkedin',
         'mdi-instagram',
       ],
     }),
 
-}
+};
 </script>
 
 <style>
+
+.icons {
+    color: #FFC107;
+}
 
 </style>

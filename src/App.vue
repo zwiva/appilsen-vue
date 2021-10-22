@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+
 import Footer from "./components/shared/Footer.vue";
 
 export default {
@@ -37,4 +38,5 @@ export default {
     }
   }
 }
+
 </style>
