@@ -1,4 +1,4 @@
-# appilsenbase
+# appilsen-vue
 
 ## Project setup
 ```
@@ -32,3 +32,17 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+--------------
+
+stack:
+- node
+- vue2
+- scss
+- vuetify
+- vuerouter
+- vuex
+- lint+prettier
+- firebase/firestore
+- jest
+- cypress
