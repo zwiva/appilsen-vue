@@ -1,6 +1,5 @@
 <template>
 <div>
-      <h1>este el footer</h1>
   <v-container>    
   <v-footer 
    dark
@@ -10,24 +9,34 @@
       class="flex"
       flat
       tile>
-      <v-card-title class="amber">
+      <v-card-title>
         <strong class="subheading" color="amber">Conectate con nosotros en nuestras redes sociales!</strong>
 
         <v-spacer></v-spacer>
 
-        <v-btn 
-        color="amber"
+          <v-btn x-large color="primary" dark
+          ><i class="fab fa-google-plus-g fa-1x"> </i>
+          
+        </v-btn>
+         <v-btn x-large color="primary" dark
+          ><i class="fab fa-instagram fa-1x"></i> 
+          
+        </v-btn>
+
+      <!--   <v-btn 
         class="icons mx-4"
           v-for="icon in icons"
           :key="icon"
           icon
         >
-          <v-icon
-          color="amber"
-          size="24px">
+           <v-icon 
+          class="icons"
+          color="primary"
+          size="24px"
+          dark>
              {{ icon }} 
           </v-icon>
-        </v-btn>
+        </v-btn> --> 
       </v-card-title>
 
       <v-card-text class="py-2 white--text text-center">
