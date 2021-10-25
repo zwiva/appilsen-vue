@@ -2,12 +2,7 @@
   <div id="inspire">
     <v-container>
       <div align-center justify-center class="text-center my-5">
-        <v-sheet
-          :rounded="rounded"
-          class="mx-auto"
-          height="400"
-          max-width="380"
-        >
+        <v-sheet class="mx-auto" height="400" max-width="380">
           <v-card color="amber" amber elevation="8" shaped>
             <v-container>
               <v-layout column align-center justify-center>
