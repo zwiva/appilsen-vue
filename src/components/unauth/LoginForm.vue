@@ -118,8 +118,3 @@ export default {
   },
 };
 </script>
-<<<<<<< HEAD
-
-<style></style>
-=======
->>>>>>> shop
