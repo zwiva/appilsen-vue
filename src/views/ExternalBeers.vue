@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Para ver y meter al carrito cervezas de otros proveedores.</h1>
+    <h1>Cervezas de otros proveedores.</h1>
     <p>
       Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
       amigas!:
@@ -21,6 +21,7 @@ export default {
       { name: "primerita", image: "", price: 1000 },
       { name: "secunda", image: "", price: 1000 },
       { name: "tercia", image: "", price: 1000 },
+      { name: "corta", image: "", price: 1000 },
     ],
   }),
 };

@@ -4,7 +4,7 @@
       <img :src="beer.image" alt="" />
       <p>Nombre cerveza: {{ beer.name }}</p>
       <p>Precio: {{ beer.price }}</p>
-      <v-btn>Agregar al carrito</v-btn>
+      <v-btn dark>Agregar al carrito</v-btn>
     </v-card>
   </div>
 </template>
