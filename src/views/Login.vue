@@ -1,11 +1,18 @@
 <template>
-  <h1>Esta es para el login</h1>
+<div>
+  
+  <LoginForm />
+</div>
 </template>
 
 <script>
-export default {
-  name: "login",
 
+
+export default {
+  name: "Login",
+  components: {
+        LoginForm: () => import("../components/unauth/LoginForm.vue"),
+    },
 }
 </script>
 
