@@ -1,8 +1,13 @@
 <template>
-  <div id="app">
-    <v-app id="inspire">
-      <v-layout row wrap align-center justify-center>
-        <v-sheet :rounded="rounded" class="mx-auto" height="400" width="380">
+  <div id="inspire">
+    <v-container>
+      <div align-center justify-center class="text-center my-5">
+        <v-sheet
+          :rounded="rounded"
+          class="mx-auto"
+          height="400"
+          max-width="380"
+        >
           <v-card color="amber" amber elevation="8" shaped>
             <v-container>
               <v-layout column align-center justify-center>
@@ -71,16 +76,15 @@
             </v-container>
           </v-card>
         </v-sheet>
-      </v-layout>
-      <!-- botones para iniciar sesion con fb o g+ -->
-      <div class="my-2"></div>
-      <div class="my-2">
-        <v-btn x-large color="light-blue darken-4" dark>
-          <i class="fab fa-facebook fa-2x"> </i>
-          Ingresar con Facebook
-        </v-btn>
+        <div class="pt-5 my-5">
+          <v-btn large color="light-blue darken-4" dark>
+            <i class="fab fa-facebook fa-2x"> </i>
+            Ingresar con Facebook
+          </v-btn>
+        </div>
+        <!-- botones para iniciar sesion con fb o g+ -->
       </div>
-    </v-app>
+    </v-container>
   </div>
 </template>
 
@@ -114,5 +118,8 @@ export default {
   },
 };
 </script>
+<<<<<<< HEAD
 
 <style></style>
+=======
+>>>>>>> shop

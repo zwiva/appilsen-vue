@@ -1,27 +1,27 @@
 <template>
   <div>
     <v-footer dark padless>
-      <v-card class="flex" flat tile>
-        <v-card-title class="teal">
-          <strong class="subheading" color="amber"
-            >Conectate con nosotros en nuestras redes sociales!</strong
-          >
-          <v-spacer></v-spacer>
-
-          <!-- <i class="fab fa-google-plus-g fa-1x text-white"> </i>
-
-            <i class="fab fa-instagram fa-1x"> </i> -->
-
-          <v-btn class="icons mx-4" v-for="icon in icons" :key="icon" icon>
-            <v-icon class="icons" color="" size="24px" light>
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-title>
-
-        <v-card-text class="py-2 white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-        </v-card-text>
+      <v-card class="flex" wrap flat tile>
+        <div class="mx-auto">
+          <v-card-title class="justify-center">
+            <strong class="subheading" color="amber"
+              >Conéctate con nosotros en nuestras redes sociales:</strong
+            >
+            <v-spacer></v-spacer>
+            <div class="text-center">
+              <v-btn class="icons mx-3" v-for="icon in icons" :key="icon" icon>
+                <v-icon class="icons" color="#ffc107" size="24px" light>
+                  {{ icon }}
+                </v-icon>
+              </v-btn>
+            </div>
+          </v-card-title>
+        </div>
+        <div>
+          <v-card-text class="py-2 white--text text-center">
+            {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+          </v-card-text>
+        </div>
       </v-card>
     </v-footer>
   </div>
@@ -37,7 +37,10 @@ export default {
 </script>
 
 <style>
-.icons {
+v-icon .icons {
   color: #ffc107;
+}
+.subheading {
+  font-size: 0.8em;
 }
 </style>
