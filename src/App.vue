@@ -1,21 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/shop">Shop</router-link>
+  <v-app id="app">
+    <div>
+      <SupNavbar />
+      <Navbar />
     </div>
     <router-view />
     <Footer />
-  </div>
+  </v-app>
 </template>
 
 <script>
+import Footer from "../src/components/shared/Footer.vue";
+import Navbar from "./components/shared/Navbar.vue";
+import SupNavbar from "./components/shared/SupNavbar.vue";
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  components: {
+    Footer,
+    Navbar,
+    SupNavbar,
+  },
 };
 </script>
+
+<style lang="scss">
+.v-application--wrap {
+  font-family: "Questrial", sans-serif;
+  justify-content: space-between;
+  background-color: rgb(52, 52, 52);
+  background-color: white;
+}
+</style>
