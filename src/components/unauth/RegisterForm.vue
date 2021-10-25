@@ -7,7 +7,7 @@
             <v-container>
               <v-layout column align-center justify-center>
                 <v-card-title color="black">
-                <v-text-title>Registrate </v-text-title>
+                  <v-text-title>Registrate </v-text-title>
                   <v-divider class="mx-4 black"></v-divider>
                 </v-card-title>
 
@@ -54,19 +54,16 @@
           </v-card>
         </v-sheet>
       </v-layout>
-      
     </v-app>
   </div>
-  
 </template>
 
 <script>
 export default {
-    name: "register",
-    data: () => ({
-        register: { email: "", password: "",},
-
-    }),
+  name: "register",
+  data: () => ({
+    register: { email: "", password: "" },
+  }),
 };
 </script>
 

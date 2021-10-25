@@ -73,9 +73,7 @@
         </v-sheet>
       </v-layout>
       <!-- botones para iniciar sesion con fb o g+ -->
-      <div class="my-2">
-      
-      </div>
+      <div class="my-2"></div>
       <div class="my-2">
         <v-btn x-large color="light-blue darken-4" dark>
           <i class="fab fa-facebook fa-2x"> </i>
