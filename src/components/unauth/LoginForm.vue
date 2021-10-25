@@ -57,7 +57,7 @@
                 </v-form>
                 <v-card-text>
                   <v-btn
-                    round
+                    rounded
                     class="blue-grey darken-2"
                     large
                     href="#"
