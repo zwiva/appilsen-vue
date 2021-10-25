@@ -1,16 +1,6 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify';
-import 'vuetify/dist/vuetify.min.css';
-import bg from 'vuetify/lib/locale/bg';
+import Vue from "vue";
+import Vuetify from "vuetify/lib/framework";
 
 Vue.use(Vuetify);
 
-export default new Vuetify({
-    lang: {
-      locales: { bg },
-      current: 'bg',
-    },
-  icons: {
-    iconfont: 'fa4',
-  },
-});
+export default new Vuetify({});
