@@ -5,6 +5,8 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "@babel/polyfill";
 
+import "./plugins/firebase";
+
 Vue.config.productionTip = false;
 
 new Vue({
