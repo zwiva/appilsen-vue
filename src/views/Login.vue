@@ -1,14 +1,25 @@
 <template>
-  <h1>Esta es para el login</h1>
+  <div id="login">
+    <div v-if="login">
+      <LoginForm />
+    </div>
+    <div v-else>
+      <RegisterForm />
+    </div>
+  </div>
 </template>
 
 <script>
+// import RegisterForm from '../components/unauth/RegisterForm.vue';
 export default {
-  name: "login",
-
-}
+  name: "Login",
+  components: {
+    // RegisterForm,
+    LoginForm: () => import("../components/unauth/LoginForm.vue"),
+    RegisterForm: () => import("../components/unauth/RegisterForm.vue"),
+  },
+  data: () => ({
+    login: true,
+  }),
+};
 </script>
-
-<style>
-
-</style>

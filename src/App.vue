@@ -1,40 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link>
+  <v-app id="app">
+    <div>
+      <SupNavbar />
+      <Navbar />
     </div>
     <router-view />
     <Footer />
-  </div>
+  </v-app>
 </template>
-<script>
-import Footer from "./components/shared/Footer.vue";
 
+<script>
+import Footer from "../src/components/shared/Footer.vue";
+import Navbar from "./components/shared/Navbar.vue";
+import SupNavbar from "./components/shared/SupNavbar.vue";
 export default {
-  components: { Footer },
+  name: "App",
+  components: {
+    Footer,
+    Navbar,
+    SupNavbar,
+  },
 };
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.v-application--wrap {
+  font-family: "Questrial", sans-serif;
+  justify-content: space-between;
+  background-color: rgb(52, 52, 52);
+  background-color: white;
 }
 </style>

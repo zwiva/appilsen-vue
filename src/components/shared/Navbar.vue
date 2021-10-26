@@ -17,17 +17,19 @@
         </v-btn>
 
         <template v-slot:extension>
-           <v-list-item v-for="(item, $index) in items"
-           :key="$index" link :to="item.to"> 
-
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title tex-align-center >
-              {{ item.title }}
-            </v-list-item-title>
-           
-          </v-list-item-content>
-           </v-list-item>
+          <v-list-item
+            v-for="(item, $index) in items"
+            :key="$index"
+            link
+            :to="item.to"
+          >
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title tex-align-center>
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </template>
       </v-toolbar>
     </v-card>
@@ -36,7 +38,7 @@
 
 <script>
 export default {
-    name: "Navbar",
+  name: "Navbar",
   data() {
     return {
       tab: null,
@@ -44,13 +46,13 @@ export default {
         {
           title: "Inicio",
           icon: "mdi-home",
-          to: "home",
+          to: "/",
         },
 
         {
           title: "Arma tu Pilsen",
           icon: "",
-          to: "/shop",
+          to: "/armar",
         },
         {
           title: "Catalogo Cervezas",
@@ -67,6 +69,16 @@ export default {
           icon: "",
           to: "/ourteam",
         },
+        {
+          title: "Inspirate",
+          icon: "",
+          to: "/nuestras",
+        },
+        {
+          title: "Carrito",
+          icon: "",
+          to: "/carrito",
+        },
       ],
     };
   },
@@ -82,3 +94,4 @@ export default {
   color: #356859 !important;
 }
 </style>
+
