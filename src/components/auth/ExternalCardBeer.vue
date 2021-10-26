@@ -7,9 +7,6 @@
       <p>Estilo cerveza: {{ beer.estilo }}</p>
       <p>alcohol: {{ beer.alcohol }}°</p>
       <p>Formato: {{ beer.formato }}</p>
-     
-     
-      
       <v-btn>Agregar al carrito</v-btn>
     </v-card>
   </div>
@@ -18,7 +15,7 @@
 <script>
 export default {
   name: "ExternalCardBeer",
-  data: () => ({}),
+  // data: () => ({}),
   props: {
     beer: { type: Object, require: true },
   },

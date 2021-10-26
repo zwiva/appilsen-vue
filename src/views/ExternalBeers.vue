@@ -5,15 +5,14 @@
       Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
       amigas!:
     </p>
-    <div v-for="(beer, index) in $store.state.productos.productos" :key="index">
+    <div v-for="beer in $store.state.productos.productos" :key="beer.id">
       <ExternalCardBeer :beer="beer" />
     </div>
   </div>
 </template>
 
 <script>
-
-import Store from "../store";
+import store from "../store";
 
 import ExternalCardBeer from "../components/auth/ExternalCardBeer.vue";
 export default {
@@ -24,11 +23,8 @@ export default {
   }),
 
   mounted() {
-    Store.dispatch("productos/getAllexternalBeers");
-     
-   
-      
-  }
-
+    store.dispatch("productos/getAllexternalBeers");
+    console.log("mounted");
+  },
 };
 </script>
