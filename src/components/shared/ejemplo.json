@@ -1,0 +1,30 @@
+{
+  "coord": { "lon": -70.6483, "lat": -33.4569 },
+  "weather": [
+    { "id": 800, "main": "Clear", "description": "clear sky", "icon": "01n" }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 18.81,
+    "feels_like": 17.9,
+    "temp_min": 16.53,
+    "temp_max": 18.81,
+    "pressure": 1014,
+    "humidity": 44
+  },
+  "visibility": 10000,
+  "wind": { "speed": 3.09, "deg": 140 },
+  "clouds": { "all": 0 },
+  "dt": 1635228699,
+  "sys": {
+    "type": 2,
+    "id": 2039090,
+    "country": "CL",
+    "sunrise": 1635241702,
+    "sunset": 1635289466
+  },
+  "timezone": -10800,
+  "id": 3871336,
+  "name": "Santiago",
+  "cod": 200
+}
