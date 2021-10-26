@@ -1,21 +1,7 @@
 <template>
   <div>
     <v-card>
-      <v-toolbar color="blue-grey darken-4" dark flat>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-        <v-toolbar-title>APPILSEN </v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-
+      <v-toolbar color="blue-grey darken-4" dark flat tile>
         <template v-slot:extension>
           <v-list-item
             v-for="(item, $index) in items"
@@ -30,6 +16,7 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
         </template>
       </v-toolbar>
     </v-card>

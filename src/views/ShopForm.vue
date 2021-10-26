@@ -9,8 +9,8 @@ import ShopForm from "../components/auth/shop/ShopForm.vue";
 export default {
   name: "shop",
   components: { ShopForm },
-  data: () => ({
-    // shopcart: false,
-  }),
+  // data: () => ({
+  //   // shopcart: false,
+  // }),
 };
 </script>

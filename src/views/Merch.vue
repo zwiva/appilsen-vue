@@ -6,7 +6,8 @@
 
 <script>
 export default {
-  name: "Merch"
+  name: "Merch",
+  // data: () => ({}),
 };
 </script>
 

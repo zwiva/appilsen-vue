@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div >
+    <v-card color="amber" tile>
     <h1>Aca va lo del clima</h1>
+    </v-card>
   </div>
 </template>
 

@@ -3,7 +3,10 @@
     <v-app-bar color="black" dark>
       <div class="d-flex align-center">
         <div id="supnav">
-          <p>logo + Appilsen</p>
+          <!-- icono marca -->
+          <v-toolbar-title>APPILSEN </v-toolbar-title>
+
+          <v-spacer></v-spacer>
         </div>
       </div>
       <v-spacer></v-spacer>
@@ -14,6 +17,9 @@
       >
         <span class="">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
   </div>
