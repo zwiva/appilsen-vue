@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h1>Para ver y meter al carrito cervezas de otros proveedores.</h1>
+    <h1 class="text-center">Catalogo de cervezas</h1>
     <p>
       Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
       amigas!:
     </p>
-    <div v-for="beer in $store.state.productos.productos" :key="beer.id">
-      <ExternalCardBeer :beer="beer" />
-    </div>
+
+    <v-layout align-center justify-space-between>
+      <div v-for="beer in $store.state.productos.productos" :key="beer.id">
+        <ExternalCardBeer :beer="beer" />
+      </div>
+    </v-layout>
   </div>
 </template>
 
