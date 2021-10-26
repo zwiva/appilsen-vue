@@ -44,7 +44,7 @@ export default {
         {
           title: "Catalogo Cervezas",
           icon: "",
-          to: "/beerStock",
+          to: "/beerstock",
         },
         {
           title: "Merch",

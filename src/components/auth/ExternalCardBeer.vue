@@ -1,9 +1,15 @@
 <template>
   <div>
     <v-card color="amber" class="ma-3">
-      <img :src="beer.image" alt="" />
-      <p>Nombre cerveza: {{ beer.name }}</p>
-      <p>Precio: {{ beer.price }}</p>
+      <img :src="beer.imagen" alt="" />
+      <p>Nombre cerveza: {{ beer.nombre }}</p>
+      <p>Precio: $ {{ beer.precio }}</p>
+      <p>Estilo cerveza: {{ beer.estilo }}</p>
+      <p>alcohol: {{ beer.alcohol }}°</p>
+      <p>Formato: {{ beer.formato }}</p>
+     
+     
+      
       <v-btn>Agregar al carrito</v-btn>
     </v-card>
   </div>
