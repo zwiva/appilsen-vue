@@ -69,11 +69,11 @@ export default {
           icon: "",
           to: "/ourteam",
         },
-        {
-          title: "Inspirate",
-          icon: "",
-          to: "/nuestras",
-        },
+        // {
+        //   title: "Inspirate",
+        //   icon: "",
+        //   to: "/nuestras",
+        // },
         {
           title: "Carrito",
           icon: "",
