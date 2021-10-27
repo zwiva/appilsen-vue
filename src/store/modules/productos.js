@@ -4,6 +4,7 @@ export const moduloProductos = {
   namespaced: true,
   state: {
     productos: [],
+    accesorios: [],
   },
 
   mutations: {
@@ -11,6 +12,10 @@ export const moduloProductos = {
       state.productos = newExternalBeersData;
       console.log("state.productos", state.productos);
     },
+    SET_MERCHANDACCESSORIES_DATA(state, newMerchantAccessorsData) {
+      state.accesorios = newMerchantAccessorsData;
+      console.log("state.accesorios", state.accesorios);
+    }
   },
 
   actions: {
@@ -26,5 +31,18 @@ export const moduloProductos = {
           context.commit("SET_EXTERNALBEERS_DATA", externalBeers);
         });
     },
+
+    getAllMerchAndAccessories(context) {
+      Firebase.firestore()
+      .collection("Merch")
+      .get()
+      .then((documents) => {
+        const merchAndAccessories = [];
+        documents.forEach((document) => {
+          merchAndAccessories.push({ id: document.id, ...document.data() });
+        });
+        context.commit("SET_MERCHANDACCESSORIES_DATA", merchAndAccessories);
+      });
+    }
   },
 };
