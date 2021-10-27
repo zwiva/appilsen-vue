@@ -3,14 +3,14 @@ import Firebase from "firebase";
 export const moduloProductos = {
   namespaced: true,
   state: {
-    productos: [],
+    cervezasCatalogo: [],
     accesorios: [],
   },
 
   mutations: {
     SET_EXTERNALBEERS_DATA(state, newExternalBeersData) {
-      state.productos = newExternalBeersData;
-      console.log("state.productos", state.productos);
+      state.cervezasCatalogo = newExternalBeersData;
+      console.log("state.cervezasCatalogo", state.cervezasCatalogo);
     },
     SET_MERCHANDACCESSORIES_DATA(state, newMerchantAccessorsData) {
       state.accesorios = newMerchantAccessorsData;

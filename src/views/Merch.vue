@@ -1,10 +1,14 @@
 <template>
   <div>
     <h1>Este es para la merca</h1>
-     <v-layout align-center justify-space-between>
-      <div v-for="merch in $store.state.accesorios.accesorios" :key="merch.id">
-        <MerchAndAccessories :merch="merch" />
-      </div>
+    <v-layout align-center justify-space-between>
+      <v-row d-flex flex-wrap class="justify-center">
+        <!-- <v-col cols="12" md="4"> -->
+        <div v-for="merch in $store.state.productos.accesorios" :key="merch.id">
+          <MerchAndAccessories :merch="merch" />
+        </div>
+        <!-- </v-col> -->
+      </v-row>
     </v-layout>
   </div>
 </template>
@@ -19,8 +23,8 @@ export default {
   data: () => ({
     Merch: [],
   }),
-   mounted() {
-    store.dispatch("accesorios/getAllMerchAndAccessories");
+  mounted() {
+    store.dispatch("productos/getAllMerchAndAccessories");
     console.log("mounted");
   },
 };
