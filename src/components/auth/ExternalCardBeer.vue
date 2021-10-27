@@ -7,26 +7,16 @@
             <v-img :src="beer.imagen" height="250px" contain />
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title
-                  >{{ beer.nombre }}</v-list-item-title
-                >
-                <v-list-item-title
-                  >${{ beer.precio }}</v-list-item-title
-                >
-                <v-list-item-subtitle
-                  >{{ beer.estilo }}</v-list-item-subtitle
-                >
-                <v-list-item-subtitle
-                  >{{ beer.alcohol }}°</v-list-item-subtitle
-                >
-                <v-list-item-subtitle
-                  >F{{ beer.formato }}</v-list-item-subtitle
-                >
+                <v-list-item-title>{{ beer.nombre }}</v-list-item-title>
+                <v-list-item-title>${{ beer.precio }}</v-list-item-title>
+                <v-list-item-subtitle>{{ beer.estilo }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ beer.alcohol }}°</v-list-item-subtitle>
+                <v-list-item-subtitle>F{{ beer.formato }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-card-action>
+            <v-card-actions>
               <v-btn color="info">Agregar al carrito</v-btn>
-            </v-card-action>
+            </v-card-actions>
           </v-card>
         </v-row>
       </v-col>

@@ -7,9 +7,14 @@
     </p>
 
     <v-layout align-center justify-space-between>
-      <div v-for="beer in $store.state.productos.productos" :key="beer.id">
-        <ExternalCardBeer :beer="beer" />
-      </div>
+      <v-row d-flex flex-wrap class="justify-center">
+        <div
+          v-for="beer in $store.state.productos.cervezasCatalogo"
+          :key="beer.id"
+        >
+          <ExternalCardBeer :beer="beer" />
+        </div>
+      </v-row>
     </v-layout>
   </div>
 </template>
