@@ -9,14 +9,12 @@
               <v-list-item-content>
                 <v-list-item-title> {{ merch.nombre }}</v-list-item-title>
                 <v-list-item-title> $ {{ merch.precio }}</v-list-item-title>
-                <v-list-item-subtitle>
-                  {{ merch.detalles }}</v-list-item-subtitle
-                >
+                <v-list-item-subtitle> {{ merch.detalles }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-card-action>
+            <v-card-actions>
               <v-btn color="info">Agregar al carrito</v-btn>
-            </v-card-action>
+            </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
@@ -29,7 +27,7 @@ export default {
   name: "MerchAndAccessories",
   // data: () => ({}),
   props: {
-    beer: { type: Object, require: true },
+    merch: { type: Object, require: true },
   },
 };
 </script>
