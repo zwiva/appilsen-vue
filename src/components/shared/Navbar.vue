@@ -1,23 +1,21 @@
 <template>
   <div>
-    <v-card>
-      <v-toolbar color="blue-grey darken-4" dark flat tile>
-        <template v-slot:extension>
-          <v-list-item
-            v-for="(item, $index) in items"
-            :key="$index"
-            link
-            :to="item.to"
-          >
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title tex-align-center>
-                {{ item.title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-        </template>
+    <v-card class="nabvar--gradient">
+      <v-toolbar dark flat tile>
+        <v-list-item
+          v-for="(item, $index) in items"
+          :key="$index"
+          link
+          :to="item.to"
+        >
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title tex-align-center>
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
       </v-toolbar>
     </v-card>
   </div>
@@ -73,6 +71,9 @@ export default {
 </script>
 
 <style>
+.nabvar--gradient {
+  background: linear-gradient(135deg, #3c3c3c, rgb(19, 19, 19));
+}
 /* Helper classes */
 .basil {
   background-color: #fffbe6 !important;
