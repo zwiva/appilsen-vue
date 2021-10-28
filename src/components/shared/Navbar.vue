@@ -8,6 +8,7 @@
             :key="$index"
             link
             :to="item.to"
+            
           >
             <v-list-item-content v-model="tab" align-with-title>
               <v-spacer></v-spacer>
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       tab: null,
+
       items: [
         {
           title: "Inicio",
@@ -42,7 +44,7 @@ export default {
           to: "/armar",
         },
         {
-          title: "Catalogo Cervezas",
+          title: "Administrador stock",
           icon: "",
           to: "/beerstock",
         },
@@ -55,6 +57,11 @@ export default {
           title: "Nuestro Equipo",
           icon: "",
           to: "/ourteam",
+        },
+        {
+          title: "Catalogo",
+          icon: "",
+          to: "/catalogo",
         },
         // {
         //   title: "Inspirate",

@@ -9,7 +9,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import InternalCardBeer from "../components/auth/InternalCardBeer.vue";
 export default {

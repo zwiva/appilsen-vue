@@ -7,8 +7,10 @@
         amigas!:
       </p>
       <!-- v-if=true si usuario es ADMIN -->
-      <v-btn color="info" @click="dialog = true">Agregar cervezas catalogo</v-btn>
-      
+      <v-btn color="info" @click="dialog = true"
+        >Agregar cervezas catalogo</v-btn
+      >
+
       <v-layout align-center justify-space-between>
         <v-row d-flex flex-wrap class="justify-center">
           <div
@@ -129,7 +131,7 @@ export default {
     guardarRecomendacion() {
       console.log("ejecuta recomendacion");
       if (this.$refs.form.validate()) {
-        console.log("dentro del if ")
+        console.log("dentro del if ");
         Firebase.firestore()
           .collection("externalBeers")
           .add(this.recomendedBeer)
