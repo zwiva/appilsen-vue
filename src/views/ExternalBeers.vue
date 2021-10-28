@@ -127,11 +127,15 @@ export default {
   },
   methods: {
     guardarRecomendacion() {
+      console.log("ejecuta recomendacion");
       if (this.$refs.form.validate()) {
+        console.log("dentro del if ")
         Firebase.firestore()
           .collection("externalBeers")
-          .add(this.beer)
+          .add(this.recomendedBeer)
           .then(() => {
+            console.log("prueba push a firesotore");
+            store.dispatch("productos/getAllexternalBeers");
             // this.$router.push("/externalBeers");
           })
           .catch((error) => {
