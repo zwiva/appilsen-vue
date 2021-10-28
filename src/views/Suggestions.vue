@@ -21,8 +21,41 @@
       </v-layout>
     </div>
     <div>
-      <v-dialog v-model="showDialog" max-width="600px">
-        <v-card> aca va un formulario </v-card>
+      <v-dialog v-model="showDialog" max-width="800px" >
+        <v-card elevation="7" shaped>
+          <v-card-title> aca va un formulario </v-card-title>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="name"
+              label="Nombre Cerveza"
+              required
+            ></v-text-field>
+
+            <v-text-field
+              v-model="estilo"
+              label="Estilo"
+              required
+            ></v-text-field>
+
+               <v-text-field
+              v-model="email"
+              label="Formato"
+              required
+            ></v-text-field>
+
+               <v-text-field
+              v-model="imagen"
+              label="Imagen"
+              required
+            ></v-text-field>
+
+            <v-btn
+              color="success"
+              class="mr-4">
+              Guardar
+            </v-btn>
+          </v-form>
+        </v-card>
       </v-dialog>
     </div>
   </div>

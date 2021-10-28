@@ -8,8 +8,8 @@
         <p><strong>Estilo: </strong>{{ suggestion.style }}</p>
         <p><strong>Formato: </strong>{{ suggestion.format }}</p>
         <p><strong>Precio: </strong>{{ suggestion.price }}</p>
-        <v-btn @click="editDialog = true">Editar</v-btn>
-        <v-btn @click="deleteDialog = true">Eliminar</v-btn>
+        <v-btn @click="editDialog = true"><v-icon> mdi-pencil</v-icon></v-btn>
+        <v-btn @click="deleteDialog = true"><v-icon>mdi-delete</v-icon></v-btn>
       </v-card>
     </v-container>
 
