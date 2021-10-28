@@ -1,31 +1,7 @@
 <template>
-  <div>
-    <div><h1 class="text-center">Catalogo de cervezas</h1>
-    <p>
-      Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
-      amigas!:
-    </p>
-    <v-btn color="info"  @click="dialog = true" >Sugierenos cervezas</v-btn>
-
-    <v-layout align-center justify-space-between>
-  
-      <v-row d-flex flex-wrap class="justify-center">
-        <div
-          v-for="beer in $store.state.productos.cervezasCatalogo"
-          :key="beer.id"
-        >
-          <ExternalCardBeer :beer="beer" />
-        </div>
-      </v-row>
-      
-    </v-layout> </div> 
-    <div v-if="dialog"> 
-
-      <!-- ----------- -->
-      
-       <v-row justify="center">
+  <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <template   >
+      <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">
           Sugierenos cervezas
         </v-btn>
@@ -114,32 +90,51 @@
       </v-card>
        </template>
     </v-dialog>
-  </v-row> -->
-    </div>
-  </div>
+  </v-row>
 </template>
 
 <script>
-import store from "../store";
-
-import ExternalCardBeer from "../components/auth/ExternalCardBeer.vue";
-import AddExternal from "../components/auth/Recomendaciones/AddExternal.vue";
+import Firebase from "firebase";
 
 export default {
-  name: "ExternalBeers",
-  components: { ExternalCardBeer, AddExternal },
-  beforeRouteEnter(to, from, next) {
-    store.dispatch("externalBeers/getAllexternalBeers");
-    next();
-  },
-
   data: () => ({
-    dialog: false,
+      dialog: false,
+    beer: {
+      nombre: "",
+      precio: 0,
+      estilo: "",
+      alcohol: 0,
+      formato: "",
+      imagen: "",
+    },
   }),
 
-  mounted() {
-    store.dispatch("productos/getAllexternalBeers");
-    console.log("mounted");
+  props: {
+    showDialog: {
+      type: Boolean, required: true, 
+    }
+  },
+
+  methods: {
+    guardarCambios() {
+      if (this.$refs.form.validate()) {
+        Firebase.firestore()
+          .collection("externalBeers")
+          .add(this.beer)
+          .then(() => {
+            this.loading = false;
+            this.$router.push("/externalBeers");
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+      }
+    },
+    required(v) {
+      return !!v || "Este campo es obligatorio";
+    },
   },
 };
 </script>
+
+<style></style>
