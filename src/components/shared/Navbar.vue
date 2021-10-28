@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-toolbar color="blue-grey darken-4" dark flat tile>
-        <template v-slot:extension>
+        <!-- <template v-slot:extension> -->
           <!-- <v-list-item
             v-for="(item, $index) in items"
             :key="$index"
@@ -90,7 +90,7 @@
             </v-list-item-content>
           </v-list-item>
           <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-        </template>
+        <!-- </template> -->
       </v-toolbar>
     </v-card>
   </div>
