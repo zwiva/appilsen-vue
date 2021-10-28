@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>Recomendamos / Sugerimos / Inspirate:</h1>
+      <h1>Tus recomendamos / Sugerimos / Inspirate:</h1>
       <p>Inspirate con nuestras creaciones / ingredientes / combinaciones:</p>
       <div v-for="(ourbeer, index) in internalBeers" :key="index">
         <InternalCardBeer :ourbeer="ourbeer" />
