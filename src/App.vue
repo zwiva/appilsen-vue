@@ -33,5 +33,6 @@ export default {
   font-family: "Questrial", sans-serif;
   justify-content: space-between;
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
+  color: gray;
 }
 </style>
