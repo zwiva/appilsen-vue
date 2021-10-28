@@ -56,8 +56,8 @@ const routes = [
       import(/* webpackChunkName: "external" */ "../views/ExternalBeers.vue"),
   },
   {
-    path: "/nuestras",
-    name: "internalBeers",
+    path: "/recomendaciones",
+    name: "userSuggestion",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -82,6 +82,11 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "internal" */ "../views/About.vue"),
   },
+  {
+    path: "/catalogo",
+    name: "Catalogo",
+    component: () => import("../views/CatalogView.vue"),
+  }
 ];
 
 const router = new VueRouter({
