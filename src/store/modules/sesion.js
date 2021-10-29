@@ -6,17 +6,16 @@ export const moduloSesion = {
     usuario: null,
   },
 
- /*   mutations: {
+  mutations: {
     SET_USUARIO(state, newUsuario) {
       state.usuario = newUsuario;
+      console.log('current usuario', state.usuario)
     },
-
   },
 
   actions: {
-    ConfigurarUsuario(context, usuario) {
+    configurarUsuario(context, usuario) {
       context.commit("SET_USUARIO", usuario);
-    }, 
-
-  },  */
+    },
+  },
 };

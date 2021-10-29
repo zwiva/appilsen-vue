@@ -26,7 +26,7 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="signInForm.email"
-                  :rules="nameRules"
+                  :rules="emailRules"
                   label="E-mail o Usuario"
                   filled
                   rounded
@@ -37,7 +37,7 @@
               <v-col cols="12">
                 <v-text-field
                   v-model="signInForm.password"
-                  :rules="emailRules"
+                  :rules="passwordRules"
                   label="password"
                   type="password"
                   filled
@@ -55,7 +55,7 @@
                 href="#"
                 right
                 type="submit"
-                @click="validationSignIn"
+                @click="paraValidar"
                 dark
                 >Ingresar</v-btn
               >
@@ -90,50 +90,44 @@
 </template>
 
 <script>
-/* import Firebase from "firebase";  */
+import Firebase from "firebase";
 
 export default {
   name: "LoginForm",
   data: () => ({
     valid: true,
-    name: "",
     signInForm: { email: "", password: "" },
-
-    nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
-    ],
-    email: "",
+    // nameRules: [(v) => !!v || "Name is required"],
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
+    passwordRules: [
+      (v) => !!v || "Password is required",
+      // (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
   }),
 
   methods: {
-    validationSignIn(){
-      console.log('boton ingresar')
+    async paraValidar() {
+      if (this.$refs.form.validate()) {
+        try {
+          console.log(this.signInForm)
+          await Firebase.auth().signInWithEmailAndPassword(
+            this.signInForm.email,
+            this.signInForm.password
+          );
+
+          this.$store.dispatch("sesion/configurarUsuario",
+            Firebase.auth().currentUser
+          );
+
+          this.$emit("success");
+        } catch (e) {
+          console.error("no funco el login");
+        }
+      }
     },
-    /*   async paraValidar() {
-     if (this.$refs.form.validate()) {
-       
-       try {
-         await Firebase.auth().
-         signInWithEmailAndPassword
-         (this.form, this.form);
-
-         this.$store.dispatch("sesion/configurarUsuario",
-         Firebase.auth().currentUser);
-
-         this.$emit("success");
-       }catch (e) {
-         console.error("no funco el login");
-       }
-     } 
-
-
-
-   }  */
     /* reset () {
         this.$refs.form.reset()
       },
