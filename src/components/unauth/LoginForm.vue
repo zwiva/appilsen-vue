@@ -25,8 +25,7 @@
             >
               <v-col cols="12">
                 <v-text-field
-                  v-model="form"
-                  :counter="10"
+                  v-model="signInForm.email"
                   :rules="nameRules"
                   label="E-mail o Usuario"
                   filled
@@ -37,7 +36,7 @@
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                  v-model="form"
+                  v-model="signInForm.password"
                   :rules="emailRules"
                   label="password"
                   type="password"
@@ -56,7 +55,7 @@
                 href="#"
                 right
                 type="submit"
-                @click="validate"
+                @click="validationSignIn"
                 dark
                 >Ingresar</v-btn
               >
@@ -66,25 +65,31 @@
             </v-card-text>
           </v-layout>
         </v-card>
-   <!--  boton real de facebook pero no se ve  -->
+        <!--  boton real de facebook pero no se ve  -->
+        <!-- <div id="fb-root">
+          <div
+            class="fb-login-button"
+            data-width=""
+            data-size="medium"
+            data-button-type="login_with"
+            data-layout="rounded"
+            data-auto-logout-link="false"
+            data-use-continue-as="true"
+          >aaaaaaa</div>
+        </div> -->
 
-          <!-- <div class="fb-login-button" data-width="" data-size="medium" 
-          data-button-type="login_with" data-layout="rounded" 
-          data-auto-logout-link="false" data-use-continue-as="true"></div>  -->
-
-       <div class="pt-5 my-5">
+        <!-- <div class="pt-5 my-5">
           <v-btn large color="light-blue darken-4" dark>
             <i class="fab fa-facebook fa-2x"> </i>
             Ingresar con Facebook
           </v-btn>
-        </div>  
+        </div> -->
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
- 
 /* import Firebase from "firebase";  */
 
 export default {
@@ -105,8 +110,11 @@ export default {
     ],
   }),
 
-   methods: {
-  /*   async paraValidar() {
+  methods: {
+    validationSignIn(){
+      console.log('boton ingresar')
+    },
+    /*   async paraValidar() {
      if (this.$refs.form.validate()) {
        
        try {
