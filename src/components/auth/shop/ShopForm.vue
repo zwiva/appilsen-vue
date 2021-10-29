@@ -16,7 +16,7 @@
             <v-container fluid>
               <v-row>
                 <v-col cols="12" sm="6">
-                  <v-label for="">Nombre de tu cerveza</v-label>
+                  <v-label for="">Nombra tu creación:</v-label>
                   <v-text-field
                     v-model="form.first"
                     :rules="rules.name"
