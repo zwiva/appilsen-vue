@@ -10,6 +10,7 @@
         </div>
       </div>
       <v-spacer></v-spacer>
+      
        <v-dialog v-model="dialog" width="380" elevation="8" shaped>
     <template #activator="{ on }">
        <v-btn text-depressed>

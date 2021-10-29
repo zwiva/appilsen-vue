@@ -3,10 +3,10 @@
 export const moduloSesion = {
   namespaced: true,
   state: {
-    usuario: "",
+    usuario: null,
   },
 
-   /* mutations: {
+ /*   mutations: {
     SET_USUARIO(state, newUsuario) {
       state.usuario = newUsuario;
     },
@@ -18,5 +18,5 @@ export const moduloSesion = {
       context.commit("SET_USUARIO", usuario);
     }, 
 
-  }, */
+  },  */
 };

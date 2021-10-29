@@ -18,11 +18,10 @@
             </v-card-title>
 
             <v-form
-              ref="signInForm"
+              ref="form"
               @submit.prevent="paraValidar"
               v-model="valid"
-              l
-              azy-validation
+              lazy-validation
             >
               <v-col cols="12">
                 <v-text-field
@@ -56,6 +55,7 @@
                 large
                 href="#"
                 right
+                type="submit"
                 @click="validate"
                 dark
                 >Ingresar</v-btn
@@ -66,25 +66,27 @@
             </v-card-text>
           </v-layout>
         </v-card>
-   <!--  boton real de facebook pero no se ve    
-          <div class="fb-login-button" data-width="" data-size="medium" 
-          data-button-type="login_with" data-layout="rounded" 
-          data-auto-logout-link="false" data-use-continue-as="true"></div> -->
+   <!--  boton real de facebook pero no se ve  -->
 
-        <div class="pt-5 my-5">
+          <!-- <div class="fb-login-button" data-width="" data-size="medium" 
+          data-button-type="login_with" data-layout="rounded" 
+          data-auto-logout-link="false" data-use-continue-as="true"></div>  -->
+
+       <div class="pt-5 my-5">
           <v-btn large color="light-blue darken-4" dark>
             <i class="fab fa-facebook fa-2x"> </i>
             Ingresar con Facebook
           </v-btn>
-        </div> 
+        </div>  
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
-/* 
-import Firebase from "firebase"; */
+ 
+/* import Firebase from "firebase";  */
+
 export default {
   name: "LoginForm",
   data: () => ({
@@ -103,9 +105,9 @@ export default {
     ],
   }),
 
-  methods: {
-    /*  async paraValidar() {
-     if (this.$refs.signInForm.validate()) {
+   methods: {
+  /*   async paraValidar() {
+     if (this.$refs.form.validate()) {
        
        try {
          await Firebase.auth().
@@ -119,11 +121,11 @@ export default {
        }catch (e) {
          console.error("no funco el login");
        }
-     }
+     } 
 
 
 
-   } */
+   }  */
     /* reset () {
         this.$refs.form.reset()
       },
