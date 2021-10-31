@@ -10,23 +10,36 @@
         </div>
       </div>
       <v-spacer></v-spacer>
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <!-- 
+      <v-dialog v-model="dialog" width="380" elevation="8" shaped>
+        <template #activator="{ on }">
+          <v-btn text depressed v-on="on">
+            Inicia sesion
+            <v-icon>mdi-login</v-icon>
+          </v-btn>
+          <v-btn text-depressed>
+            Cerrar sesion
+            <v-icon right>mdi-logout</v-icon>
+          </v-btn>
+        </template>
+
+        
+      </v-dialog> -->
+
+      <LoginButton />
     </v-app-bar>
   </div>
 </template>
 
 <script>
+import LoginButton from "../unauth/LoginButton.vue";
 export default {
   name: "SupNavbar",
+  components: {
+    LoginButton,
+  },
+  data: () => ({
+    dialog: false,
+  }),
 };
 </script>

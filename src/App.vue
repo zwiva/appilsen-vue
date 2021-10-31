@@ -5,7 +5,9 @@
       <Navbar />
       <Banner />
     </div>
-    <router-view />
+    <v-container>
+      <router-view />
+    </v-container>
     <Footer />
   </v-app>
 </template>
@@ -21,7 +23,7 @@ export default {
     Footer,
     Navbar,
     SupNavbar,
-    Banner
+    Banner,
   },
 };
 </script>
@@ -30,7 +32,7 @@ export default {
 .v-application--wrap {
   font-family: "Questrial", sans-serif;
   justify-content: space-between;
-  background-color: rgb(52, 52, 52);
-  background-color: white;
+  background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
+  color: gray;
 }
 </style>
