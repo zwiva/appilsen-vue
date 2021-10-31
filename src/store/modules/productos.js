@@ -5,6 +5,7 @@ export const moduloProductos = {
   state: {
     cervezasCatalogo: [],
     accesorios: [],
+    
   },
 
   mutations: {
