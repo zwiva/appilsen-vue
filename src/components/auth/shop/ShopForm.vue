@@ -1,5 +1,5 @@
 <template>
-  <v-container class="prueba">
+  <v-container>
     <v-row>
       <v-col cols="12" sm="6" md="6">
         <h2>Arma tu pilsen como quieras</h2>
@@ -10,65 +10,80 @@
         </p>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <!-- formulario 1 -->
         <v-card flat>
           <v-form ref="form" @submit.prevent="submit">
             <v-container fluid>
               <v-row>
                 <v-col cols="12" sm="6">
-                  <v-label for="">Nombra tu creación:</v-label>
                   <v-text-field
-                    v-model="form.first"
-                    :rules="rules.name"
-                    label="Nombre de tu cerveza"
-                    required
+                    label="Nombra tu creación"
+                    :rules="rules.completedField"
+                    v-model="formShop.name"
                   ></v-text-field>
                 </v-col>
 
                 <v-col cols="12" sm="6">
-                  <v-label for="">Marca de tu Appilsen</v-label>
                   <v-select
-                    v-model="form.favoriteAnimal"
-                    :items="items"
-                    outlined
+                    label="Escoge el estilo"
+                    v-model="formShop.style"
+                    :rules="rules.selectedField"
+                    :items="style"
+                  >
+                  </v-select>
+                </v-col>
+
+                <v-col cols="12" sm="6">
+                  <v-select
+                    label="Escoge la malta"
+                    :rules="rules.selectedField"
+                    v-model="formShop.malt"
+                    :items="malt"
                   ></v-select>
-                  <!-- <v-text-field
-                      v-model="form.last"
-                      :rules="rules.name"
-                      color="blue darken-2"
-                      label="Last name"
-                      required
-                    ></v-text-field> -->
                 </v-col>
-
                 <v-col cols="12" sm="6">
-                  <v-label for="">Estilo de tu cerveza</v-label>
-                  <v-select :items="items" label="Outlined style" outlined>
+                  <v-select
+                    label="Escoge la levadura"
+                    :rules="rules.selectedField"
+                    v-model="formShop.yest"
+                    :items="yest"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-select
+                    label="Escoge el lúpulo"
+                    :rules="rules.selectedField"
+                    v-model="formShop.hop"
+                    :items="hop"
+                  >
                   </v-select>
-
-                  <!-- <v-select
-                      v-model="form.favoriteAnimal"
-                      :items="animals"
-                      :rules="rules.animal"
-                      color="pink"
-                      label="Favorite animal"
-                      required
-                    ></v-select> -->
                 </v-col>
-
                 <v-col cols="12" sm="6">
-                  <v-label for="">Ingredientes</v-label>
-                  <v-select :items="items" label="Outlined style" outlined>
+                  <v-select
+                    label="Ingrediente adicional"
+                    :rules="rules.selectedField"
+                    v-model="formShop.additional"
+                    :items="additional"
+                  >
                   </v-select>
                 </v-col>
 
                 <v-col cols="12" sm="6">
-                  <v-label for="">Cantidad</v-label>
-                  <input
+                  <v-select
+                    label="Escoge el formato"
+                    :rules="rules.selectedField"
+                    v-model="formShop.format"
+                    :items="format"
+                  >
+                  </v-select>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    label="Ingresa cantidad"
                     type="number"
                     min="0"
                     step="1"
-                    style="background-color: #e7e5fc"
+                    :rules="rules.completedField"
+                    v-model="formShop.quantity"
                   />
                 </v-col>
               </v-row>
@@ -111,18 +126,55 @@
 export default {
   name: "shopform",
   data: () => ({
-    items: ["Foo", "Bar", "Fizz", "Buzz"],
-
-    form: {
-      first: "",
-      favoriteAnimal: "",
+    formShop: {
+      name: "",
+      style: "",
+      malt: "",
+      yest: "",
+      hop: "",
+      additional: "",
+      format: "",
+      quantity: "",
     },
     rules: {
-      name: [(val) => (val || "").length > 0 || "This field is requireddddd"],
-      animal: [(val) => (val || "").length > 0 || "This field is requiredeeee"],
+      completedField: [
+        (val) => (val || "").length > 0 || "Por favor completar.",
+      ],
+      selectedField: [
+        (val) => (val || "").length > 0 || "Por favor seleccionar.",
+      ],
     },
-    animals: ["Dog", "Cat", "Rabbit", "Turtle", "Snake"],
-    conditions: false,
+    style: ["Lager", "Pale Ale", "Ipa", "Stout", "Bock"],
+    malt: [
+      "Pils, Lager",
+      "Caramelo, Pils",
+      "Pale, Cristal",
+      "Tostada, Chocolate",
+      "Caramunich",
+    ],
+    yest: [
+      "Saflager",
+      "Liberty bell",
+      "Safale",
+      "Ale Irish, English Ale",
+      "Bavarian",
+    ],
+    hop: [
+      "Spalt, Sterling, Ultra",
+      "Cascade, Glacier",
+      "Cascade, Mosaic, Citra",
+      "East Kent, North Down",
+      "Hallertauer, Magnummount",
+    ],
+    additional: ["Lupulo, Citda, Amarillo", "Pomelo", "Leche"],
+    format: [
+      "1 Litro",
+      "2 Litros",
+      "6 botellas 330 cc",
+      "24 botellas 330 cc",
+      "Barril 20 Litros",
+      "Barril 50 Litros",
+    ],
   }),
 
   methods: {
