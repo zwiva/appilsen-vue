@@ -116,7 +116,6 @@ export default {
     ],
   }),
   components:{
- facebookLogin
   },
 
   methods: {
