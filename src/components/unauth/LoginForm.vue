@@ -84,6 +84,14 @@
             Ingresar con Facebook
           </v-btn>
         </div> -->
+        <facebook-login
+          class="button"
+          appId="326022817735322"
+          @login="getUserData"
+          @logout="onLogout"
+          @get-initial-status="getUserData"
+        >
+        </facebook-login>
       </div>
     </v-container>
   </div>
@@ -107,6 +115,9 @@ export default {
       // (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
   }),
+  components:{
+ facebookLogin
+  },
 
   methods: {
     async paraValidar() {
