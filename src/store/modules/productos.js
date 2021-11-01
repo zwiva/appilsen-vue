@@ -3,8 +3,10 @@ import Firebase from "firebase";
 export const moduloProductos = {
   namespaced: true,
   state: {
-    cervezasCatalogo: [],
-    accesorios: [],
+      /* todosLosProductos: [], abra que hacer un arreglo 
+      que tome todos los productos (catalogo y merch )??*/
+      cervezasCatalogo: [],
+      accesorios: [],
     
   },
 
@@ -16,7 +18,7 @@ export const moduloProductos = {
     SET_MERCHANDACCESSORIES_DATA(state, newMerchantAccessorsData) {
       state.accesorios = newMerchantAccessorsData;
       console.log("state.accesorios", state.accesorios);
-    }
+    },
   },
 
   actions: {
@@ -35,15 +37,15 @@ export const moduloProductos = {
 
     getAllMerchAndAccessories(context) {
       Firebase.firestore()
-      .collection("Merch")
-      .get()
-      .then((documents) => {
-        const merchAndAccessories = [];
-        documents.forEach((document) => {
-          merchAndAccessories.push({ id: document.id, ...document.data() });
+        .collection("Merch")
+        .get()
+        .then((documents) => {
+          const merchAndAccessories = [];
+          documents.forEach((document) => {
+            merchAndAccessories.push({ id: document.id, ...document.data() });
+          });
+          context.commit("SET_MERCHANDACCESSORIES_DATA", merchAndAccessories);
         });
-        context.commit("SET_MERCHANDACCESSORIES_DATA", merchAndAccessories);
-      });
-    }
+    },
   },
 };
