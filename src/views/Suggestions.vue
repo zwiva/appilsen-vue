@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- principal -->
     <div>
       <h1>Recomiéndanos:</h1>
       <p>
@@ -20,40 +21,53 @@
         </v-row>
       </v-layout>
     </div>
-    <div>
-      <v-dialog v-model="showDialog" max-width="800px">
-        <v-card elevation="7" shaped>
-          <v-card-title> aca va un formulario </v-card-title>
-          <v-form ref="form" v-model="valid" lazy-validation>
+
+    <!-- dialogo para agregar sugerencia-->
+    <v-dialog v-model="showDialog" max-width="800px">
+      <v-card elevation="7" class="pa-3">
+        <v-container>
+          <h2 class="text-center">Ingresa el detalle de tu sugerencia: </h2>
+          <v-form ref="form">
             <v-text-field
-              v-model="name"
-              label="Nombre Cerveza"
+              v-model="newSuggestion.name"
+              label="Nombre Cerveza:"
               required
             ></v-text-field>
-
             <v-text-field
-              v-model="estilo"
-              label="Estilo"
+              v-model="newSuggestion.brand"
+              label="Marca:"
               required
             ></v-text-field>
-
             <v-text-field
-              v-model="email"
-              label="Formato"
+              v-model="newSuggestion.originCountry"
+              label="Pais origen:"
               required
             ></v-text-field>
-
             <v-text-field
-              v-model="imagen"
-              label="Imagen"
+              v-model="newSuggestion.style"
+              label="Estilo:"
               required
             ></v-text-field>
-
-            <v-btn color="success" class="mr-4"> Guardar </v-btn>
+            <v-text-field
+              v-model="newSuggestion.format"
+              label="Formato:"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="newSuggestion.price"
+              label="Precio:"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="newSuggestion.observations"
+              label="Observaciones:"
+              required
+            ></v-text-field>
+            <v-btn color="success" class="mr-4" @click="saveSuggestion"> Guardar </v-btn>
           </v-form>
-        </v-card>
-      </v-dialog>
-    </div>
+        </v-container>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -63,6 +77,15 @@ export default {
   components: { SuggestionCard },
   data: () => ({
     showDialog: false,
+    newSuggestion: {
+      name: "",
+      brand: "",
+      originCountry: "",
+      style: "",
+      format: "",
+      price: "",
+      observations: "",
+    },
     suggestions: [
       {
         name: "una",
@@ -114,5 +137,10 @@ export default {
       },
     ],
   }),
+  methods:{
+    saveSuggestion() {
+      console.log('guarda sugerencia')
+    }
+  },
 };
 </script>
