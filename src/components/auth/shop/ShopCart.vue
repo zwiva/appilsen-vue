@@ -6,7 +6,7 @@
 
       <v-card class="justify-center">
         <h4>Aca va el carro de compras -> sera tabla resumen</h4>
-         <pre>{{ $store.state.productos.cervezasCatalogo }}</pre> 
+        <pre>{{ $store.state.productos.cervezasCatalogo }}</pre>
 
         <table>
           <img src="" alt="" />
@@ -24,8 +24,6 @@
 <script>
 export default {
   name: "shopcart",
-  props: { productos:
-    { type: Object, required: true } 
-    }
+  props: { productos: { type: Object, required: true } },
 };
 </script>

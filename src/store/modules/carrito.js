@@ -1,4 +1,4 @@
-export const moduloCarrito =  {
-    namespaced: true,
-    state: {}
-}
+export const moduloCarrito = {
+  namespaced: true,
+  state: {},
+};

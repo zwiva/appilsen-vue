@@ -7,9 +7,7 @@
         amigas!:
       </p>
       <!-- v-if=true si usuario es ADMIN -->
-      <v-btn color="info" @click="dialog = true"
-        >Agregar Sugerencia</v-btn
-      >
+      <v-btn color="info" @click="dialog = true">Agregar Sugerencia</v-btn>
 
       <v-layout align-center justify-space-between>
         <v-row d-flex flex-wrap class="justify-center">
@@ -22,12 +20,10 @@
         </v-row>
       </v-layout>
     </div>
-
   </div>
 </template>
 
 <script>
-
 import store from "../store";
 import ExternalCardBeer from "../components/auth/ExternalCardBeer.vue";
 
@@ -39,16 +35,12 @@ export default {
     next();
   },
 
-  data: () => ({
-  
-  }),
+  data: () => ({}),
 
   mounted() {
     store.dispatch("productos/getAllexternalBeers");
     console.log("mounted");
   },
-  methods: {
-   
-  },
+  methods: {},
 };
 </script>

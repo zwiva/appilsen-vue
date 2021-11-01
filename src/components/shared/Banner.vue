@@ -1,11 +1,14 @@
 <template>
   <div>
     <v-card color="" tile class="banner--beer">
-      <h4 class="pa-4"> Si estas en Santiago, hay {{ maxTemperature }}°C, el dia está "{{ skyStatus }}" y te recomendamos tomar una "random"</h4>
+      <h4 class="pa-4">
+        Si estas en Santiago, hay {{ maxTemperature }}°C, el dia está "{{
+          skyStatus
+        }}" y te recomendamos tomar una "random"
+      </h4>
     </v-card>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 export default {
@@ -65,7 +68,6 @@ export default {
 </script>
 <style scoped>
 .banner--beer {
-  background: linear-gradient(360deg, rgb(248, 162, 3) 60%, rgb(255, 201, 100) );
-
+  background: linear-gradient(360deg, rgb(248, 162, 3) 60%, rgb(255, 201, 100));
 }
 </style>

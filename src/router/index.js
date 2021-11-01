@@ -86,7 +86,7 @@ const routes = [
     path: "/catalogo",
     name: "Catalogo",
     component: () => import("../views/CatalogView.vue"),
-  }
+  },
 ];
 
 const router = new VueRouter({

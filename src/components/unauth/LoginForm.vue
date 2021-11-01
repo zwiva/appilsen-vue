@@ -115,20 +115,20 @@ export default {
       // (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
   }),
-  components:{
-  },
+  components: {},
 
   methods: {
     async paraValidar() {
       if (this.$refs.form.validate()) {
         try {
-          console.log(this.signInForm)
+          console.log(this.signInForm);
           await Firebase.auth().signInWithEmailAndPassword(
             this.signInForm.email,
             this.signInForm.password
           );
 
-          this.$store.dispatch("sesion/configurarUsuario",
+          this.$store.dispatch(
+            "sesion/configurarUsuario",
             Firebase.auth().currentUser
           );
 
