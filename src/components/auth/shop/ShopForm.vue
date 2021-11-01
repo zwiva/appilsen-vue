@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" sm="6" md="6">
+      <v-col cols="12" sm="4" md="6">
         <h2>Arma tu pilsen como quieras</h2>
         <p>
           Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
@@ -9,10 +9,11 @@
           en nuestro bar.
         </p>
       </v-col>
-      <v-col cols="12" sm="6" md="6">
+      <v-col cols="12" sm="8" md="6">
         <v-card flat>
           <v-form ref="form" @submit.prevent="submit">
             <v-container fluid>
+              <h4 class="py-3">Tu creación:</h4>
               <v-row>
                 <v-col cols="12" sm="6">
                   <v-text-field
@@ -89,64 +90,110 @@
               </v-row>
             </v-container>
 
-            <div>
-              <div class="d-block pa-2">
-                <p cols="12">¿Qué quieres hacer con tu creacion?</p>
-                <v-btn text @click="resetForm1">
-                  Retirar <br />
-                  en tienda
-                </v-btn>
-                <v-btn text @click="resetForm1">
-                  Consumir <br />
-                  en tienda
-                </v-btn>
-                <v-btn text @click="resetForm1"> Despacho </v-btn>
-                <v-spacer></v-spacer>
-                <div>
-                  <p class="text-center">el mapa</p>
-                  <div class="main">
-                    <div class="flex">
-                      <!-- Map Display here -->
-                      <div class="map-holder">
-                        <div id="map"></div>
-                      </div>
-                      <!-- Coordinates Display here -->
-                      <div class="display-arena">
-                        <div class="coordinates-header">
-                          <h3>Current Coordinates</h3>
-                          <p>Latitude: {{ center[0] }}</p>
-                          <p>Longitude: {{ center[1] }}</p>
-                        </div>
-                        <div class="coordinates-header">
-                          <h3>Current Location</h3>
-                          <div class="form-group">
-                            <input
-                              type="text"
-                              class="location-control"
-                              :value="location"
-                              readonly
-                            />
-                            <button
+            <div class="ma-3">
+              <h4 class="py-3">¿Qué quieres hacer con tu creacion?</h4>
+              <!-- <div class="d-block"> -->
+              <v-row class="pa-1">
+                <v-col cols="12" sm="4" class="text-center">
+                  <v-btn small @click="selectPickup">
+                    Retirar<v-icon small>mdi-shopping</v-icon>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12" sm="4" class="text-center">
+                  <v-btn small @click="selectStore">
+                    Consumir<v-icon small>mdi-glass-mug-variant</v-icon>
+                  </v-btn>
+                </v-col>
+                <v-col cols="12" sm="4" class="text-center">
+                  <v-btn small @click="selectDispatch">
+                    Despacho<v-icon small>mdi-truck-outline</v-icon>
+                  </v-btn>
+                </v-col>
+
+                <div class="mx-auto">
+                  <v-select
+                    label="Escoge ubicación"
+                    :rules="rules.selectedField"
+                    v-model="formShop.shop"
+                    :items="shops"
+                    v-if="pickup"
+                  >
+                  </v-select>
+                  <v-select
+                    label="Escoge tienda"
+                    :rules="rules.selectedField"
+                    v-model="formShop.shop"
+                    :items="shops"
+                    v-if="store"
+                  >
+                  </v-select>
+                  <v-row class="justify-center align-center">
+                    <v-text-field
+                      label="Ingresa una dirección"
+                      :rules="rules.completedField"
+                      v-model="formShop.address"
+                      v-if="dispatch"
+                    >
+                    </v-text-field>
+
+                    <v-btn
+                      class="mx-1"
+                      small
+                      v-if="dispatch"
+                      :disabled="loading"
+                      :class="{ disabled: loading }"
+                      @click="getLocation"
+                    >
+                      Obtener dirección
+                    </v-btn>
+                  </v-row>
+                  <div class="form-group text-center">
+                    <input
+                      type="text"
+                      class="location-control"
+                      :value="location"
+                      readonly
+                    />
+                    <!-- <button
                               type="button"
                               class="copy-btn"
                               @click="copyLocation"
-                            ></button>
-                          </div>
-                          <button
-                            type="button"
-                            :disabled="loading"
-                            :class="{ disabled: loading }"
-                            class="location-btn"
-                            @click="getLocation"
-                          >
-                            Get Location
-                          </button>
-                        </div>
+                            >
+                              copiar
+                            </button> -->
+                  </div>
+                </div>
+              </v-row>
+
+              <v-spacer></v-spacer>
+
+              <div>
+                <div class="main">
+                  <div class="flex pa-3 ma-3">
+                    <!-- Map -->
+                    <div class="map-holder">
+                      <div id="map"></div>
+                    </div>
+                    <!-- Configurations -->
+                    <div class="display-arena">
+                      <!-- coordenadas -->
+                      <div class="coordinates-header">
+                        <h3>
+                          Current Coordinates (QUITAR
+                          <strong
+                            >despues de tener coordenadas de lugares), meter en
+                          </strong>
+                        </h3>
+                        <p>Latitude: {{ center[0] }}</p>
+                        <p>Longitude: {{ center[1] }}</p>
                       </div>
+
+                      <v-btn @click="goShowOrder">Ver pedido</v-btn>
                     </div>
                   </div>
                 </div>
-                <!-- <v-btn
+              </div>
+              <!-- <v-btn
                 :disabled="!formIsValid"
                 text
                 color="primary"
@@ -154,12 +201,19 @@
               >
                 Register
               </v-btn> -->
-              </div>
             </div>
+            <!-- </div> -->
           </v-form>
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog v-model="showOrder">
+      <v-card>
+        <h3>Mostrar dialogo con resumen de pedido</h3>
+        <v-btn @click="saveOrder">Confirmar</v-btn>
+        <v-btn @click="showOrder = false">Cancelar</v-btn>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -172,6 +226,7 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   name: "shopform",
   data: () => ({
+    //formulario:
     formShop: {
       name: "",
       style: "",
@@ -181,7 +236,12 @@ export default {
       additional: "",
       format: "",
       quantity: "",
+      shop: "",
+      address: "",
     },
+    pickup: false,
+    store: false,
+    dispatch: false,
     rules: {
       completedField: [
         (val) => (val || "").length > 0 || "Por favor completar.",
@@ -221,18 +281,51 @@ export default {
       "Barril 20 Litros",
       "Barril 50 Litros",
     ],
+    shops: [
+      "tienda 1",
+      "tienda 2",
+      "tienda 3",
+      "tienda 4",
+      "tienda 5",
+      "tienda 6",
+    ],
+    // mapas:
     loading: false,
     location: "",
     access_token:
       "pk.eyJ1IjoiYW5kcmUwOSIsImEiOiJja3ZmaGpjYXZicWV0MnduenExamtra3UxIn0.hP-Qt5fSgf5qr4HF5EYGZQ",
-    center: [-70.648872, -33.437767],
+    center: [-70.648872, -33.437767], // armar arreglos y escoger para meter en selectores
     map: {},
+    showOrder: false,
   }),
-  components: {
-
-  },
-
+  components: {},
   methods: {
+    selectPickup() {
+      console.log("escoge retiro en tienda");
+      this.pickup = true;
+      this.store = false;
+      this.dispatch = false;
+    },
+    selectStore() {
+      console.log("escoge consumo en tienda");
+      this.store = true;
+      this.pickup = false;
+      this.dispatch = false;
+    },
+    selectDispatch() {
+      console.log("escoge despacho");
+      this.dispatch = true;
+      this.pickup = false;
+      this.store = false;
+    },
+    goShowOrder() {
+      this.showOrder = true;
+      console.log("meter en la store");
+    },
+    saveOrder() {
+      console.log("guardar el pedido en la store y mandar a la firebase");
+    },
+
     // resetForm2() {
     //   this.errorMessages = [];
     //   this.formHasErrors = false;
@@ -301,6 +394,10 @@ export default {
         );
         this.loading = false;
         this.location = response.data.features[0].place_name;
+        console.log(
+          "al hacer click esta info debe guardarse --> adjuntar a formulario y hacer dispatch",
+          this.location
+        );
       } catch (err) {
         this.loading = false;
         console.log(err);
