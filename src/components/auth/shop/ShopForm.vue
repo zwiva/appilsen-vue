@@ -221,17 +221,6 @@ export default {
       "Barril 20 Litros",
       "Barril 50 Litros",
     ],
-    accessToken:
-      "pk.eyJ1IjoiYW5kcmUwOSIsImEiOiJja3ZmaGpjYXZicWV0MnduenExamtra3UxIn0.hP-Qt5fSgf5qr4HF5EYGZQ", // your access token. Needed if you using Mapbox maps
-
-    // mapStyle: "mapbox://map_style",
-    // geojson: {
-    //   /* … some geojson */
-    // },
-    // layerId: "firstLayer",
-    // sourceId: "firstSource",
-    // markerCoordinates: "[50, 50]",
-
     loading: false,
     location: "",
     access_token:
