@@ -3,8 +3,7 @@ import Firebase from "firebase";
 export const moduloProductos = {
   namespaced: true,
   state: {
-      /* todosLosProductos: [], abra que hacer un arreglo 
-      que tome todos los productos (catalogo y merch )??*/
+       todosLosProductos: [], 
       cervezasCatalogo: [],
       accesorios: [],
     

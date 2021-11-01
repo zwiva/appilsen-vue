@@ -35,8 +35,8 @@ export default {
   },
   methods: {
     addProductoAlCarrito() {
-       console.log({ beer: this.beer })  
-      this.$store.dispatch("carrito/addProducto", this.beer)
+       console.log({ todosLosProductos: this.todosLosProductos })  
+      this.$store.dispatch("carrito/addProducto", this.todosLosProductos)
     }
   }
 };
