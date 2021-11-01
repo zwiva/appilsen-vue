@@ -11,13 +11,13 @@
                 <v-list-item-title>${{ beer.precio }}</v-list-item-title>
                 <v-list-item-subtitle>{{ beer.estilo }}</v-list-item-subtitle>
                 <v-list-item-subtitle>{{ beer.alcohol }}°</v-list-item-subtitle>
-                <v-list-item-subtitle>F{{ beer.formato }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ beer.formato }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
               <v-btn 
               color="info" 
-              @click="addProductoAlCarrito">Agregar al carrito</v-btn>
+              @click="addProductoAlCarrito (beer)">Agregar al carrito</v-btn>
             </v-card-actions>
           </v-card>
         </v-row>
@@ -29,14 +29,17 @@
 <script>
 export default {
   name: "ExternalCardBeer",
-   data: () => ({}),
+   data: () => ({
+     cervezaAlCarrito: {},
+   }),
   props: {
     beer: { type: Object, require: true },
   },
   methods: {
-    addProductoAlCarrito() {
-       console.log({ todosLosProductos: this.todosLosProductos })  
-      this.$store.dispatch("carrito/addProducto", this.todosLosProductos)
+    addProductoAlCarrito(beer) {
+      this.cervezaAlCarrito = beer
+       /* console.log( "cervezaAlCarrito", this.cervezaAlCarrito );  */
+       this.$store.dispatch("carrito/addProducto", this.cervezaAlCarrito) 
     }
   }
 };

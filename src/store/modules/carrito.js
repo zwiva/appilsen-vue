@@ -10,18 +10,24 @@ export const moduloCarrito = {
   },
   actions: {
     addProducto(context, producto ) {
-        const productosDeLaFirebase = context.state.todosLosProductos.findIndex
-            ((productoEnElCarrito) => productoEnElCarrito.nombre === producto.nombre)
-            
-            if (productosDeLaFirebase === -1 ) {  
-
+      console.log("producto", producto )
       // eslint-disable-next-line no-unused-vars
       const { stock, ...newProducto } = producto;
       context.commit("ADD_PRODUCTO", { ...newProducto, cantidad: 1 });
-        }  
+        /*    const productosDeLaFirebase = context.state.todosLosProductos.findIndex 
+             ((productoEnElCarrito) => productoEnElCarrito.nombre === producto.nombre)
+            
+            if (productosDeLaFirebase === -1 ) {   
+
+        }    */
     },
   },
 };
+
+
+
+
+
 
 // state: {
   //   inCartProducts: [],
