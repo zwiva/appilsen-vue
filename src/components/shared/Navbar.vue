@@ -3,7 +3,7 @@
     <v-card>
       <v-toolbar color="blue-grey darken-4" dark flat tile>
         <!-- <template v-slot:extension> -->
-          <!-- <v-list-item
+        <!-- <v-list-item
             v-for="(item, $index) in items"
             :key="$index"
             link
@@ -18,78 +18,78 @@
             </v-list-item-content>
           </v-list-item> -->
 
-          <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[0].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[0].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[1].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[1].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[2].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[2].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[3].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[3].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[4].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[4].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[5].to" v-if="isUser">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[5].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[5].to" v-if="isUser">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[5].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[6].to" v-if="isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[6].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-list-item :to="items[6].to" v-if="isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[6].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-          <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
-              <v-spacer></v-spacer>
-              <v-list-item-title text-align-center>
-                {{ items[7].title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+        <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[7].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
         <!-- </template> -->
       </v-toolbar>
     </v-card>
@@ -141,7 +141,6 @@ export default {
   },
 };
 </script>
-
 <style>
 .nabvar--gradient {
   background: linear-gradient(135deg, #3c3c3c, rgb(19, 19, 19));
@@ -154,4 +153,3 @@ export default {
   color: #356859 !important;
 }
 </style>
-

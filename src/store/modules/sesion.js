@@ -9,7 +9,7 @@ export const moduloSesion = {
   mutations: {
     SET_USUARIO(state, newUsuario) {
       state.usuario = newUsuario;
-      console.log('current usuario', state.usuario)
+      console.log("current usuario", state.usuario);
     },
   },
 
