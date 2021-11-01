@@ -1,5 +1,7 @@
 <template>
   <div>
+<!--  <pre>{{ $store.state.shopCart.cervezasCatalogo }}</pre> -->
+
     <ShopCart />
   </div>
 </template>

@@ -3,8 +3,11 @@ import Firebase from "firebase";
 export const moduloProductos = {
   namespaced: true,
   state: {
-    cervezasCatalogo: [],
-    accesorios: [],
+      /* todosLosProductos: [], abra que hacer un arreglo 
+      que tome todos los productos (catalogo y merch )??*/
+      cervezasCatalogo: [],
+      accesorios: [],
+    
   },
 
   mutations: {

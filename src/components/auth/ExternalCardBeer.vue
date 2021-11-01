@@ -15,7 +15,9 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn color="info">Agregar al carrito</v-btn>
+              <v-btn 
+              color="info" 
+              @click="addProductoAlCarrito">Agregar al carrito</v-btn>
             </v-card-actions>
           </v-card>
         </v-row>
@@ -27,9 +29,15 @@
 <script>
 export default {
   name: "ExternalCardBeer",
-  // data: () => ({}),
+   data: () => ({}),
   props: {
     beer: { type: Object, require: true },
   },
+  methods: {
+    addProductoAlCarrito() {
+       console.log({ beer: this.beer })  
+      this.$store.dispatch("carrito/addProducto", this.beer)
+    }
+  }
 };
 </script>

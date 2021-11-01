@@ -6,7 +6,6 @@
 
       <v-card class="justify-center">
         <h4>Aca va el carro de compras -> sera tabla resumen</h4>
-        <pre>{{ $store.state.productos.cervezasCatalogo }}</pre>
 
         <table>
           <img src="" alt="" />
