@@ -5,10 +5,8 @@
         <v-card
           color="amber lighten-2"
           class="mx-auto"
-          height="400"
-          max-width="380"
           elevation="8"
-          shaped
+          
         >
           <v-layout column align-center justify-center>
             <v-card-title color="amber">

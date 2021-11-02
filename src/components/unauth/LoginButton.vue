@@ -4,15 +4,16 @@
       Iniciar Sesion
       <v-icon>mdi-login</v-icon>
     </v-btn>
-
-    <v-dialog v-model="loginForm">
-      <v-card>
-        <v-card-title>Inicia sesion</v-card-title>
+<v-container>
+    <v-dialog  max-width="370" v-model="loginForm">
+      <v-card >
+        <v-card-title></v-card-title>
         <v-card-text>
           <LoginForm />
         </v-card-text>
       </v-card>
     </v-dialog>
+</v-container>
   </div>
 </template>
 

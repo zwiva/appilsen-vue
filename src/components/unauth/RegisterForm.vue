@@ -2,7 +2,7 @@
   <div id="app">
     <v-app id="inspire">
       <v-layout row wrap align-center justify-center>
-        <v-sheet :rounded="rounded" class="mx-auto" height="400" width="380">
+        <v-sheet  class="mx-auto" height="400" width="380">
           <v-card color="amber" amber elevation="8" shaped>
             <v-container>
               <v-layout column align-center justify-center>
@@ -17,7 +17,7 @@
                       v-model="register.email"
                       :counter="10"
                       :rules="nameRules"
-                      label="E-mail o Usuario"
+                      label="email"
                       filled
                       rounded
                       dense

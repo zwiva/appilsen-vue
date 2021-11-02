@@ -2,13 +2,29 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="4" md="6">
-        <h2>Arma tu pilsen como quieras</h2>
-        <p>
+        <h1>Arma tu pilsen como quieras</h1>
+
+        <br />
+
+        <v-carousel cycle max-width="300">
+          <v-carousel-item
+            v-for="(item, i) in items"
+            :key="i"
+            :src="item.src"
+            height="400px"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+          ></v-carousel-item>
+        </v-carousel>
+<br />
+
+        <h2>
           Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
           a retirarla, la tendremos heladita para ti, y si te animas disfrutala
           en nuestro bar.
-        </p>
+        </h2>
       </v-col>
+
       <v-col cols="12" sm="8" md="6">
         <v-card flat>
           <v-form ref="form" @submit.prevent="submit">
@@ -226,6 +242,22 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   name: "shopform",
   data: () => ({
+    items: [
+      {
+        src: "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2018/01/25/15169052662226.jpg",
+      },
+      {
+        src: "https://www.cervezabyra.com/img/BYRA-fabrica-de-cerveza-artesana-euskadi-01@2x.jpg",
+      },
+      {
+        src: "https://www.eleconomista.com.mx/__export/1532316423752/sites/eleconomista/img/2018/07/22/cerveza-artesanal--shutterstock_337557026.jpg_673822677.jpg",
+      },
+      {
+        src: "https://labuenacheve.com/wp-content/uploads/2021/01/PORTADAS-WORDPRESS-51.png",
+      },
+    ],
+    slides: ["First", "Second", "Third", "Fourth", "Fifth"],
+
     //formulario:
     formShop: {
       name: "",
@@ -298,6 +330,7 @@ export default {
     map: {},
     showOrder: false,
   }),
+
   components: {},
   methods: {
     selectPickup() {
