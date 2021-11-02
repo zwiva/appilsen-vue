@@ -1,18 +1,31 @@
 <template>
   <div>
-<!--  <pre>{{ $store.state.shopCart.cervezasCatalogo }}</pre> -->
+      <div row>
+        <h2>Carrito Cervecero</h2>
 
-    <ShopCart />
+        <v-card class="justify-center">
+          <!-- <h4>Aca va el carro de compras -> sera tabla resumen</h4> -->
+
+          <!--  <pre>{{ $store.state.shopCart.cervezasCatalogo }}</pre> -->
+          <v-col cols="12">
+          <ShopTable :products="products" with="80%"/>
+          </v-col>
+        </v-card>
+      </div>
   </div>
 </template>
 
 <script>
-import ShopCart from "../components/auth/shop/ShopCart.vue";
+import ShopTable from "../components/auth/shop/ShopTable.vue";
 export default {
   name: "shop",
-  components: { ShopCart },
-  // data: () => ({
-  //   // shopcart: false,
-  // }),
+  components: { ShopTable },
+  data: () => ({
+    products: [{
+      name: "Cerveza 1",
+      quantity: 1,
+      price: 1000
+    }]
+  }),
 };
 </script>
