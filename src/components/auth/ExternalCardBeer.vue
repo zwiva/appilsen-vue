@@ -4,7 +4,7 @@
       <v-col cols="12" md="4">
         <v-row>
           <v-card elevation="2" outlined class="mx-auto" max-width="340">
-            <v-img :src="beer.imagen" height="250px" contain />
+            <v-img class="zoom" :src="beer.imagen" height="250px" contain />
             <v-list-item>
               <v-list-item-content>
                 <v-list-item-title>{{ beer.nombre }}</v-list-item-title>
@@ -44,3 +44,16 @@ export default {
   }
 };
 </script>
+
+<style>
+
+.zoom
+{
+ transition: transform .5s;
+}
+.zoom:hover
+{
+ transform: scale(1.2);
+}
+
+</style>
