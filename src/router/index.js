@@ -9,6 +9,9 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta: {
+      requirelogin: false,
+    },
   },
   {
     path: "/login",
@@ -18,6 +21,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    meta: {
+      requirelogin: false,
+    },
   },
   {
     path: "/carrito",
@@ -27,6 +33,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "shopcart" */ "../views/ShopCart.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/armar",
@@ -36,6 +45,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "shopform" */ "../views/ShopForm.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/beerstock",
@@ -45,6 +57,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "external" */ "../views/ExternalBeers.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/recomendaciones",
@@ -54,6 +69,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "internal" */ "../views/Suggestions.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/merch",
@@ -63,6 +81,9 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "otherproducts" */ "../views/Merch.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/ourteam",
@@ -72,11 +93,17 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "internal" */ "../views/About.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
   {
     path: "/catalogo",
     name: "Catalogo",
     component: () => import("../views/CatalogView.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
   },
 ];
 
@@ -85,5 +112,17 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.requirelogin)
+//     if (Store.state.currentUser) {
+//       next(); //siguiente
+//     } else {
+//       next("/login"); //arg opcional para que lleve para el login
+//     }
+//   else {
+//     next();
+//   }
+// });
 
 export default router;
