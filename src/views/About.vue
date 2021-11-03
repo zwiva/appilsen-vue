@@ -4,26 +4,22 @@
       <h1 class="font-weight-bold text-left">Quienes somos</h1>
 
       <br />
-     
-       
-       <v-row>
-       
-          <div>
+
+      <v-row>
+        <div>
           <p class="text-left my-2">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
             magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus,
             alias illum eaque ducimus laudantium fugiat ut fuga <br />excepturi
-            tenetur repellendus velit.
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
-            magnam? Vitae nihil vel voluptatum delectus temporibus <br /> voluptatibus,
-            alias illum eaque ducimus laudantium fugiat ut fuga excepturi
-            tenetur repellendus velit.
+            tenetur repellendus velit. Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. Eos, quos magnam? Vitae nihil vel voluptatum
+            delectus temporibus <br />
+            voluptatibus, alias illum eaque ducimus laudantium fugiat ut fuga
+            excepturi tenetur repellendus velit.
           </p>
-          </div>
+        </div>
 
-          <br />
-      
-
+        <br />
 
         <div class="player embed responsive">
           <iframe
@@ -39,32 +35,34 @@
         </div>
 
         <br />
-              <div>
+        <div>
           <p class="text-left my-2">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
-            magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus, <br />
-            alias illum eaque ducimus laudantium fugiat ut fuga excepturi
-            tenetur repellendus velit.
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br /> Eos, quos
             magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus,
-            alias illum eaque ducimus laudantium fugiat ut fuga <br /> excepturi
-            tenetur repellendus velit.
+            <br />
+            alias illum eaque ducimus laudantium fugiat ut fuga excepturi
+            tenetur repellendus velit. Lorem ipsum dolor sit, amet consectetur
+            adipisicing elit. <br />
+            Eos, quos magnam? Vitae nihil vel voluptatum delectus temporibus
+            voluptatibus, alias illum eaque ducimus laudantium fugiat ut fuga
+            <br />
+            excepturi tenetur repellendus velit.
           </p>
-          </div>
-        </v-row>
+        </div>
+      </v-row>
 
-        <br />
-        <br />
-        <br />
-      
+      <br />
+      <br />
 
-  
-      <v-btn class="btnabout" color="amber">
-        <router-link :to="{ name: 'Home' }">
-          <v-icon>mdi-home</v-icon>
-          Volver al inicio</router-link>
-      </v-btn>
-
+      <div>
+        <v-img
+        class="imgbtn"
+          src="@/assets/imgbeers/logoAppilsen.png"
+          height="250px"
+          width="250px"
+          ><router-link :to="{ name: 'Home' }"> </router-link>
+        </v-img>
+      </div>
     </v-container>
   </div>
 </template>
@@ -94,14 +92,13 @@ export default {
   margin-left: 5rem;
   margin-top: 3rem;
   overflow: hidden;
-  
 }
 
-.btnabout {
-  margin-left: 5rem;
-  margin-top: 3rem;
-  color:black;
-
+.imgbtn {
+  justify-content: center;
+  margin-left: 20rem;
+  margin-top: 1rem;
+  
 }
 
 h1 {
@@ -110,6 +107,7 @@ h1 {
 
 p {
   margin-left: 5rem;
-
 }
+
+
 </style>

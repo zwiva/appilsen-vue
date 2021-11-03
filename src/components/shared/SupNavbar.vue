@@ -8,7 +8,8 @@
             <v-img class="mr-1" src="@/assets/imgbeers/logoAppilsen.png" height="85px" width="85px"> 
             </v-img>
     
-          <!-- <v-toolbar-title> APPILSEN</v-toolbar-title> -->
+         
+           
 
           <v-spacer></v-spacer>
         </div>
