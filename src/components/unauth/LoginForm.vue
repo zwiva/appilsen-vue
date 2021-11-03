@@ -4,92 +4,65 @@
       <div align-center justify-center class="text-center my-5">
         <v-card
           color="amber lighten-2"
-          class="mx-auto"
+          class="mx-auto dialog"
           elevation="8"
-          
+          max-width="400px"
+          rounded
         >
           <v-layout column align-center justify-center>
-            <v-card-title color="amber">
-              Registrate o Inicia sesion
-
-              <v-divider class="mx-4 black"></v-divider>
-            </v-card-title>
-
-            <v-form
-              ref="form"
-              @submit.prevent="paraValidar"
-              v-model="valid"
-              lazy-validation
-            >
-              <v-col cols="12">
-                <v-text-field
-                  v-model="signInForm.email"
-                  :rules="emailRules"
-                  label="E-mail o Usuario"
-                  filled
-                  rounded
-                  dense
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="signInForm.password"
-                  :rules="passwordRules"
-                  label="password"
-                  type="password"
-                  filled
-                  rounded
-                  dense
-                  required
-                ></v-text-field
-              ></v-col>
-            </v-form>
-            <v-card-text>
-              <v-btn
-                rounded
-                class="blue-grey darken-2"
-                large
-                href="#"
-                right
-                type="submit"
-                @click="paraValidar"
-                dark
-                >Ingresar</v-btn
+            <div style="background-color: white; width: 100%">
+              <v-card-title> Por favor inicia sesion </v-card-title>
+            </div>
+            <div class="ma-3 pt-6">
+              <v-form
+                ref="form"
+                @submit.prevent="paraValidar"
+                v-model="valid"
+                lazy-validation
               >
-              <v-btn color="blue-grey darken-2" depressed large rounded dark
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="signInForm.email"
+                    :rules="emailRules"
+                    label="Ingresa email"
+                    filled
+                    rounded
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="signInForm.password"
+                    :rules="passwordRules"
+                    label="Ingresa contraseña"
+                    type="password"
+                    filled
+                    rounded
+                    dense
+                  ></v-text-field
+                ></v-col>
+              </v-form>
+            </div>
+            <v-btn
+              rounded
+              class="grey darken-2"
+              large
+              href="#"
+              right
+              type="submit"
+              @click="iniciarSesion"
+              dark
+              >Ingresar</v-btn
+            >
+            <v-card-text>
+              ¿No estas registrado? Registrate:
+
+              <v-btn color="amber darken-2" class="ma-3" depressed large rounded dark
                 >Registrarse</v-btn
               >
             </v-card-text>
           </v-layout>
         </v-card>
-        <!--  boton real de facebook pero no se ve  -->
-        <!-- <div id="fb-root">
-          <div
-            class="fb-login-button"
-            data-width=""
-            data-size="medium"
-            data-button-type="login_with"
-            data-layout="rounded"
-            data-auto-logout-link="false"
-            data-use-continue-as="true"
-          >aaaaaaa</div>
-        </div> -->
-
-        <!-- <div class="pt-5 my-5">
-          <v-btn large color="light-blue darken-4" dark>
-            <i class="fab fa-facebook fa-2x"> </i>
-            Ingresar con Facebook
-          </v-btn>
-        </div> -->
-        <facebook-login
-          class="button"
-          appId="326022817735322"
-          @login="getUserData"
-          @logout="onLogout"
-          @get-initial-status="getUserData"
-        >
-        </facebook-login>
       </div>
     </v-container>
   </div>
@@ -103,20 +76,16 @@ export default {
   data: () => ({
     valid: true,
     signInForm: { email: "", password: "" },
-    // nameRules: [(v) => !!v || "Name is required"],
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      (v) => !!v || "* Campo requerido.",
+      (v) => /.+@.+\..+/.test(v) || "* Formato email no válido.",
     ],
-    passwordRules: [
-      (v) => !!v || "Password is required",
-      // (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
+    passwordRules: [(v) => !!v || "* Password es requerido"],
   }),
   components: {},
 
   methods: {
-    async paraValidar() {
+    async iniciarSesion() {
       if (this.$refs.form.validate()) {
         try {
           console.log(this.signInForm);
@@ -136,12 +105,12 @@ export default {
         }
       }
     },
-    /* reset () {
-        this.$refs.form.reset()
-      },
-      resetValidation () {
-        this.$refs.form.resetValidation()
-      }, */
+    reset() {
+      this.$refs.form.reset();
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation();
+    },
   },
 };
 </script>
