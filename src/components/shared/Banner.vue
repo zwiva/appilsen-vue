@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-container>
     <v-card color="" tile class="banner--beer">
       <h4 class="pa-4">
         Si estas en Santiago, hay {{ maxTemperature }}°C, el dia está "{{
@@ -7,6 +8,7 @@
         }}" y te recomendamos tomar una "random"
       </h4>
     </v-card>
+    </v-container>
   </div>
 </template>
 <script>

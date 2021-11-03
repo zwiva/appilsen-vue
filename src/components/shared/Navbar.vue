@@ -1,7 +1,9 @@
-<template>
-  <div>
+ <template>
+ <div>
+    <v-container>
     <v-card>
-      <v-toolbar color="blue-grey darken-4" dark flat tile>
+      <v-toolbar-items class="hidden-sm-and-down" color="blue-grey darken-4" dark flat tile height="90px">
+          
         <!-- <template v-slot:extension> -->
         <!-- <v-list-item
             v-for="(item, $index) in items"
@@ -17,6 +19,7 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item> -->
+
 
         <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
           <v-list-item-content v-model="tab" align-with-title>
@@ -91,17 +94,112 @@
         </v-list-item>
         <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
         <!-- </template> -->
-      </v-toolbar>
+      </v-toolbar-items>
+
+       <v-toolbar-items class="hidden-md-and-up" color="blue-grey darken-4" dark flat tile height="90px">
+          <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
+        <!-- <template v-slot:extension> -->
+        <!-- <v-list-item
+            v-for="(item, $index) in items"
+            :key="$index"
+            link
+            :to="item.to"
+            
+          >
+            <v-list-item-content v-model="tab" align-with-title >
+              <v-spacer></v-spacer>
+              <v-list-item-title tex-align-center>
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item> -->
+
+
+        <!-- <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[0].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[1].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[2].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[3].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[4].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[5].to" v-if="isUser">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[5].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[6].to" v-if="isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[6].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+          <v-list-item-content v-model="tab" align-with-title>
+            <v-spacer></v-spacer>
+            <v-list-item-title text-align-center>
+              {{ items[7].title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item> -->
+        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+        <!-- </template> -->
+      </v-toolbar-items>
+
+
     </v-card>
-  </div>
-</template>
+    </v-container>
+  </div></template>
 
 <script>
 export default {
   name: "Navbar",
   data() {
     return {
-      tab: null,
       user: "",
       isAdmin: false, // este (los dos deben ser false al inicio, en el mounted con la props que llega se carga el tipo de usuario)
       isUser: true, // vs este (uno u otro)
@@ -115,13 +213,20 @@ export default {
         { id: 1, title: "Arma tu Pilsen", icon: "", to: "/armar" },
         { id: 2, title: "Catalogo", icon: "", to: "/catalogo" },
         { id: 3, title: "Merch", icon: "", to: "/merch" },
-        { id: 4, title: "Nuestro Equipo", icon: "", to: "/ourteam" },
+        { id: 4, title: "Nuestro Equipo", icon: "info", to: "/ourteam" },
         { id: 5, title: "Recomendaciones", icon: "", to: "/recomendaciones" },
         { id: 6, title: "Administrador stock", icon: "", to: "/beerstock" },
         { id: 7, title: "Carrito", icon: "", to: "/carrito" },
       ],
     };
   },
+
+   methods: {
+    menuItems() {
+      return this.items;
+    },
+  },  
+
   props: {
     // typeUser: { type: String, required: true },
   },

@@ -4,7 +4,8 @@
       <div class="d-flex align-center">
         <div id="supnav">
           <!-- icono marca -->
-          <v-toolbar-title>APPILSEN </v-toolbar-title>
+          <v-img></v-img>
+          <v-toolbar-title> APPILSEN</v-toolbar-title>
 
           <v-spacer></v-spacer>
         </div>
