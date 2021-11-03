@@ -7,12 +7,11 @@
           class="hidden-sm-and-down"
           color="grey darken-4"
           flat
-          tile
           height="90px"
         >
   
-          <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
-            <v-list-item-content v-model="tab" align-with-title>
+          <v-list-item  :to="items[0].to" v-if="isUser || isAdmin" dark>
+            <v-list-item-content  v-model="tab" align-with-title>
               <v-spacer></v-spacer>
               <v-list-item-title text-align-center>
                 {{ items[0].title }}
@@ -91,7 +90,6 @@
           color="grey darken-4"
           dark
           flat
-          tile
           height="90px"
         >
           <div class="text-center">

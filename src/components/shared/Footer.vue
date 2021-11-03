@@ -37,10 +37,13 @@ export default {
 </script>
 
 <style>
-v-icon .icons {
+.icons {
   color: #ffc107;
+  margin-right: 5rem;
+  padding: auto;
 }
 .subheading {
   font-size: 0.8em;
+  margin-left: 5rem;
 }
 </style>
