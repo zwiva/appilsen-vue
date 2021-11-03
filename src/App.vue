@@ -35,4 +35,10 @@ export default {
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   color: gray;
 }
+
+.v-application a {
+color: white;
+
+
+}
 </style>
