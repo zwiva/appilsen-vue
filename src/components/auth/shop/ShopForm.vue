@@ -8,15 +8,15 @@
 
         <v-carousel cycle max-width="300">
           <v-carousel-item
-            v-for="(item, i) in items"
+            v-for="(slideItem, i) in slideItems"
             :key="i"
-            :src="item.src"
+            :src="slideItem.src"
             height="400px"
             reverse-transition="fade-transition"
             transition="fade-transition"
           ></v-carousel-item>
         </v-carousel>
-<br />
+        <br />
 
         <h2>
           Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
@@ -242,7 +242,7 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   name: "shopform",
   data: () => ({
-    items: [
+    slideItems: [
       {
         src: "https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2018/01/25/15169052662226.jpg",
       },
@@ -258,7 +258,7 @@ export default {
     ],
     slides: ["First", "Second", "Third", "Fourth", "Fifth"],
 
-    //formulario:
+    // formulario:
     formShop: {
       name: "",
       style: "",
