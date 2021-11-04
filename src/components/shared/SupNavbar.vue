@@ -5,7 +5,7 @@
         <div id="supnav">
           <!-- icono marca -->
            
-            <v-img class="mr-1" src="@/assets/imgbeers/logoAppilsen.png" height="85px" width="85px"> 
+            <v-img class="mr-1" src="../../assets/imgbeers/logoAppilsen.jpg" height="85px" width="85px"> 
             </v-img>
     
          

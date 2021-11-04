@@ -32,10 +32,9 @@ export default {
 
 .v-application--wrap {
   font-family: 'Ubuntu', sans-serif;
-
+  color: white;
   justify-content: space-between;
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
-  color: gray;
   text-decoration: none !important;
 }
 
@@ -45,9 +44,8 @@ text-decoration: none !important;
 
 
 }
-a:hover {
-  color: black; 
-  font-family: arial; 
+a:hover { 
+   
   text-decoration: none !important;
   }
 </style>

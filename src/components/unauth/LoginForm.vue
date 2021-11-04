@@ -105,12 +105,12 @@ export default {
         }
       }
     },
-    reset() {
+   /*  reset() {
       this.$refs.form.reset();
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },
+    }, */
   },
 };
 </script>
