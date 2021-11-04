@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-container>
     <v-card color="" tile class="banner--beer">
       <!-- <h4 class="pa-4">
         Si estas en Santiago, hay {{ maxTemperature }}°C, el dia está "{{
@@ -8,6 +9,7 @@
       </h4> -->
       <h4>descomentar despues</h4>
     </v-card>
+    </v-container>
   </div>
 </template>
 <script>

@@ -10,7 +10,7 @@
             <v-spacer></v-spacer>
             <div class="text-center">
               <v-btn class="icons mx-3" v-for="icon in icons" :key="icon" icon>
-                <v-icon class="icons" color="#ffc107" size="24px" light>
+                <v-icon class="icons" color="#ffc107" size="40px" light>
                   {{ icon }}
                 </v-icon>
               </v-btn>
@@ -37,10 +37,13 @@ export default {
 </script>
 
 <style>
-v-icon .icons {
+.icons {
   color: #ffc107;
+  margin-right: 5rem;
+  padding: auto;
 }
 .subheading {
   font-size: 0.8em;
+  margin-left: 5rem;
 }
 </style>

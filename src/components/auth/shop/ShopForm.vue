@@ -23,7 +23,11 @@
           a retirarla, la tendremos heladita para ti, y si te animas disfrutala
           en nuestro bar.
         </h2>
+
+        <v-img class="gif" src="@/assets/imgbeers/factory.gif"></v-img>
       </v-col>
+
+        
 
       <v-col cols="12" sm="8" md="6">
         <v-card flat>
@@ -452,3 +456,12 @@ export default {
   // },
 };
 </script>
+
+<style>
+
+.gif {
+  height: 270px;
+  width: 500px;
+  margin-left: 8rem;
+}
+</style>

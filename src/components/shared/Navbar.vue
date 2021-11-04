@@ -1,98 +1,187 @@
 <template>
   <div>
-    <v-card>
-      <v-toolbar color="blue-grey darken-4" dark flat tile>
-        <!-- <template v-slot:extension> -->
-        <!-- <v-list-item
-            v-for="(item, $index) in items"
-            :key="$index"
-            link
-            :to="item.to"
-            
-          >
-            <v-list-item-content v-model="tab" align-with-title >
+    <v-container>
+      <v-toolbar color="grey darken-4" dark>
+        <v-spacer></v-spacer>
+        <v-toolbar-items
+          class="hidden-sm-and-down"
+          color="grey darken-4"
+          flat
+          height="90px"
+        >
+  
+          <v-list-item  :to="items[0].to" v-if="isUser || isAdmin" dark>
+            <v-list-item-content  v-model="tab" align-with-title>
               <v-spacer></v-spacer>
-              <v-list-item-title tex-align-center>
-                {{ item.title }}
+              <v-list-item-title text-align-center>
+                {{ items[0].title }}
               </v-list-item-title>
             </v-list-item-content>
-          </v-list-item> -->
+          </v-list-item>
 
-        <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[0].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[1].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[1].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[2].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[2].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[3].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[3].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[4].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[4].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[5].to" v-if="isUser">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[5].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[5].to" v-if="isUser">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[5].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[6].to" v-if="isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[6].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
 
-        <v-list-item :to="items[6].to" v-if="isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[6].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[7].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+          <!-- </template> -->
+        </v-toolbar-items>
+<v-spacer></v-spacer>
+        <v-toolbar-items
+          class="hidden-md-and-up"
+          color="grey darken-4"
+          dark
+          flat
+          height="90px"
+        >
+          <div class="text-center">
+            
+            <v-menu offset-y>
+              <template v-slot:activator="{ on }">
+                
+                <v-btn color="grey darken-4" class="ma-3" dark v-on="on">
+                  <v-icon >mdi-menu</v-icon>
+                </v-btn>
+              </template>
 
-        <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
-          <v-list-item-content v-model="tab" align-with-title>
-            <v-spacer></v-spacer>
-            <v-list-item-title text-align-center>
-              {{ items[7].title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-        <!-- </template> -->
+              <v-list color="grey darken-4" dark>
+                <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[0].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[1].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[2].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[3].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[4].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[5].to" v-if="isUser">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[5].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[6].to" v-if="isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[6].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[7].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+                <!-- </template> -->
+              </v-list>
+            </v-menu>
+          </div>
+        </v-toolbar-items>
       </v-toolbar>
-    </v-card>
+    </v-container>
   </div>
 </template>
 
@@ -115,13 +204,20 @@ export default {
         { id: 1, title: "Arma tu Pilsen", icon: "", to: "/armar" },
         { id: 2, title: "Catalogo", icon: "", to: "/catalogo" },
         { id: 3, title: "Merch", icon: "", to: "/merch" },
-        { id: 4, title: "Nuestro Equipo", icon: "", to: "/ourteam" },
+        { id: 4, title: "Nuestro Equipo", icon: "info", to: "/ourteam" },
         { id: 5, title: "Recomendaciones", icon: "", to: "/recomendaciones" },
         { id: 6, title: "Administrador stock", icon: "", to: "/beerstock" },
         { id: 7, title: "Carrito", icon: "", to: "/carrito" },
       ],
     };
   },
+
+  methods: {
+    menuItems() {
+      return this.items;
+    },
+  },
+
   props: {
     // typeUser: { type: String, required: true },
   },

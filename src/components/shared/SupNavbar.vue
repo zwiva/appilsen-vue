@@ -1,10 +1,15 @@
 <template>
   <div>
-    <v-app-bar color="black" dark>
+    <v-app-bar color="black" dark height="100px">
       <div class="d-flex align-center">
         <div id="supnav">
           <!-- icono marca -->
-          <v-toolbar-title>APPILSEN </v-toolbar-title>
+           
+            <v-img class="mr-1" src="@/assets/imgbeers/logoAppilsen.png" height="85px" width="85px"> 
+            </v-img>
+    
+         
+           
 
           <v-spacer></v-spacer>
         </div>

@@ -29,10 +29,25 @@ export default {
 </script>
 
 <style lang="scss">
+
 .v-application--wrap {
-  font-family: "Questrial", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+
   justify-content: space-between;
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   color: gray;
+  text-decoration: none !important;
 }
+
+.v-application a {
+color: white;
+text-decoration: none !important;
+
+
+}
+a:hover {
+  color: black; 
+  font-family: arial; 
+  text-decoration: none !important;
+  }
 </style>
