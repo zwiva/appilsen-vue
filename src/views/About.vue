@@ -57,7 +57,7 @@
       <div>
         <v-img
         class="imgbtn"
-          src="@/assets/imgbeers/logoAppilsen.png"
+          src="../assets/imgbeers/logoAppilsen.jpg"
           height="250px"
           width="250px"
           ><router-link :to="{ name: 'Home' }"> </router-link>
