@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-container>
+      <!-- todo el navbar -->
       <v-toolbar color="grey darken-4" dark>
+        <!-- navbar desktop -->
         <v-spacer></v-spacer>
         <v-toolbar-items
           class="hidden-sm-and-down"
@@ -9,9 +11,8 @@
           flat
           height="90px"
         >
-  
-          <v-list-item  :to="items[0].to" v-if="isUser || isAdmin" dark>
-            <v-list-item-content  v-model="tab" align-with-title>
+          <v-list-item :to="items[0].to" v-if="isUser || isAdmin" dark>
+            <v-list-item-content v-model="tab" align-with-title>
               <v-spacer></v-spacer>
               <v-list-item-title text-align-center>
                 {{ items[0].title }}
@@ -84,7 +85,8 @@
           <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
           <!-- </template> -->
         </v-toolbar-items>
-<v-spacer></v-spacer>
+        <!-- navbar mobile -->
+        <v-spacer></v-spacer>
         <v-toolbar-items
           class="hidden-md-and-up"
           color="grey darken-4"
@@ -93,15 +95,16 @@
           height="90px"
         >
           <div class="text-center">
-            
             <v-menu offset-y>
               <template v-slot:activator="{ on }">
-                
-                <v-btn color="grey darken-4" class="ma-3" dark v-on="on">
-                  <v-icon >mdi-menu</v-icon>
-                </v-btn>
+                <div class="d-flex align-center">
+                  <span>Appilsen</span>
+                  <v-btn color="grey darken-4" class="ma-3" dark v-on="on">
+                    <v-icon>mdi-menu</v-icon>
+                  </v-btn>
+                </div>
               </template>
-
+              
               <v-list color="grey darken-4" dark>
                 <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
                   <v-list-item-content v-model="tab" align-with-title>
@@ -192,7 +195,7 @@ export default {
     return {
       tab: null,
       user: "",
-      isAdmin: false, // este (los dos deben ser false al inicio, en el mounted con la props que llega se carga el tipo de usuario)
+      isAdmin: true, // este (los dos deben ser false al inicio, en el mounted con la props que llega se carga el tipo de usuario)
       isUser: true, // vs este (uno u otro)
       items: [
         {

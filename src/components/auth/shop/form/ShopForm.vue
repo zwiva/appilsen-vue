@@ -2,20 +2,17 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="4" md="6">
-        <h1>Arma tu pilsen como quieras</h1>
-
-        <br />
-
-        <v-img class="gif" src="@/assets/imgbeers/factory.gif"></v-img>
-
-        <br />
-
-          <h2>
-          Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
-          a retirarla, la tendremos heladita para ti, y si te animas disfrutala
-          en nuestro bar.
-        </h2>
-
+        <div class="text-center">
+          <h1>Arma tu pilsen como quieras</h1>
+          <img class="gif mt-6" src="@/assets/imgbeers/factory.gif" />
+        </div>
+        <div class="my-6">
+          <h4>
+            Arma tu cerveza como siempre quisiste y disfrutala donde quieras.
+            Ven a retirarla, la tendremos heladita para ti, y si te animas
+            disfrutala en nuestro bar.
+          </h4>
+        </div>
         <v-carousel cycle max-width="300">
           <v-carousel-item
             v-for="(slideItem, i) in slideItems"
@@ -26,13 +23,9 @@
             transition="fade-transition"
           ></v-carousel-item>
         </v-carousel>
-        <br />
-
       </v-col>
 
-        
-
-      <v-col class="mt-3" cols="12" sm="8" md="6">
+      <v-col cols="12" sm="8" md="6" class="mt-3">
         <v-card flat>
           <v-form ref="form" @submit.prevent="submit">
             <v-container fluid>
@@ -151,11 +144,13 @@
                   >
                   </v-select>
                   <v-row class="justify-center align-center">
+                    
                     <v-text-field
                       label="Ingresa una dirección"
                       :rules="rules.completedField"
                       v-model="formShop.address"
                       v-if="dispatch"
+                      class="px-6"
                     >
                     </v-text-field>
 
@@ -216,16 +211,7 @@
                   </div>
                 </div>
               </div>
-              <!-- <v-btn
-                :disabled="!formIsValid"
-                text
-                color="primary"
-                type="submit"
-              >
-                Register
-              </v-btn> -->
             </div>
-            <!-- </div> -->
           </v-form>
         </v-card>
       </v-col>
@@ -365,31 +351,10 @@ export default {
     saveOrder() {
       console.log("guardar el pedido en la store y mandar a la firebase");
     },
-
-    // resetForm2() {
-    //   this.errorMessages = [];
-    //   this.formHasErrors = false;
-
-    //   Object.keys(this.form).forEach((f) => {
-    //     this.$refs[f].reset();
-    //   });
-    // },
-    // submit2() {
-    //   this.formHasErrors = false;
-
-    //   Object.keys(this.form).forEach((f) => {
-    //     if (!this.form[f]) this.formHasErrors = true;
-
-    //     this.$refs[f].validate(true);
-    //   });
-    // },
     resetForm1() {
       this.form = Object.assign({}, this.defaultForm);
       this.$refs.form.reset();
     },
-    // submit() {
-    //   this.resetForm();
-    // },
 
     // mapa:
     async createMap() {
@@ -451,25 +416,14 @@ export default {
       return;
     },
   },
-  mounted() {
-    this.createMap();
-  },
-  // created() {
-  //   this.mapbox = Mapbox;
+  // mounted() {
+  //   this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
   // },
 };
 </script>
 
 <style>
-
 .gif {
-  height: 270px;
-  width: 500px;
-  margin-left: 8rem;
+  width: 80%;
 }
-
-h1 {
-  margin-left: 9rem;
-}
-
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <v-container>
     <ShopForm />
-  </div>
+  </v-container>
 </template>
 
 <script>
-import ShopForm from "../components/auth/shop/ShopForm.vue";
+import ShopForm from "../components/auth/shop/form/ShopForm.vue";
 export default {
-  name: "shop",
+  name: "CreateBeer",
   components: { ShopForm },
   // data: () => ({
   //   // shopcart: false,

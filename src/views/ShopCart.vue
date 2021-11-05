@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import ShopTable from "../components/auth/shop/ShopTable.vue";
+import ShopTable from "../components/auth/shop/display/ShopTable.vue";
 export default {
-  name: "shop",
+  name: "ShopCart",
   components: { ShopTable },
   data: () => ({
     products: [{
@@ -27,5 +27,9 @@ export default {
       price: 1000
     }]
   }),
+  methods: {
+    
+  },
+
 };
 </script>

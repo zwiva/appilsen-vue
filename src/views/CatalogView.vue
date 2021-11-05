@@ -1,15 +1,21 @@
 <template>
   <div>
-    <div>
-      <h1 class="text-center">Catalogo de cervezas</h1>
-      <p>
-        Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
-        amigas!:
-      </p>
-      <!-- v-if=true si usuario es ADMIN -->
-      <v-btn color="info" @click="dialog = true">Agregar Sugerencia</v-btn>
-
-      <v-layout align-center justify-space-between>
+    <!-- ACA SE COMPRA -->
+    <div class="content-grid mx-auto">
+      <h1 class="text-center ma-6">Catalogo de cervezas</h1>
+      <div class="my-6">
+        <p>
+          Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas
+          amigas!:
+        </p>
+        <p>
+          Recomiéndanos un nuevo producto:
+          <v-btn color="info" @click="showNewSuggestionDialog" class="ml-3"
+            >Agregar Sugerencia Nuevo Producto</v-btn
+          >
+        </p>
+      </div>
+      <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row d-flex flex-wrap class="justify-center">
           <div
             v-for="beer in $store.state.productos.cervezasCatalogo"
@@ -20,27 +26,115 @@
         </v-row>
       </v-layout>
     </div>
+    <!-- dialogo para agregar sugerencia-->
+    <div>
+      <v-dialog v-model="newSuggestionDialog" max-width="800px">
+        <v-card elevation="7" class="pa-3">
+          <v-container>
+            <h2 class="text-center">Ingresa el detalle de tu recomendación:</h2>
+            <p class="my-4 text-center">
+              Recuerda que puedes editar tus recomendaciones en la sección
+              "Recomendaciones"
+            </p>
+            <v-form class="my-5" ref="form">
+              <v-text-field
+                v-model="newSuggestion.name"
+                label="Nombre Cerveza:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.brand"
+                label="Marca:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.originCountry"
+                label="Pais origen:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.style"
+                label="Estilo:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.format"
+                label="Formato:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.price"
+                label="Precio:"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="newSuggestion.observations"
+                label="Observaciones:"
+                required
+              ></v-text-field>
+            </v-form>
+            <v-btn color="success" class="mr-4" @click="createNewSuggestion">
+              GUARDAR
+            </v-btn>
+            <v-btn color="primary" class="mr-4" @click="cancelAddNewSuggestion">
+              CANCELAR
+            </v-btn>
+          </v-container>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
 <script>
 import store from "../store";
-import ExternalCardBeer from "../components/auth/ExternalCardBeer.vue";
+import ExternalCardBeer from "../components/auth/shop/catalogs/ExternalCardBeer.vue";
 
 export default {
-  name: "ExternalBeers",
+  name: "Catalog",
   components: { ExternalCardBeer },
   beforeRouteEnter(to, from, next) {
     store.dispatch("productos/getAllexternalBeers");
     next();
   },
 
-  data: () => ({}),
+  data: () => ({
+    newSuggestionDialog: false,
+    newSuggestion: {
+      name: "",
+      brand: "",
+      originCountry: "",
+      style: "",
+      format: "",
+      price: "",
+      observations: "",
+    },
+  }),
 
   mounted() {
     store.dispatch("productos/getAllexternalBeers");
     console.log("mounted");
   },
-  methods: {},
+  methods: {
+    showNewSuggestionDialog() {
+      this.newSuggestionDialog = true;
+      console.log("muestra dialogo");
+    },
+    cancelAddNewSuggestion() {
+      this.newSuggestionDialog = false;
+      console.log("cancela nueva sugerencia");
+    },
+    createNewSuggestion() {
+      console.log("guarda sugerencia");
+      this.newSuggestionDialog = false;
+    },
+    deleteSuggestion() {
+      console.log("eliminar");
+    },
+    editSuggestion() {
+      console.log("editar");
+    },
+  },
 };
 </script>
+

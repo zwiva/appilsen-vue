@@ -6,6 +6,7 @@ Vue.use(Vuex);
 import { moduloProductos } from "./modules/productos";
 import { moduloSesion } from "./modules/sesion";
 import { moduloCarrito } from "./modules/carrito";
+import { moduloRecomendaciones } from "./modules/recomendaciones";
 
 export default new Vuex.Store({
   state: {},
@@ -15,5 +16,6 @@ export default new Vuex.Store({
     productos: moduloProductos,
     sesion: moduloSesion,
     carrito: moduloCarrito,
+    recomendaciones: moduloRecomendaciones,
   },
 });

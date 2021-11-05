@@ -44,4 +44,7 @@ export default {
 a:hover {
   text-decoration: none !important;
 }
+.content-grid {
+  max-width: 1200px;
+}
 </style>

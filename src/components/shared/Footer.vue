@@ -1,30 +1,29 @@
 <template>
-  <div>
-    <v-footer dark padless>
-      <v-card class="flex" wrap flat tile>
-        <div class="mx-auto">
-          <v-card-title class="justify-center">
+  <v-footer dark padless>
+    <v-card class="flex" wrap flat tile>
+      <v-container>
+        <v-row class="justify-center mx-auto pa-5">
+          <v-card-title class="justify-center non-break-word">
             <strong class="subheading" color="amber"
               >Conéctate con nosotros en nuestras redes sociales:</strong
             >
-            <v-spacer></v-spacer>
-            <div class="text-center">
-              <v-btn class="icons mx-3" v-for="icon in icons" :key="icon" icon>
-                <v-icon class="icons" color="#ffc107" size="40px" light>
-                  {{ icon }}
-                </v-icon>
-              </v-btn>
-            </div>
           </v-card-title>
-        </div>
+          <div class="text-center">
+            <v-btn class="icons mx-3" v-for="icon in icons" :key="icon" icon>
+              <v-icon class="icons" color="#ffc107" size="40px" light>
+                {{ icon }}
+              </v-icon>
+            </v-btn>
+          </div>
+        </v-row>
         <div>
           <v-card-text class="py-2 white--text text-center">
             {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
           </v-card-text>
         </div>
-      </v-card>
-    </v-footer>
-  </div>
+      </v-container>
+    </v-card>
+  </v-footer>
 </template>
 
 <script>
@@ -39,11 +38,13 @@ export default {
 <style>
 .icons {
   color: #ffc107;
-  margin-right: 5rem;
+  text-align: center;
   padding: auto;
 }
 .subheading {
   font-size: 0.8em;
-  margin-left: 5rem;
+}
+.non-break-word {
+  word-break: normal;
 }
 </style>

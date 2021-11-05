@@ -15,7 +15,7 @@ const routes = [
   },
   {
     path: "/login",
-    name: "login",
+    name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -26,56 +26,28 @@ const routes = [
     },
   },
   {
-    path: "/carrito",
-    name: "shopCart",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "shopcart" */ "../views/ShopCart.vue"),
-    meta: {
-      requirelogin: false, // pasar a true
-    },
-  },
-  {
     path: "/armar",
-    name: "shopForm",
+    name: "CreateBeer",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "shopform" */ "../views/ShopForm.vue"),
+      import(/* webpackChunkName: "shopform" */ "../views/CreateBeer.vue"),
     meta: {
       requirelogin: false, // pasar a true
     },
   },
   {
-    path: "/beerstock",
-    name: "externalBeers",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "external" */ "../views/ExternalBeers.vue"),
-    meta: {
-      requirelogin: false, // pasar a true
-    },
-  },
-  {
-    path: "/recomendaciones",
-    name: "userSuggestion",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "internal" */ "../views/Suggestions.vue"),
+    path: "/catalogo",
+    name: "Catalog",
+    component: () => import("../views/CatalogView.vue"),
     meta: {
       requirelogin: false, // pasar a true
     },
   },
   {
     path: "/merch",
-    name: "otherproducts",
+    name: "Merch",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -87,7 +59,7 @@ const routes = [
   },
   {
     path: "/ourteam",
-    name: "Nosotros",
+    name: "About",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -98,9 +70,37 @@ const routes = [
     },
   },
   {
-    path: "/catalogo",
-    name: "Catalogo",
-    component: () => import("../views/CatalogView.vue"),
+    path: "/recomendaciones",
+    name: "UserSuggestions",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "internal" */ "../views/Suggestions.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
+  },
+  {
+    path: "/beerstock",
+    name: "InventoryBeers",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "external" */ "../views/InventoryBeers.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
+  },
+  {
+    path: "/carrito",
+    name: "ShopCart",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "shopcart" */ "../views/ShopCart.vue"),
     meta: {
       requirelogin: false, // pasar a true
     },

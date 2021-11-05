@@ -15,9 +15,9 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn 
-              color="info" 
-              @click="addProductoAlCarrito (beer)">Agregar al carrito</v-btn>
+              <v-btn color="info" @click="addProductoAlCarrito(beer)"
+                >Agregar al carrito</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-row>
@@ -29,31 +29,27 @@
 <script>
 export default {
   name: "ExternalCardBeer",
-   data: () => ({
-     cervezaAlCarrito: {},
-   }),
+  data: () => ({
+    cervezaAlCarrito: {},
+  }),
   props: {
     beer: { type: Object, require: true },
   },
   methods: {
     addProductoAlCarrito(beer) {
-      this.cervezaAlCarrito = beer
-       /* console.log( "cervezaAlCarrito", this.cervezaAlCarrito );  */
-       this.$store.dispatch("carrito/addProducto", this.cervezaAlCarrito) 
-    }
-  }
+      this.cervezaAlCarrito = beer;
+      /* console.log( "cervezaAlCarrito", this.cervezaAlCarrito );  */
+      this.$store.dispatch("carrito/addProducto", this.cervezaAlCarrito);
+    },
+  },
 };
 </script>
 
 <style>
-
-.zoom
-{
- transition: transform .5s;
+.zoom {
+  transition: transform 0.5s;
 }
-.zoom:hover
-{
- transform: scale(1.1);
+.zoom:hover {
+  transform: scale(1.1);
 }
-
 </style>
