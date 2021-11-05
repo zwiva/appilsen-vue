@@ -4,13 +4,13 @@
       <div class="d-flex align-center">
         <div id="supnav">
           <!-- icono marca -->
-           
-            <v-img class="mr-1" src="../../assets/imgbeers/logoAppilsen.jpg" height="85px" width="85px"> 
-            </v-img>
-    
-         
-           
-
+          <v-img
+            class="mr-1"
+            src="../../assets/imgbeers/logoAppilsen.jpg"
+            height="85px"
+            width="85px"
+          >
+          </v-img>
           <v-spacer></v-spacer>
         </div>
       </div>

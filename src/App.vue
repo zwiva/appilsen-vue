@@ -29,9 +29,8 @@ export default {
 </script>
 
 <style lang="scss">
-
 .v-application--wrap {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: white;
   justify-content: space-between;
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
@@ -39,13 +38,10 @@ export default {
 }
 
 .v-application a {
-color: white;
-text-decoration: none !important;
-
-
-}
-a:hover { 
-   
+  color: white;
   text-decoration: none !important;
-  }
+}
+a:hover {
+  text-decoration: none !important;
+}
 </style>
