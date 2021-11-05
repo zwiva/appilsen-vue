@@ -5,10 +5,10 @@
 
       <br />
 
-      <v-row>
+      
         <div>
-          <p class="text-left my-2">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
+          <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
             magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus,
             alias illum eaque ducimus laudantium fugiat ut fuga <br />excepturi
             tenetur repellendus velit. Lorem ipsum dolor sit, amet consectetur
@@ -16,27 +16,22 @@
             delectus temporibus <br />
             voluptatibus, alias illum eaque ducimus laudantium fugiat ut fuga
             excepturi tenetur repellendus velit.
-          </p>
-        </div>
-
-        <br />
-
-        <div class="player embed responsive">
-          <iframe
-            width="700"
-            height="490"
+            <iframe
+            class="player"
+            width="50%"
+            
+          
             src="https://www.youtube.com/embed/guHhryViFxY"
             title="YouTube video player"
             frameborder="2"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-          <br />
-        </div>
-
-        <br />
-        <div>
-          <p class="text-left my-2">
+            
+          
+          
+        
+              <!-- <p class="text-left my-2"> -->
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
             magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus,
             <br />
@@ -48,8 +43,9 @@
             <br />
             excepturi tenetur repellendus velit.
           </p>
+       
         </div>
-      </v-row>
+      
 
       <br />
       <br />
@@ -60,6 +56,7 @@
           src="../assets/imgbeers/logoAppilsen.jpg"
           height="250px"
           width="250px"
+          
           ><router-link :to="{ name: 'Home' }"> </router-link>
         </v-img>
       </div>
@@ -86,13 +83,19 @@ export default {
   padding-bottom: 10rem;
 }
 
-.player {
-  float: left;
-  position: relative;
+ .player {
+    float: left;
+    shape-outside: attr(src url);
+    shape-image-threshold: 0.1;
+      }
+
+/* .player {
+
+   position: relative;
   margin-left: 5rem;
-  margin-top: 3rem;
-  overflow: hidden;
-}
+  margin-top: 3rem; 
+   overflow: hidden; 
+} */
 
 .imgbtn {
   justify-content: center;
@@ -105,9 +108,7 @@ h1 {
   margin-left: 5rem;
 }
 
-p {
-  margin-left: 5rem;
-}
+
 
 
 </style>

@@ -6,6 +6,16 @@
 
         <br />
 
+        <v-img class="gif" src="@/assets/imgbeers/factory.gif"></v-img>
+
+        <br />
+
+          <h2>
+          Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
+          a retirarla, la tendremos heladita para ti, y si te animas disfrutala
+          en nuestro bar.
+        </h2>
+
         <v-carousel cycle max-width="300">
           <v-carousel-item
             v-for="(item, i) in items"
@@ -18,18 +28,11 @@
         </v-carousel>
 <br />
 
-        <h2>
-          Arma tu cerveza como siempre quisiste y disfrutala donde quieras. Ven
-          a retirarla, la tendremos heladita para ti, y si te animas disfrutala
-          en nuestro bar.
-        </h2>
-
-        <v-img class="gif" src="@/assets/imgbeers/factory.gif"></v-img>
       </v-col>
 
         
 
-      <v-col cols="12" sm="8" md="6">
+      <v-col class="mt-3" cols="12" sm="8" md="6">
         <v-card flat>
           <v-form ref="form" @submit.prevent="submit">
             <v-container fluid>
@@ -464,4 +467,9 @@ export default {
   width: 500px;
   margin-left: 8rem;
 }
+
+h1 {
+  margin-left: 9rem;
+}
+
 </style>
