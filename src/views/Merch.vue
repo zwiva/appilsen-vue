@@ -6,16 +6,17 @@
         Puedes agregar accesorios a tu pedido, fueron escogidos para que sean la
         mejor compañía de tus cervezas:
       </p>
+
       <v-layout align-center justify-space-between>
         <v-row d-flex flex-wrap class="justify-center">
-          <!-- <v-col cols="12" md="4"> -->
           <div
             v-for="merch in $store.state.productos.accesorios"
             :key="merch.id"
           >
+          <!-- <v-col cols="12" md="4"> -->
             <MerchAndAccessoriesCard :merch="merch" />
-          </div>
           <!-- </v-col> -->
+          </div>
         </v-row>
       </v-layout>
     </div>

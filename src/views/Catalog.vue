@@ -11,7 +11,7 @@
         <p>
           Recomiéndanos un nuevo producto:
           <v-btn color="info" @click="showNewSuggestionDialog" class="ml-3"
-            >Agregar Sugerencia Nuevo Producto</v-btn
+            >RECOMIÉNDANOS</v-btn
           >
         </p>
       </div>
