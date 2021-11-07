@@ -28,7 +28,7 @@
       </v-layout>
     </div>
 
-    <!-- dialogo para agregar sugerencia-->
+    <!-- dialogo: agregar nueva sugerencia-->
     <div>
       <v-dialog v-model="newSuggestionDialog" max-width="800px">
         <v-card elevation="7" class="pa-3">
@@ -129,8 +129,6 @@ export default {
       console.log("editar");
     },
   },
-  mounted(){
-  
-  },
+  mounted() {},
 };
 </script>

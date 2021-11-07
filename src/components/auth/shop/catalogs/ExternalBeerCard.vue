@@ -23,6 +23,30 @@
         </v-row>
       </v-col>
     </v-container>
+    <!-- dialogo: mostrar mensaje producto agregado a carrito -->
+    <div>
+      <v-dialog v-model="productAddedToCart" max-width="400px" class="flex">
+        <v-card elevation="7" class="pa-3 text-center ">
+          <v-container>
+            <h2 class="text-center">Producto agregado al carrito</h2>
+            <v-row class="ma-3 justify-space-around">
+              <img
+                src="../../../../assets/imgbeers/beers.png"
+                alt=""
+                width="150px"
+              />
+              <v-btn
+                color="amber"
+                class="align-self-center ma-2"
+                @click="productAddedToCart = false"
+              >
+                OK
+              </v-btn>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 <script>
@@ -30,6 +54,7 @@ export default {
   name: "ExternalCardBeer",
   data: () => ({
     cervezaAlCarrito: {},
+    productAddedToCart: false,
   }),
   props: {
     beer: { type: Object, require: true },
@@ -39,6 +64,7 @@ export default {
       this.cervezaAlCarrito = beer;
       /* console.log( "cervezaAlCarrito", this.cervezaAlCarrito );  */
       this.$store.dispatch("carrito/addProductoCarrito", this.cervezaAlCarrito);
+      this.productAddedToCart = true;
     },
   },
 };
