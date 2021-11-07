@@ -11,14 +11,16 @@ export const moduloProductos = {
   mutations: {
     SET_EXTERNALBEERS_DATA(state, newExternalBeersData) {
       state.cervezasCatalogo = newExternalBeersData;
-      console.log("state.cervezasCatalogo", state.cervezasCatalogo);
+      // console.log("state.cervezasCatalogo", state.cervezasCatalogo);
     },
     SET_MERCHANDACCESSORIES_DATA(state, newMerchantAccessorsData) {
       state.accesorios = newMerchantAccessorsData;
-      console.log("state.accesorios", state.accesorios);
+      // console.log("state.accesorios", state.accesorios);
+    },
+    SET_INVENTORY(state, products) {
+      state.todosLosProductos.push(products);
     },
   },
-
   actions: {
     getAllexternalBeers(context) {
       Firebase.firestore()
@@ -44,8 +46,7 @@ export const moduloProductos = {
           context.commit("SET_MERCHANDACCESSORIES_DATA", merchAndAccessories);
         });
     },
-
-    // CRUD INVENTARIO
+    // CRUD INVENTARIO CERVEZAS
     addNewExternalBeer(context, newExternalBeer) {
       // OJO FALTA AGREGAR PROPIEDAD STOCK!!!
       console.log("agregando", context, newExternalBeer);

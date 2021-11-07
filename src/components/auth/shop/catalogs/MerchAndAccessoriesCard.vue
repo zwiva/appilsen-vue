@@ -11,7 +11,9 @@
           </v-list-item-content>
         </v-list-item>
         <v-card-actions>
-          <v-btn color="info">Agregar al carrito</v-btn>
+          <v-btn color="info" @click="addProductoAlCarrito(merch)"
+            >Agregar al carrito</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-container>
@@ -21,9 +23,17 @@
 <script>
 export default {
   name: "MerchAndAccessories",
-  // data: () => ({}),
+  data: () => ({
+    merchAlCarrito: {},
+  }),
   props: {
     merch: { type: Object, require: true },
+  },
+  methods: {
+    addProductoAlCarrito(merch) {
+      this.merchAlCarrito = merch;
+      this.$store.dispatch("carrito/addProductoCarrito", this.merchAlCarrito);
+    },
   },
 };
 </script>

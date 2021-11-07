@@ -24,7 +24,7 @@
         </v-row>
       </v-col>
     </v-container>
-    <!-- dialogo para crear -->
+    <!-- dialogo para editar -->
     <v-dialog v-model="showEditExternalBeerForm" persistent max-width="600px">
       <EditExternalBeerForm :beer="beer" @cancelEdition="closeEditionDialog" />
     </v-dialog>
@@ -32,10 +32,11 @@
 </template>
 
 <script>
-import store from "../../../../store";
-import EditExternalBeerForm from "../form/EditExternalBeerForm.vue";
+import store from "../../../store";
+import EditExternalBeerForm from "@/components/auth/shop/EditExternalBeerForm.vue";
+
 export default {
-  name: "ExternalBeerEditorCard",
+  name: "EditExternalBeerCard",
   components: { EditExternalBeerForm },
   data: () => ({
     showEditExternalBeerForm: false,
@@ -52,15 +53,15 @@ export default {
       console.log("falta dialogo de aviso de eliminacion exitosa");
     },
     // EDITAR
-    editExternalBeer(beer) { // WORKS!!!
+    editExternalBeer(beer) {
+      // WORKS!!!
       this.showEditExternalBeerForm = true;
       store.dispatch("productos/deleteExternalBeer", beer);
       console.log("falta dialogo que avise que se edito", beer);
     },
-    closeEditionDialog(value){
+    closeEditionDialog(value) {
       this.showEditExternalBeerForm = value;
-    }
-
+    },
   },
 };
 </script>

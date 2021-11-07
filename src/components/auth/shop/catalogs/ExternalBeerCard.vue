@@ -25,7 +25,6 @@
     </v-container>
   </div>
 </template>
-
 <script>
 export default {
   name: "ExternalCardBeer",
@@ -39,12 +38,11 @@ export default {
     addProductoAlCarrito(beer) {
       this.cervezaAlCarrito = beer;
       /* console.log( "cervezaAlCarrito", this.cervezaAlCarrito );  */
-      this.$store.dispatch("carrito/addProducto", this.cervezaAlCarrito);
+      this.$store.dispatch("carrito/addProductoCarrito", this.cervezaAlCarrito);
     },
   },
 };
 </script>
-
 <style>
 .zoom {
   transition: transform 0.5s;

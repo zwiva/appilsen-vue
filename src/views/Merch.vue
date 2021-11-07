@@ -13,7 +13,7 @@
             v-for="merch in $store.state.productos.accesorios"
             :key="merch.id"
           >
-            <MerchAndAccessories :merch="merch" />
+            <MerchAndAccessoriesCard :merch="merch" />
           </div>
           <!-- </v-col> -->
         </v-row>
@@ -24,17 +24,16 @@
 
 <script>
 import store from "../store";
-import MerchAndAccessories from "../components/auth/shop/catalogs/MerchAndAccessories.vue";
+import MerchAndAccessoriesCard from "../components/auth/shop/catalogs/MerchAndAccessoriesCard.vue";
 
 export default {
   name: "Merch",
-  components: { MerchAndAccessories },
+  components: { MerchAndAccessoriesCard },
   data: () => ({
     Merch: [],
   }),
   mounted() {
     store.dispatch("productos/getAllMerchAndAccessories");
-    console.log("mounted");
   },
 };
 </script>
