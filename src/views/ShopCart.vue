@@ -9,6 +9,14 @@
         </v-col>
       </v-card>
     </div>
+
+    <v-dialog v-model="showOrder">
+      <v-card>
+        <h3>Mostrar dialogo con resumen de pedido</h3>
+        <v-btn color="primary" @click="saveOrder">Confirmar</v-btn>
+        <v-btn color="primary" @click="showOrder = false">Cancelar</v-btn>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -18,8 +26,16 @@ export default {
   components: { ShopTable },
   data: () => ({
     products: [],
+    showOrder: false,
   }),
-  methods: {},
+  methods: {
+    saveOrder() {
+      console.log("carrito");
+    },
+    // showOrder() {
+    //   console.log("carrito");
+    // },
+  },
 };
 </script>
 

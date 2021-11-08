@@ -13,14 +13,14 @@
             lazy-validation
           >
             <v-row>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.nombre"
                   label="Nombre*"
                   :rules="[required]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.precio"
                   label="Precio*"
@@ -28,14 +28,14 @@
                   >$</v-text-field
                 >
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.estilo"
                   label="Estilo*"
                   :rules="[required]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.alcohol"
                   type="number"
@@ -43,21 +43,21 @@
                   :rules="[required]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.formato"
                   label="Formato*"
                   :rules="[required]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.imagen"
                   label="Imagen*"
                   :rules="[required]"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="12" sm="6" class="fit_view">
                 <v-text-field
                   v-model="beer.stock"
                   label="Stock*"
@@ -66,12 +66,11 @@
               </v-col>
             </v-row>
           </v-form>
-          <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue" text @click="cancelEdition"> CANCELAR </v-btn>
-          <v-btn color="primary " text @click="confirmEdition(beer)">
+          <v-btn color="grey" dark @click="cancelEdition"> CANCELAR </v-btn>
+          <v-btn color="gray" dark @click="confirmEdition(beer)">
             EDITAR
           </v-btn>
         </v-card-actions>
@@ -79,10 +78,8 @@
     </template>
   </div>
 </template>
-
 <script>
 import store from "../../../store";
-
 export default {
   name: "EditExternalBeerForm",
   props: {
@@ -102,6 +99,7 @@ export default {
   },
 };
 </script>
-
 <style>
+.fit_view {
+}
 </style>
