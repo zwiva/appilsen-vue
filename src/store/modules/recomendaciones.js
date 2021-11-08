@@ -1,4 +1,4 @@
-/* import Firebase from "firebase"; */
+ import Firebase from "firebase"; 
 
 export const moduloRecomendaciones = {
   namespaced: true,
@@ -14,9 +14,20 @@ export const moduloRecomendaciones = {
   },
 
   actions: {
-    addNewSuggestion(context, suggestion) {
-      // agregar firebase aca --> crear collection
-      context.commit("ADD_SUGGESTION", suggestion);
+    getAllSuggestionsFirestore(context) {
+    // agregar firebase aca --> crear collection
+      Firebase.firestore()
+      .collection("recomendaciones")
+      .get()
+      .then((documents) => {
+        const suggestionsFirestore = [];
+        documents.forEach((document) => {
+          suggestionsFirestore.push({ id: document.id, ...document.data() });
+        });
+        context.commit("ADD_SUGGESTION", suggestionsFirestore);
+      });
+      
+      
     },
   },
 };

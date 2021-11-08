@@ -14,10 +14,12 @@
         </p>
       </div>
 
-      <h1 class="text-center ma-6">Tus recomendadas:</h1>
-      <v-layout align-center justify-space-between>
-        <v-row d-flex class="flex-column">
-          <div v-for="(suggestion, index) in suggestions" :key="index">
+      <h1 class="text-center ma-6">Tus recomendadas: </h1>
+      <v-layout  align-center justify-space-between class="my-6 mx-auto">
+        <v-row d-flex flex-wrap class="justify-center">
+          <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
+            <div v-for="suggestion in $store.state.productos.sugerencias"
+            :key="suggestion.id">
             <SuggestionCard :suggestion="suggestion" />
           </div>
         </v-row>
@@ -28,7 +30,7 @@
     <v-dialog v-model="newSuggestionDialog" max-width="800px">
       <v-card elevation="7" class="pa-3">
         <v-container>
-          <h2 class="text-center">Ingresa el detalle de tu recomendación:</h2>
+          <h2 class="text-center">Ingresa el detalle de tu recomendación: </h2>
           <v-form class="my-5" ref="form">
             <v-text-field
               v-model="newSuggestion.name"
@@ -65,6 +67,11 @@
               label="Observaciones:"
               required
             ></v-text-field>
+             <v-text-field
+              v-model="newSuggestion.imagen"
+              label="Imagen:"
+              required
+            ></v-text-field>
           </v-form>
           <v-btn color="success" class="mr-4" @click="createNewSuggestion">
             GUARDAR
@@ -78,10 +85,22 @@
   </v-container>
 </template>
 <script>
+
+import store from "../store";
+
 import SuggestionCard from "../components/auth/suggestions/SuggestionCard.vue";
+
 export default {
   name: "UserSuggestions",
   components: { SuggestionCard },
+
+   beforeRouteEnter(to, from, next) {
+    store.dispatch("productos/getAllSuggestionsFirestore");
+    next();
+  },
+
+    
+
   data: () => ({
     newSuggestionDialog: false,
     newSuggestion: {
@@ -92,18 +111,17 @@ export default {
       format: "",
       price: "",
       observations: "",
+      imagen: "",
     },
-    suggestions: [
-      {
-        name: "una",
-        brand: "alguna marca",
-        originCountry: "algun pais",
-        style: "ipa",
-        format: "lata",
-        price: 2000,
-      },
-    ],
+    suggestions: [],
   }),
+
+    mounted() {
+    store.dispatch("productos/getAllSuggestionsFirestore");
+    console.log("mounted");
+  }, 
+ 
+
   methods: {
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;

@@ -6,6 +6,7 @@ export const moduloProductos = {
     todosLosProductos: [],
     cervezasCatalogo: [],
     accesorios: [],
+    sugerencias: [],
   },
 
   mutations: {
@@ -17,6 +18,11 @@ export const moduloProductos = {
       state.accesorios = newMerchantAccessorsData;
       console.log("state.accesorios", state.accesorios);
     },
+
+    SET_SUGGESTIONS_DATA(state, newSuggestionsData) {
+      state.sugerencias = newSuggestionsData;
+      console.log("state.sugerencias", state.sugerencias);
+    }
   },
 
   actions: {
@@ -45,6 +51,19 @@ export const moduloProductos = {
         });
     },
 
+    getAllSuggestionsFirestore(context) {
+      Firebase.firestore()
+        .collection("recomendaciones")
+        .get()
+        .then((documents) => {
+          const suggestionsFirestore = [];
+          documents.forEach((document) => {
+            suggestionsFirestore.push({ id: document.id, ...document.data() });
+          });
+          context.commit("SET_SUGGESTIONS_DATA", suggestionsFirestore);
+        });
+    },
+
     // CRUD INVENTARIO
     addNewExternalBeer(context, newExternalBeer) {
       // OJO FALTA AGREGAR PROPIEDAD STOCK!!!
@@ -62,6 +81,7 @@ export const moduloProductos = {
     },
     editExternalBeer(context, beer) {
       // falta codigo firebase para editar
+      this.$router.push(`/recomendaciones/${beer.id}`)
       console.log("editando el ", context, "y la", beer);
     },
     deleteExternalBeer(context, beer) {

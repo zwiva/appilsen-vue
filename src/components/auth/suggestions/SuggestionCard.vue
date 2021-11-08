@@ -1,16 +1,32 @@
 <template>
   <div>
     <v-container grid-list-md>
-      <v-card color="amber" class="ma-3 suggestions">
-        <p><strong>Nombre cerveza:</strong> {{ suggestion.name }}</p>
-        <p><strong>Marca:</strong> {{ suggestion.brand }}</p>
-        <p><strong>Pais de origen:</strong> {{ suggestion.originCountry }}</p>
-        <p><strong>Estilo: </strong>{{ suggestion.style }}</p>
-        <p><strong>Formato: </strong>{{ suggestion.format }}</p>
-        <p><strong>Precio: </strong>{{ suggestion.price }}</p>
-        <v-btn @click="editDialog = true"><v-icon> mdi-pencil</v-icon></v-btn>
-        <v-btn @click="deleteDialog = true"><v-icon>mdi-delete</v-icon></v-btn>
-      </v-card>
+      <v-col cols="12" md="4">
+        <v-row>
+          <v-card
+            color="amber"
+            class="suggestions mx-auto"
+            max-width="340"
+          >
+            <v-img :src="suggestion.imagen" height="250px" contain />
+            <p><strong>Nombre cerveza:</strong> {{ suggestion.nombre }}</p>
+            <p><strong>Pais de origen:</strong> {{ suggestion.pais }}</p>
+            <p><strong>Estilo: </strong>{{ suggestion.estilo }}</p>
+            <p><strong>alcohol:</strong> {{ suggestion.alcohol }}°</p>
+            <p><strong>Formato: </strong>{{ suggestion.formato }}</p>
+            <p><strong>Precio: </strong>{{ suggestion.precio }}$</p>
+
+          <v-card-actions>
+              <v-btn @click="editDialog = true"
+                ><v-icon> mdi-pencil</v-icon></v-btn
+              >
+              <v-btn @click="deleteDialog = true"
+                ><v-icon>mdi-delete</v-icon></v-btn>
+          </v-card-actions>
+         
+          </v-card>
+        </v-row>
+      </v-col>
     </v-container>
 
     <div>
