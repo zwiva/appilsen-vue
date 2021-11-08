@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <h1 class="text-center ma-6">Tus recomendadas: </h1>
+      <h1 class="text-center ma-6">Tus recomendadas:  </h1>
       <v-layout  align-center justify-space-between class="my-6 mx-auto">
         <v-row d-flex flex-wrap class="justify-center">
           <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->

@@ -58,8 +58,20 @@
 </template>
 
 <script>
+
 export default {
   name: "SuggestionCard",
+  
+  /* beforeRouteEnter(to, from, next) {
+    Firebase.firestore()
+    .collection("recomendaciones")
+    .doc(to.params.id)
+    .get()
+    .then(documents => {
+
+    })
+  }, */
+
   data: () => ({
     editDialog: false,
     deleteDialog: false,
