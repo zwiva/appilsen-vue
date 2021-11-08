@@ -120,9 +120,9 @@ export default {
     newSuggestionDialog: false,
     newSuggestion: {
       name: "",
+      style: "",
       brand: "",
       originCountry: "",
-      style: "",
       format: "",
       price: "",
       observations: "",

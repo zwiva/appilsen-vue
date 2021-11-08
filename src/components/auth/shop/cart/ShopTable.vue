@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-col v-if="$store.state.carrito.carrito.length > 1">
+    <v-col v-if="$store.state.carrito.carrito.length >= 1">
       <template>
         <v-data-table
           :headers="headers"
@@ -24,7 +24,7 @@
           </template>
 
           <template v-slot:[`item.topay`]="{ item }">
-            ${{ (item.precio * item.quantity).toLocaleString() }}
+            ${{ (item.precio * item.cantidad).toLocaleString() }}
           </template>
 
           <template v-slot:[`item.delete`]="{ item }">
@@ -96,7 +96,7 @@ export default {
         text: "Cantidad",
         align: "left",
         sortable: false,
-        value: "quantity",
+        value: "cantidad",
       },
       {
         text: "Pagar",

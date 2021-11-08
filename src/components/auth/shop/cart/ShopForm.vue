@@ -30,13 +30,12 @@
             <v-container fluid>
               <!-- Formulario armado -->
               <h4 class="py-3">Tu creación:</h4>
-
               <v-row>
                 <v-col cols="12" sm="6">
                   <v-text-field
                     label="Nombra tu creación"
                     :rules="rules.completedField"
-                    v-model="formShop.name"
+                    v-model="formShop.nombre"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6">
@@ -88,6 +87,7 @@
                     :rules="rules.selectedField"
                     v-model="formShop.format"
                     :items="format"
+                    @change="setPriceByFormat(formShop.format)"
                   >
                   </v-select>
                 </v-col>
@@ -98,21 +98,28 @@
                     min="0"
                     step="1"
                     :rules="rules.completedField"
-                    v-model="formShop.quantity"
+                    v-model="formShop.cantidad"
+                    @change="quantitySelection()"
+                    @click="quantitySelection()"
                   />
                 </v-col>
               </v-row>
-
               <!-- Textos resumen pedido -->
-              <h4 class="py-3">Detalle de tu pedido:</h4>
+              <v-btn class="py-3" @click="showOrderSummary = !showOrderSummary">
+                <span v-if="!showOrderSummary">
+                  Ver detalle de tu pedido:
+                </span>
+                <span v-else> Ocultar detalle: </span>
+              </v-btn>
               <v-card
+                v-if="showOrderSummary"
                 class="text-right pa-5"
                 color="#3c3c3c"
                 style="color: white"
               >
                 <p class="order_title">
                   Nombre:
-                  <strong class="order_selection">{{ formShop.name }}</strong>
+                  <strong class="order_selection">{{ formShop.nombre }}</strong>
                 </p>
                 <p class="order_title">
                   Estilo:
@@ -141,10 +148,22 @@
                   <strong class="order_selection">{{ formShop.format }}</strong>
                 </p>
                 <p class="order_title">
+                  Precio por formato:
+                  <strong class="order_selection"
+                    >$ {{ formShop.precio.toLocaleString() }}</strong
+                  >
+                </p>
+                <p class="order_title">
                   Cantidad:
                   <strong class="order_selection">{{
-                    formShop.quantity
+                    formShop.cantidad
                   }}</strong>
+                </p>
+                <p class="order_title">
+                  Pagar:
+                  <strong class="order_selection"
+                    >$ {{ formShop.pagar.toLocaleString() }}</strong
+                  >
                 </p>
               </v-card>
               <div class="d-flex my-3">
@@ -152,8 +171,8 @@
                   color="gray"
                   class="zoom"
                   dark
-                  @click="confirmOrder(formShop)"
-                  >CONFIRMAR PEDIDO</v-btn
+                  @click="addToCart(formShop)"
+                  >AGREGAR AL CARRITO</v-btn
                 >
               </div>
             </v-container>
@@ -161,9 +180,31 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- dialogo: mostrar mensaje producto agregado a carrito -->
+    <div>
+      <v-dialog v-model="productAddedToCart" max-width="380px" class="flex">
+        <v-card elevation="7" rounded class="text-center">
+          <v-container class="background-beer">
+            <div class="background-white ma-5 pa-3">
+              <h2 class="text-center">Producto agregado al carrito</h2>
+              <v-row class="ma-3 justify-space-around">
+                <v-btn
+                  color="amber"
+                  class="align-self-center zoom"
+                  @click="productAddedToCart = false"
+                >
+                  OK
+                </v-btn>
+              </v-row>
+            </div>
+          </v-container>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-container>
 </template>
 <script>
+import store from "../../../../store";
 export default {
   name: "shopform",
   data: () => ({
@@ -184,14 +225,17 @@ export default {
     slides: ["First", "Second", "Third", "Fourth", "Fifth"],
     // formulario:
     formShop: {
-      name: "",
+      id: 0,
+      nombre: "",
       style: "",
       malt: "",
       yest: "",
       hop: "",
       additional: "",
       format: "",
-      quantity: "",
+      precio: "",
+      cantidad: "",
+      pagar: "",
     },
     rules: {
       completedField: [
@@ -232,20 +276,81 @@ export default {
       "Barril 20 Litros",
       "Barril 50 Litros",
     ],
+    precio: [3000, 6000, 12000, 48000, 30000, 50000],
+    showOrderSummary: false,
+    productAddedToCart: false,
   }),
-  components: {},
   methods: {
-    saveOrder() {
-      console.log("guardar el pedido en la store y mandar al carrito");
+    setPriceByFormat(format) {
+      switch (format) {
+        case this.format[0]:
+          this.formShop.precio = this.precio[0];
+          break;
+        case this.format[1]:
+          this.formShop.precio = this.precio[1];
+          break;
+        case this.format[2]:
+          this.formShop.precio = this.precio[2];
+          break;
+        case this.format[3]:
+          this.formShop.precio = this.precio[3];
+          break;
+        case this.format[4]:
+          this.formShop.precio = this.precio[4];
+          break;
+        case this.format[5]:
+          this.formShop.precio = this.precio[5];
+          break;
+        default:
+          break;
+      }
+    },
+    quantitySelection() {
+      switch (this.formShop.format) {
+        case this.format[0]:
+          this.formShop.pagar = this.precio[0] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 0.1751;
+          break;
+        case this.format[1]:
+          this.formShop.pagar = this.precio[1] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 1.1753;
+          break;
+        case this.format[2]:
+          this.formShop.pagar = this.precio[2] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 2.1755;
+          break;
+        case this.format[3]:
+          this.formShop.pagar = this.precio[3] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 3.1757;
+          break;
+        case this.format[4]:
+          this.formShop.pagar = this.precio[4] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 4.1759;
+          break;
+        case this.format[5]:
+          this.formShop.pagar = this.precio[5] * this.formShop.cantidad;
+          this.formShop.id =
+            this.formShop.pagar * this.formShop.cantidad * 5.1751;
+          break;
+        default:
+          break;
+      }
+    },
+
+    addToCart(shopForm) {
+      store.dispatch("carrito/addProductoCarrito", shopForm);
+      // this.productAddedToCart = true;
+      // this.formShop = {}; // limpia formulario
+      // pero falta ejecutar reset validations
     },
     resetForm1() {
       this.form = Object.assign({}, this.defaultForm);
       this.$refs.form.reset();
-    },
-    confirmOrder(orderData) {
-      console.log("orderDataFromForm", orderData);
-      this.formShop = {}; // limpia formulario
-      // pero falta ejecutar reset validations
     },
   },
 };
