@@ -11,22 +11,24 @@
         <p>
           Recomiéndanos un nuevo producto:
           <v-btn color="info" @click="showNewSuggestionDialog" class="ml-3"
-            >Agregar Sugerencia Nuevo Producto</v-btn
+            >RECOMIÉNDANOS</v-btn
           >
         </p>
       </div>
+      <!-- Cervezas para comprar -->
       <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row d-flex flex-wrap class="justify-center">
           <div
             v-for="beer in $store.state.productos.cervezasCatalogo"
             :key="beer.id"
           >
-            <ExternalCardBeer :beer="beer" />
+            <ExternalBeerCard :beer="beer" />
           </div>
         </v-row>
       </v-layout>
     </div>
-    <!-- dialogo para agregar sugerencia-->
+
+    <!-- dialogo: agregar nueva sugerencia-->
     <div>
       <v-dialog v-model="newSuggestionDialog" max-width="800px">
         <v-card elevation="7" class="pa-3">
@@ -85,19 +87,16 @@
     </div>
   </div>
 </template>
-
 <script>
 import store from "../store";
-import ExternalCardBeer from "../components/auth/shop/catalogs/ExternalCardBeer.vue";
-
+import ExternalBeerCard from "../components/auth/shop/catalogs/ExternalBeerCard.vue";
 export default {
   name: "Catalog",
-  components: { ExternalCardBeer },
+  components: { ExternalBeerCard },
   beforeRouteEnter(to, from, next) {
     store.dispatch("productos/getAllexternalBeers");
     next();
   },
-
   data: () => ({
     newSuggestionDialog: false,
     newSuggestion: {
@@ -110,11 +109,6 @@ export default {
       observations: "",
     },
   }),
-
-  mounted() {
-    store.dispatch("productos/getAllexternalBeers");
-    console.log("mounted");
-  },
   methods: {
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
@@ -135,6 +129,6 @@ export default {
       console.log("editar");
     },
   },
+  mounted() {},
 };
 </script>
-

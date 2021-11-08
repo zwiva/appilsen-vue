@@ -17,7 +17,7 @@
             v-for="beer in $store.state.productos.cervezasCatalogo"
             :key="beer.id"
           >
-            <ExternalBeerEditorCard :beer="beer" />
+            <EditExternalBeerCard :beer="beer" />
           </div>
         </v-row>
       </v-layout>
@@ -107,14 +107,13 @@
     </v-dialog>
   </div>
 </template>
-
 <script>
 import store from "../store";
-import ExternalBeerEditorCard from "../components/auth/shop/display/ExternalBeerEditorCard.vue";
+import EditExternalBeerCard from "../components/auth/shop/EditExternalBeerCard.vue";
 
 export default {
-  name: "InventoryBeers",
-  components: { ExternalBeerEditorCard },
+  name: "Inventory",
+  components: { EditExternalBeerCard },
   data: () => ({
     newExternalBeerDialog: false,
     newExternalBeer: {
@@ -139,14 +138,16 @@ export default {
     },
     addNewExternalBeer() {
       if (this.$refs.form.validate()) {
-        console.log("hacer dispatch para agregar nueva cerveza externa, enviar objeto con data a la store");
+        console.log(
+          "hacer dispatch para agregar nueva cerveza externa, enviar objeto con data a la store"
+        );
         store.dispatch("productos/addNewExternalBeer", this.newExternalBeer);
       }
     },
     cancelAddNewExternalBeer() {
       this.newExternalBeerDialog = false;
       console.log("cierra dialogo");
-    },   
+    },
     required(value) {
       return !!value || "Campo obligatorio, por favor ingresar credenciales.";
     },

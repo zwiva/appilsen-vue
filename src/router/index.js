@@ -40,7 +40,7 @@ const routes = [
   {
     path: "/catalogo",
     name: "Catalog",
-    component: () => import("../views/CatalogView.vue"),
+    component: () => import("../views/Catalog.vue"),
     meta: {
       requirelogin: false, // pasar a true
     },
@@ -83,12 +83,12 @@ const routes = [
   },
   {
     path: "/beerstock",
-    name: "InventoryBeers",
+    name: "Inventory",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "external" */ "../views/InventoryBeers.vue"),
+      import(/* webpackChunkName: "external" */ "../views/Inventory.vue"),
     meta: {
       requirelogin: false, // pasar a true
     },

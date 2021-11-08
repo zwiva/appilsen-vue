@@ -12,11 +12,14 @@ export const moduloProductos = {
   mutations: {
     SET_EXTERNALBEERS_DATA(state, newExternalBeersData) {
       state.cervezasCatalogo = newExternalBeersData;
-      console.log("state.cervezasCatalogo", state.cervezasCatalogo);
+      // console.log("state.cervezasCatalogo", state.cervezasCatalogo);
     },
     SET_MERCHANDACCESSORIES_DATA(state, newMerchantAccessorsData) {
       state.accesorios = newMerchantAccessorsData;
-      console.log("state.accesorios", state.accesorios);
+      // console.log("state.accesorios", state.accesorios);
+    },
+    SET_INVENTORY(state, products) {
+      state.todosLosProductos.push(products);
     },
 
     SET_SUGGESTIONS_DATA(state, newSuggestionsData) {
@@ -24,7 +27,6 @@ export const moduloProductos = {
       console.log("state.sugerencias", state.sugerencias);
     }
   },
-
   actions: {
     getAllexternalBeers(context) {
       Firebase.firestore()

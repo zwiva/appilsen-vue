@@ -104,7 +104,7 @@
                   </v-btn>
                 </div>
               </template>
-              
+
               <v-list color="grey darken-4" dark>
                 <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
                   <v-list-item-content v-model="tab" align-with-title>
