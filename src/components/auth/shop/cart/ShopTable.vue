@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-col v-if="$store.state.carrito.carrito.length > 1">
+    <v-col v-if="$store.state.carrito.carrito.length >= 1">
       <template>
         <v-data-table
           :headers="headers"
@@ -24,7 +24,7 @@
           </template>
 
           <template v-slot:[`item.topay`]="{ item }">
-            ${{ (item.precio * item.quantity).toLocaleString() }}
+            ${{ (item.precio * item.cantidad).toLocaleString() }}
           </template>
 
           <template v-slot:[`item.delete`]="{ item }">
@@ -46,7 +46,7 @@
         v-if="$store.state.carrito.carrito.length > 1"
         class="d-flex justify-center"
       >
-        <v-btn elevation="2" color="grey" @click="buyCart()"> COMPRAR </v-btn>
+        <v-btn elevation="2" dark color="gray" @click="buyCart()"> COMPRAR </v-btn>
       </div>
 
       <div v-else class="d-flex justify-center flex-wrap">
@@ -96,7 +96,7 @@ export default {
         text: "Cantidad",
         align: "left",
         sortable: false,
-        value: "quantity",
+        value: "cantidad",
       },
       {
         text: "Pagar",

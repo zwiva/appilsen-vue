@@ -9,7 +9,7 @@
           completa el formulario con los datos que nos permitan buscarla para
           que intentemos agregarla a nuesta oferta:
           <v-btn @click="showNewSuggestionDialog" class="ml-3" color="primary"
-            >Agregar nueva recomendación</v-btn
+            >Agrega nueva</v-btn
           >
         </p>
       </div>
@@ -83,12 +83,15 @@
               :rules="[required]"
             ></v-text-field>
           </v-form>
-          <v-btn color="success" class="mr-4" @click="createNewSuggestion">
-            GUARDAR
-          </v-btn>
-          <v-btn color="primary" class="mr-4" @click="cancelAddNewSuggestion">
-            CANCELAR
-          </v-btn>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="grey" dark @click="cancelAddNewSuggestion">
+              CANCELAR
+            </v-btn>
+            <v-btn color="gray" dark @click="createNewSuggestion">
+              GUARDAR
+            </v-btn>
+          </v-card-actions>
         </v-container>
       </v-card>
     </v-dialog>

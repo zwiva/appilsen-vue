@@ -33,7 +33,7 @@
 
             <v-card-actions>
               <v-btn color="amber">
-                <router-link :to="{ name: 'shopForm' }" dark>
+                <router-link :to="{ name: 'CreateBeer' }" dark>
                   <v-icon>mdi-bottle-tonic-skull-outline</v-icon>
                   Aqui</router-link
                 >
@@ -59,7 +59,7 @@
 
             <v-card-actions>
               <v-btn color="amber">
-                <router-link :to="{ name: 'externalBeers' }">
+                <router-link :to="{ name: 'Catalog' }">
                   <v-icon>mdi-cup-water</v-icon>
                   Aqui</router-link
                 >
@@ -85,7 +85,7 @@
 
             <v-card-actions>
               <v-btn color="amber">
-                <router-link :to="{ name: 'Nosotros' }">
+                <router-link :to="{ name: 'About' }">
                   <v-icon>mdi-account-group</v-icon>
                   Aqui</router-link
                 >

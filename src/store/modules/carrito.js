@@ -8,7 +8,7 @@ export const moduloCarrito = {
   getters: {
     shopCartTotalAmount(state) {
       return state.carrito.reduce((acum, product) => {
-        acum += product.price * (1 - product.discount / 100) * product.quantity;
+        acum += product.precio * product.cantidad;
         return acum;
       }, 0);
     },
@@ -19,16 +19,20 @@ export const moduloCarrito = {
       console.log("en el carrito hay: ", state.carrito);
     },
     ADD_QUANTITY(state, productIndexFinded) {
-      state.carrito[productIndexFinded].quantity++;
+      state.carrito[productIndexFinded].cantidad++;
+      console.log("en el carrito hay: ", state.carrito);
     },
     SUB_QUANTITY(state, productIndexFinded) {
-      state.carrito[productIndexFinded].quantity--;
+      state.carrito[productIndexFinded].cantidad--;
+      console.log("en el carrito hay: ", state.carrito);
     },
     SUB_PRODUCT(state, productIndexFinded) {
       state.carrito.splice(productIndexFinded, 1);
+      console.log("en el carrito hay: ", state.carrito);
     },
     ERASE_PRODUCT(state, productIndexFinded) {
       state.carrito.splice(productIndexFinded, 1);
+      console.log("en el carrito hay: ", state.carrito);
     },
     CLEAR_CART(state) {
       // console.log('CLEAR_CART -> lo que hay en el carrito', state);
@@ -38,24 +42,37 @@ export const moduloCarrito = {
   actions: {
     addProductoCarrito(context, product) {
       // incluir limite de stock, no puede incrementar cantidad mayor a stock registrado en data que siene de firestore
+
       const productIndex = context.state.carrito.findIndex(
         (productInCart) => productInCart.id === product.id
       );
-      if (productIndex === -1) {
+      // console.log("indice", productIndex);
+
+      if (productIndex === -1 && product.malt) {
         // eslint-disable-next-line no-unused-vars
         const { stock, ...carrito } = product;
-        context.commit("ADD_PRODUCT_TO_CARRITO", { ...carrito, quantity: 1 });
+        context.commit("ADD_PRODUCT_TO_CARRITO", {
+          ...carrito,
+          cantidad: product.cantidad,
+        });
+        console.log("agrega cerveza armada");
+      } else if (productIndex === -1) {
+        // eslint-disable-next-line no-unused-vars
+        const { stock, ...carrito } = product;
+        context.commit("ADD_PRODUCT_TO_CARRITO", { ...carrito, cantidad: 1 });
+        console.log("agrega cerveza externa");
       } else {
         context.commit("ADD_QUANTITY", productIndex);
+        console.log("incrementa cantidad cerveza externa");
       }
     },
     increaseQuantity(context, product) {
       const productIndex = context.state.carrito.findIndex(
         (productInCart) => productInCart.id === product.id
       );
-      console.log(productIndex);
+      // console.log(productIndex);
       if (productIndex >= 0) {
-        if (context.state.carrito[productIndex].quantity > 0) {
+        if (context.state.carrito[productIndex].cantidad > 0) {
           context.commit("ADD_QUANTITY", productIndex);
         }
       }
@@ -66,7 +83,7 @@ export const moduloCarrito = {
       );
       // console.log(productIndex);
       if (productIndex >= 0) {
-        if (context.state.carrito[productIndex].quantity > 1) {
+        if (context.state.carrito[productIndex].cantidad > 1) {
           context.commit("SUB_QUANTITY", productIndex);
         } else {
           context.commit("SUB_PRODUCT", productIndex);
@@ -90,9 +107,7 @@ export const moduloCarrito = {
 
             // ACTUALIZAR FIRESTORE en base a context.state.carrito
             // editar cantidad de x producto
-            // eliminar si cantidad es cero 
-
-
+            // eliminar si cantidad es cero
           }, ms);
         });
       };

@@ -10,14 +10,14 @@
         </p>
         <p>
           Recomiéndanos un nuevo producto:
-          <v-btn color="info" @click="showNewSuggestionDialog" class="ml-3"
+          <v-btn color="primary" @click="showNewSuggestionDialog" class="ml-3"
             >RECOMIÉNDANOS</v-btn
           >
         </p>
       </div>
       <!-- Cervezas para comprar -->
       <v-layout align-center justify-space-between class="my-6 mx-auto">
-        <v-row d-flex flex-wrap class="justify-center">
+        <v-row d-flex flex-wrap class="justify-center my-3">
           <div
             v-for="beer in $store.state.productos.cervezasCatalogo"
             :key="beer.id"
@@ -39,48 +39,67 @@
               "Recomendaciones"
             </p>
             <v-form class="my-5" ref="form">
-              <v-text-field
-                v-model="newSuggestion.name"
-                label="Nombre Cerveza:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.brand"
-                label="Marca:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.originCountry"
-                label="Pais origen:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.style"
-                label="Estilo:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.format"
-                label="Formato:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.price"
-                label="Precio:"
-                required
-              ></v-text-field>
-              <v-text-field
-                v-model="newSuggestion.observations"
-                label="Observaciones:"
-                required
-              ></v-text-field>
+              <v-row>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.name"
+                    label="Nombre Cerveza:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.brand"
+                    label="Marca:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.originCountry"
+                    label="Pais origen:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.style"
+                    label="Estilo:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.format"
+                    label="Formato:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.price"
+                    label="Precio:"
+                    required
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6">
+                  <v-text-field
+                    v-model="newSuggestion.observations"
+                    label="Observaciones:"
+                    required
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </v-form>
-            <v-btn color="success" class="mr-4" @click="createNewSuggestion">
-              GUARDAR
-            </v-btn>
-            <v-btn color="primary" class="mr-4" @click="cancelAddNewSuggestion">
-              CANCELAR
-            </v-btn>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="grey" dark @click="cancelAddNewSuggestion">
+                CANCELAR
+              </v-btn>
+              <v-btn color="gray" dark @click="createNewSuggestion">
+                GUARDAR
+              </v-btn>
+            </v-card-actions>
           </v-container>
         </v-card>
       </v-dialog>
@@ -101,9 +120,9 @@ export default {
     newSuggestionDialog: false,
     newSuggestion: {
       name: "",
+      style: "",
       brand: "",
       originCountry: "",
-      style: "",
       format: "",
       price: "",
       observations: "",

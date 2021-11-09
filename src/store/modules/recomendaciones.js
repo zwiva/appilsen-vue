@@ -40,6 +40,13 @@ export const moduloRecomendaciones = {
     },
 
     addSuggestion(context, newSuggestion) {
+      // console.log("data", patient);
+      
+      Firebase.firestore().collection("recomendaciones").add(newSuggestion);
+      context.commit("ADD_SUGGESTION", newSuggestion);
+    },
+
+  /*   addSuggestion(context, newSuggestion) {
       Firebase.firestore()
           .collection("recomendaciones")
           .add(newSuggestion)
@@ -50,14 +57,9 @@ export const moduloRecomendaciones = {
            .catch(() => {
             this.loading = false;
           }); 
-    }
+    } */
   },
 
-  addSuggestion(context, newSuggestion) {
-    // console.log("data", patient);
-    
-    Firebase.firestore().collection("recomendaciones").add(newSuggestion);
-    context.commit("ADD_SUGGESTION", newSuggestion);
-  },
+  
 
 };

@@ -8,7 +8,7 @@
       </p>
 
       <v-layout align-center justify-space-between>
-        <v-row d-flex flex-wrap class="justify-center">
+        <v-row d-flex flex-wrap class="justify-center my-3">
           <div
             v-for="merch in $store.state.productos.accesorios"
             :key="merch.id"
