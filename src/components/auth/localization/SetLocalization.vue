@@ -1,111 +1,112 @@
 <template>
   <div>
-    <h1>componente para mapa</h1>
-    <div class="ma-3">
-      <h4 class="py-3">¿Qué quieres hacer con tu pedido?</h4>
-      <!-- <div class="d-block"> -->
-      <v-row class="pa-1">
-        <v-col cols="12" sm="4" class="text-center">
-          <v-btn small @click="selectPickup">
-            Retirar<v-icon small>mdi-shopping</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col cols="12" sm="4" class="text-center">
-          <v-btn small @click="selectStore">
-            Consumir<v-icon small>mdi-glass-mug-variant</v-icon>
-          </v-btn>
-        </v-col>
-        <v-col cols="12" sm="4" class="text-center">
-          <v-btn small @click="selectDispatch">
-            Despacho<v-icon small>mdi-truck-outline</v-icon>
-          </v-btn>
-        </v-col>
-
-        <div class="mx-auto">
-          <v-select
-            label="Escoge ubicación"
-            :rules="rules.selectedField"
-            v-model="formShop.shop"
-            :items="shops"
-            v-if="pickup"
-          >
-          </v-select>
-          <v-select
-            label="Escoge tienda"
-            :rules="rules.selectedField"
-            v-model="formShop.shop"
-            :items="shops"
-            v-if="store"
-          >
-          </v-select>
-          <v-row class="justify-center align-center">
-            <v-text-field
-              label="Ingresa una dirección"
-              :rules="rules.completedField"
-              v-model="formShop.address"
-              v-if="dispatch"
-              class="px-6"
-            >
-            </v-text-field>
-
-            <v-btn
-              class="mx-1"
-              small
-              v-if="dispatch"
-              :disabled="loading"
-              :class="{ disabled: loading }"
-              @click="getLocation"
-            >
-              Obtener dirección
+    <!-- <h1>componente para mapa</h1> -->
+    <v-card>
+      <div class="ma-3">
+        <h4 class="py-3">¿Qué quieres hacer con tu pedido?</h4>
+        <v-row class="pa-1">
+          
+          <!-- botonera seleccion destino -->
+          <v-col cols="12" sm="4" class="text-center">
+            <v-btn small @click="selectPickup">
+              Retirar<v-icon small>mdi-shopping</v-icon>
             </v-btn>
-          </v-row>
-          <div class="form-group text-center">
-            <input
-              type="text"
-              class="location-control"
-              :value="location"
-              readonly
-            />
-            <!-- <button
+          </v-col>
+          <v-col cols="12" sm="4" class="text-center">
+            <v-btn small @click="selectStore">
+              Consumir<v-icon small>mdi-glass-mug-variant</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col cols="12" sm="4" class="text-center">
+            <v-btn small @click="selectDispatch">
+              Despacho<v-icon small>mdi-truck-outline</v-icon>
+            </v-btn>
+          </v-col>
+
+          <!-- selectores post seleccion destino -->
+          <div class="mx-auto">
+            <v-select
+              label="Escoge ubicación"
+              :rules="rules.selectedField"
+              v-model="destination.shop"
+              :items="shops"
+              v-if="pickup"
+            >
+            </v-select>
+            <v-select
+              label="Escoge tienda"
+              :rules="rules.selectedField"
+              v-model="destination.shop"
+              :items="shops"
+              v-if="store"
+            >
+            </v-select>
+            <v-row class="justify-center align-center">
+              <v-text-field
+                label="Ingresa una dirección"
+                :rules="rules.completedField"
+                v-model="destination.address"
+                v-if="dispatch"
+                class="px-6"
+              >
+              </v-text-field>
+              <v-btn
+                class="mx-1"
+                small
+                v-if="dispatch"
+                :disabled="loading"
+                :class="{ disabled: loading }"
+                @click="getLocation"
+              >
+                Obtener dirección
+              </v-btn>
+            </v-row>
+            <div class="form-group text-center">
+              <input
+                type="text"
+                class="location-control"
+                :value="location"
+                readonly
+              />
+              <!-- <button
                               type="button"
                               class="copy-btn"
                               @click="copyLocation"
                             >
                               copiar
                             </button> -->
-          </div>
-        </div>
-      </v-row>
-
-      <v-spacer></v-spacer>
-
-      <div>
-        <div class="main">
-          <div class="flex pa-3 ma-3">
-            <!-- Map -->
-            <div class="map-holder">
-              <div id="map"></div>
             </div>
-            <!-- Configurations -->
-            <div class="display-arena">
-              <!-- coordenadas -->
-              <div class="coordinates-header">
-                <h3>
-                  Current Coordinates (QUITAR
-                  <strong
-                    >despues de tener coordenadas de lugares), meter en
-                  </strong>
-                </h3>
-                <p>Latitude: {{ center[0] }}</p>
-                <p>Longitude: {{ center[1] }}</p>
+          </div>
+        </v-row>
+        <v-spacer></v-spacer>
+        <div>
+          <div class="main">
+            <div class="flex pa-3 ma-3">
+              <!-- Map -->
+              <div class="map-holder">
+                <div id="map"></div>
               </div>
+              <!-- Configurations -->
+              <div class="display-arena">
+                <!-- coordenadas -->
+                <div class="coordinates-header">
+                  <h3>
+                    Current Coordinates (QUITAR
+                    <strong
+                      >despues de tener coordenadas de lugares), meter en
+                    </strong>
+                  </h3>
+                  <p>Latitude: {{ center[0] }}</p>
+                  <p>Longitude: {{ center[1] }}</p>
+                </div>
 
-              <v-btn @click="goShowOrder">Ver pedido</v-btn>
+                <v-btn @click="goShowOrder">Ver pedido</v-btn>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </v-card>
   </div>
 </template>
 
@@ -115,7 +116,7 @@ import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
-  name: "MapCanvas",
+  name: "SetLocalization",
   components: {},
   // mounted() {
   //   this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
@@ -124,6 +125,15 @@ export default {
     pickup: false,
     store: false,
     dispatch: false,
+    rules: {
+      completedField: [
+        (val) => (val || "").length > 0 || "Por favor completar.",
+      ],
+      selectedField: [
+        (val) => (val || "").length > 0 || "Por favor seleccionar.",
+      ],
+    },
+    destination: '',
     shops: [
       "tienda 1",
       "tienda 2",

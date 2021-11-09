@@ -1,73 +1,84 @@
 <template>
   <div>
-    <v-col v-if="$store.state.carrito.carrito.length >= 1">
-      <template>
-        <v-data-table
-          :headers="headers"
-          :items="carrito"
-          :items-per-page="10"
-          class="elevation-1"
+    <!-- Tabla carrito -->
+    <div>
+      <v-col v-if="$store.state.carrito.carrito.length >= 1">
+        <template>
+          <v-data-table
+            :headers="headers"
+            :items="carrito"
+            :items-per-page="10"
+            class="elevation-1"
+          >
+            <template v-slot:[`item.increase`]="{ item }">
+              <div>
+                <v-btn icon @click="increaseQuantity(item)">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
+                <v-btn icon @click="decreaseQuantity(item)">
+                  <v-icon>mdi-minus</v-icon>
+                </v-btn>
+              </div>
+            </template>
+
+            <template v-slot:[`item.precio`]="{ item }">
+              ${{ item.precio.toLocaleString() }}
+            </template>
+
+            <template v-slot:[`item.topay`]="{ item }">
+              ${{ (item.precio * item.cantidad).toLocaleString() }}
+            </template>
+
+            <template v-slot:[`item.delete`]="{ item }">
+              <div>
+                <v-btn icon @click="deleteProductOfCart(item)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </div>
+            </template>
+          </v-data-table>
+        </template>
+      </v-col>
+
+      <v-col v-else class="ma-5">
+        <p>No hay productos en tu carrito.</p>
+      </v-col>
+     
+    </div>
+
+    <!-- botonera: comprar o ir a otra vista -->
+    <div>
+      <v-col>
+        <div
+          v-if="$store.state.carrito.carrito.length > 0"
+          class="d-flex justify-center"
         >
-          <template v-slot:[`item.increase`]="{ item }">
-            <div>
-              <v-btn icon @click="increaseQuantity(item)">
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-              <v-btn icon @click="decreaseQuantity(item)">
-                <v-icon>mdi-minus</v-icon>
-              </v-btn>
-            </div>
-          </template>
-
-          <template v-slot:[`item.precio`]="{ item }">
-            ${{ item.precio.toLocaleString() }}
-          </template>
-
-          <template v-slot:[`item.topay`]="{ item }">
-            ${{ (item.precio * item.cantidad).toLocaleString() }}
-          </template>
-
-          <template v-slot:[`item.delete`]="{ item }">
-            <div>
-              <v-btn icon @click="deleteProductOfCart(item)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </div>
-          </template>
-        </v-data-table>
-      </template>
-    </v-col>
-    <v-col v-else class="ma-5">
-      <p>No hay productos en tu carrito.</p>
-    </v-col>
-
-    <v-col>
-      <div
-        v-if="$store.state.carrito.carrito.length > 1"
-        class="d-flex justify-center"
-      >
-        <v-btn elevation="2" dark color="gray" @click="buyCart()"> COMPRAR </v-btn>
-      </div>
-
-      <div v-else class="d-flex justify-center flex-wrap">
-        <div class="ma-2">
-          <v-btn elevation="2" @click="irAArmar()"> IR A ARMAR TU PILSEN</v-btn>
+          <v-btn elevation="2" dark color="gray" @click="buyCart()">
+            COMPRAR
+          </v-btn>
         </div>
-        <div class="ma-2">
-          <v-btn elevation="2" @click="irACatalogo()"> IR POR CERVEZAS</v-btn>
+
+        <div v-else class="d-flex justify-center flex-wrap">
+          <div class="ma-2">
+            <v-btn elevation="2" @click="irAArmar()">
+              IR A ARMAR TU PILSEN</v-btn
+            >
+          </div>
+          <div class="ma-2">
+            <v-btn elevation="2" @click="irACatalogo()"> IR POR CERVEZAS</v-btn>
+          </div>
+          <div class="ma-2">
+            <v-btn elevation="2" @click="irAMerch()"> IR POR ACCESORIOS </v-btn>
+          </div>
         </div>
-        <div class="ma-2">
-          <v-btn elevation="2" @click="irAMerch()"> IR POR ACCESORIOS </v-btn>
-        </div>
-      </div>
-    </v-col>
+      </v-col>
+    </div>
   </div>
 </template>
 <script>
 import store from "../../../../store";
-
 export default {
-  name: "shoptable",
+  name: "Shoptable",
   props: {
     carrito: { type: Array, required: true },
   },

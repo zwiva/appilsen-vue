@@ -7,11 +7,10 @@
         <v-col cols="12">
           <ShopTable :carrito="$store.state.carrito.carrito" with="80%" />
         </v-col>
+        <div v-if="$store.state.carrito.carrito.length > 0">
+          <SetLocalization />
+        </div>
       </v-card>
-    </div>
-
-    <div v-if="$store.state.carrito.carrito.length>0">
-      <SetLocalizacion/>
     </div>
 
     <v-dialog v-model="showOrder">
@@ -24,11 +23,11 @@
   </div>
 </template>
 <script>
-import SetLocalizacion from '../components/auth/localization/SetLocalizacion.vue';
+import SetLocalization from '../components/auth/localization/SetLocalization.vue';
 import ShopTable from "../components/auth/shop/cart/ShopTable.vue";
 export default {
   name: "ShopCart",
-  components: { ShopTable, SetLocalizacion },
+  components: { ShopTable, SetLocalization },
   data: () => ({
     products: [],
     showOrder: false,
