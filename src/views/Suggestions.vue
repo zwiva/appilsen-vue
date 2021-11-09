@@ -14,13 +14,15 @@
         </p>
       </div>
 
-      <h1 class="text-center ma-6">Tus recomendadas:  </h1>
-      <v-layout  align-center justify-space-between class="my-6 mx-auto">
+      <h1 class="text-center ma-6">Tus recomendadas:</h1>
+      <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row d-flex flex-wrap class="justify-center">
           <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
-            <div v-for="suggestion in $store.state.productos.sugerencias"
-            :key="suggestion.id">
-            <SuggestionCard :suggestion="suggestion" />
+          <div
+            v-for="sugerencia in $store.state.recomendaciones.sugerencias"
+            :key="sugerencia.id"
+          >
+             <SuggestionCard :sugerencia="sugerencia" /> 
           </div>
         </v-row>
       </v-layout>
@@ -30,47 +32,55 @@
     <v-dialog v-model="newSuggestionDialog" max-width="800px">
       <v-card elevation="7" class="pa-3">
         <v-container>
-          <h2 class="text-center">Ingresa el detalle de tu recomendación: </h2>
-          <v-form class="my-5" ref="form">
+          <h2 class="text-center">Ingresa el detalle de tu recomendación:</h2>
+          <v-form @submit.prevent="guardarSugerencias(newSuggestion)" class="my-5" ref="form">
             <v-text-field
-              v-model="newSuggestion.name"
+              :disabled="loading"
+              v-model="newSuggestion.nombre"
               label="Nombre Cerveza:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
+              :disabled="loading"
               v-model="newSuggestion.brand"
               label="Marca:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
-              v-model="newSuggestion.originCountry"
+              :disabled="loading"
+              v-model="newSuggestion.pais"
               label="Pais origen:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
-              v-model="newSuggestion.style"
+              :disabled="loading"
+              v-model="newSuggestion.estilo"
               label="Estilo:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
-              v-model="newSuggestion.format"
+              :disabled="loading"
+              v-model="newSuggestion.formato"
               label="Formato:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
-              v-model="newSuggestion.price"
+              :disabled="loading"
+              v-model="newSuggestion.precio"
               label="Precio:"
-              required
+              :rules="[required]"
             ></v-text-field>
             <v-text-field
-              v-model="newSuggestion.observations"
+              :disabled="loading"
+              v-model="newSuggestion.observacion"
               label="Observaciones:"
-              required
+              :rules="[required]"
             ></v-text-field>
-             <v-text-field
+            <v-text-field
+              :disabled="loading"
               v-model="newSuggestion.imagen"
               label="Imagen:"
-              required
+              :rules="[required]"
             ></v-text-field>
           </v-form>
           <v-btn color="success" class="mr-4" @click="createNewSuggestion">
@@ -85,8 +95,8 @@
   </v-container>
 </template>
 <script>
-
 import store from "../store";
+/* import Firebase from "firebase"; */
 
 import SuggestionCard from "../components/auth/suggestions/SuggestionCard.vue";
 
@@ -94,35 +104,44 @@ export default {
   name: "UserSuggestions",
   components: { SuggestionCard },
 
-   beforeRouteEnter(to, from, next) {
-    store.dispatch("productos/getAllSuggestionsFirestore");
+  beforeRouteEnter(to, from, next) {
+    store.dispatch("recomendaciones/getAllSuggestionsFirestore");
     next();
-  },
-
-    
+  }, 
 
   data: () => ({
+    loading: false,
     newSuggestionDialog: false,
     newSuggestion: {
-      name: "",
+      nombre: "",
       brand: "",
-      originCountry: "",
-      style: "",
-      format: "",
-      price: "",
-      observations: "",
+      pais: "",
+      estilo: "",
+      formato: "",
+      precio: "",
+      observacion: "",
       imagen: "",
     },
-    suggestions: [],
+    
   }),
 
-    mounted() {
-    store.dispatch("productos/getAllSuggestionsFirestore");
+/*   mounted() {
+    store.dispatch("recomendaciones/getAllSuggestionsFirestore");
     console.log("mounted");
-  }, 
- 
+  }, */
 
   methods: {
+    guardarSugerencias(newSuggestion) {
+      if (this.$refs.form.validate()) {
+        console.log("funciona validacion")
+         store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+      }
+    },
+
+    required(v) {
+      return !!v || "Este campo es obligatorio";
+    },
+
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
       console.log("muestra dialogo");

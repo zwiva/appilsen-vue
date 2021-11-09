@@ -6,7 +6,7 @@ export const moduloProductos = {
     todosLosProductos: [],
     cervezasCatalogo: [],
     accesorios: [],
-    sugerencias: [],
+    
   },
 
   mutations: {
@@ -53,7 +53,7 @@ export const moduloProductos = {
         });
     },
 
-    getAllSuggestionsFirestore(context) {
+   /*  getAllSuggestionsFirestore(context) {
       Firebase.firestore()
         .collection("recomendaciones")
         .get()
@@ -64,7 +64,7 @@ export const moduloProductos = {
           });
           context.commit("SET_SUGGESTIONS_DATA", suggestionsFirestore);
         });
-    },
+    }, */
 
     // CRUD INVENTARIO
     addNewExternalBeer(context, newExternalBeer) {

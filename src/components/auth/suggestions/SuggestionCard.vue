@@ -8,13 +8,13 @@
             class="suggestions mx-auto"
             max-width="340"
           >
-            <v-img :src="suggestion.imagen" height="250px" contain />
-            <p><strong>Nombre cerveza:</strong> {{ suggestion.nombre }}</p>
-            <p><strong>Pais de origen:</strong> {{ suggestion.pais }}</p>
-            <p><strong>Estilo: </strong>{{ suggestion.estilo }}</p>
-            <p><strong>alcohol:</strong> {{ suggestion.alcohol }}°</p>
-            <p><strong>Formato: </strong>{{ suggestion.formato }}</p>
-            <p><strong>Precio: </strong>{{ suggestion.precio }}$</p>
+            <v-img :src="sugerencia.imagen" height="250px" contain />
+            <p><strong>Nombre cerveza:</strong> {{ sugerencia.nombre }}</p>
+            <p><strong>Pais de origen:</strong> {{ sugerencia.pais }}</p>
+            <p><strong>Estilo: </strong>{{ sugerencia.estilo }}</p>
+            <p><strong>alcohol:</strong> {{ sugerencia.alcohol }}°</p>
+            <p><strong>Formato: </strong>{{ sugerencia.formato }}</p>
+            <p><strong>Precio: </strong>{{ sugerencia.precio }}$</p>
 
           <v-card-actions>
               <v-btn @click="editDialog = true"
@@ -84,7 +84,7 @@ export default {
     },
   },
   props: {
-    suggestion: { type: Object, require: true },
+    sugerencia: { type: Object, require: true },
   },
 };
 </script>
