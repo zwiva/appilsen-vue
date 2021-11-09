@@ -40,9 +40,10 @@ export const moduloRecomendaciones = {
     },
 
     addSuggestion(context, newSuggestion) {
-      // console.log("data", patient);
-      
-      Firebase.firestore().collection("recomendaciones").add(newSuggestion);
+    
+      Firebase.firestore()
+      .collection("recomendaciones")
+      .add(newSuggestion);
       context.commit("ADD_SUGGESTION", newSuggestion);
     },
 
