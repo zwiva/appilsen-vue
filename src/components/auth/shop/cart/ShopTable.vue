@@ -38,41 +38,18 @@
             </template>
           </v-data-table>
         </template>
+
+        <div class="py-4 text-right">
+          <h4>Subtotal: $ (( aca va un getter con la suma del carro))</h4>
+        </div>
       </v-col>
 
       <v-col v-else class="ma-5">
         <p>No hay productos en tu carrito.</p>
       </v-col>
-     
     </div>
 
     <!-- botonera: comprar o ir a otra vista -->
-    <div>
-      <v-col>
-        <div
-          v-if="$store.state.carrito.carrito.length > 0"
-          class="d-flex justify-center"
-        >
-          <v-btn elevation="2" dark color="gray" @click="buyCart()">
-            COMPRAR
-          </v-btn>
-        </div>
-
-        <div v-else class="d-flex justify-center flex-wrap">
-          <div class="ma-2">
-            <v-btn elevation="2" @click="irAArmar()">
-              IR A ARMAR TU PILSEN</v-btn
-            >
-          </div>
-          <div class="ma-2">
-            <v-btn elevation="2" @click="irACatalogo()"> IR POR CERVEZAS</v-btn>
-          </div>
-          <div class="ma-2">
-            <v-btn elevation="2" @click="irAMerch()"> IR POR ACCESORIOS </v-btn>
-          </div>
-        </div>
-      </v-col>
-    </div>
   </div>
 </template>
 <script>
@@ -139,18 +116,6 @@ export default {
     },
     deleteProductOfCart(item) {
       store.dispatch("carrito/eraseProductOfCart", item);
-    },
-    buyCart() {
-      store.dispatch("carrito/buyCart");
-    },
-    irAArmar() {
-      console.log("redirigir a Armar");
-    },
-    irACatalogo() {
-      console.log("redirigir a catalogo");
-    },
-    irAMerch() {
-      console.log("redirigir a merch");
     },
   },
 };
