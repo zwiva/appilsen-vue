@@ -10,6 +10,10 @@
       </v-card>
     </div>
 
+    <div v-if="$store.state.carrito.carrito.length>0">
+      <SetLocalizacion/>
+    </div>
+
     <v-dialog v-model="showOrder">
       <v-card>
         <h3>Mostrar dialogo con resumen de pedido</h3>
@@ -20,13 +24,15 @@
   </div>
 </template>
 <script>
+import SetLocalizacion from '../components/auth/localization/SetLocalizacion.vue';
 import ShopTable from "../components/auth/shop/cart/ShopTable.vue";
 export default {
   name: "ShopCart",
-  components: { ShopTable },
+  components: { ShopTable, SetLocalizacion },
   data: () => ({
     products: [],
     showOrder: false,
+    showLocation: false,
   }),
   methods: {
     saveOrder() {
