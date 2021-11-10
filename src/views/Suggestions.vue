@@ -42,7 +42,7 @@
             ></v-text-field>
             <v-text-field
               :disabled="loading"
-              v-model="newSuggestion.brand"
+              v-model="newSuggestion.marca"
               label="Marca:"
               :rules="[required]"
             ></v-text-field>
@@ -72,7 +72,7 @@
             ></v-text-field>
             <v-text-field
               :disabled="loading"
-              v-model="newSuggestion.observacion"
+              v-model="newSuggestion.observaciones"
               label="Observaciones:"
               :rules="[required]"
             ></v-text-field>
@@ -117,12 +117,12 @@ export default {
     newSuggestionDialog: false,
     newSuggestion: {
       nombre: "",
-      brand: "",
+      marca: "",
       pais: "",
       estilo: "",
       formato: "",
       precio: "",
-      observacion: "",
+      observaciones: "",
       imagen: "",
     },
     

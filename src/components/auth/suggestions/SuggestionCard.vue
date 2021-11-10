@@ -5,15 +5,18 @@
         <v-row>
           <v-card color="amber" class="suggestions mx-auto" max-width="280px">
             <v-img :src="sugerencia.imagen" height="280px" contain />
+            <p><strong>Marca: </strong>{{ sugerencia.marca }}</p>
             <p><strong>Nombre cerveza:</strong> {{ sugerencia.nombre }}</p>
             <p><strong>Pais de origen:</strong> {{ sugerencia.pais }}</p>
             <p><strong>Estilo: </strong>{{ sugerencia.estilo }}</p>
             <p><strong>alcohol:</strong> {{ sugerencia.alcohol }}°</p>
             <p><strong>Formato: </strong>{{ sugerencia.formato }}</p>
             <p><strong>Precio: </strong>${{ sugerencia.precio }}</p>
+            <p><strong>Observaciones </strong>{{ sugerencia.observaciones }}</p>
+            
 
             <v-card-actions>
-              <v-btn @click="editDialog = true"
+              <v-btn @click="editarSuggestion(sugerencia)"
                 ><v-icon> mdi-pencil</v-icon></v-btn
               >
               <v-btn @click="deleteDialog = true"
@@ -28,7 +31,57 @@
     <div>
       <v-dialog v-model="editDialog">
         <v-card>
-          formulario editar, por props pasarle los parametros?
+          <h1>formulario editar, por props pasarle los parametros?</h1>
+          <v-form @submit.prevent="editSuggestion(sugerencia)" class="my-5" ref="form">
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.nombre"
+              label="Nombre Cerveza:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.marca"
+              label="Marca:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.pais"
+              label="Pais origen:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.estilo"
+              label="Estilo:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.formato"
+              label="Formato:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.precio"
+              label="Precio:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.observaciones"
+              label="Observaciones:"
+              :rules="[required]"
+            ></v-text-field>
+            <v-text-field
+              :disabled="loading"
+              v-model="sugerencia.imagen"
+              label="Imagen:"
+              :rules="[required]"
+            ></v-text-field>
+          </v-form>
           <v-btn @click="editDialog = false">Editar</v-btn>
         </v-card>
       </v-dialog>
@@ -60,6 +113,7 @@ export default {
   name: "SuggestionCard",
 
   data: () => ({
+    loading: false,
     editDialog: false,
     deleteDialog: false,
     confirmDeleteDialog: false,
@@ -74,6 +128,20 @@ export default {
       store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
       this.confirmDeleteDialog = true;
       this.deleteDialog = false;
+    },
+    editarSuggestion(sugerencia) {
+      console.log("probando editar", sugerencia);
+     this.editDialog = true;
+    },
+
+    editSuggestion(sugerencia) {
+      store.dispatch("recomendaciones/editSuggestion", sugerencia);
+      this.editDialog = false
+      
+    },
+
+    required(value) {
+      return !!value || "no dejar campo en blanco";
     },
   },
   props: {

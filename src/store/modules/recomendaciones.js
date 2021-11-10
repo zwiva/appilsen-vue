@@ -29,6 +29,8 @@ export const moduloRecomendaciones = {
       state.sugerenciaAeliminar = [];
       /* console.log("probando id eliminar", sugerenciaAeliminar); */
     },
+
+   
   },
 
   actions: {
@@ -70,17 +72,21 @@ export const moduloRecomendaciones = {
       context.commit("DELETE_SUGGESTION", id);
     },
 
-    /*   addSuggestion(context, newSuggestion) {
-      Firebase.firestore()
-          .collection("recomendaciones")
-          .add(newSuggestion)
-          .then(() => {
-            this.loading = false;
-            console.log("se agrego una recomendacion")
-          })
-           .catch(() => {
-            this.loading = false;
-          }); 
-    } */
-  },
+    editSuggestion(context, sugerencia) {
+          Firebase.firestore()
+            .collection("recomendaciones")
+            .doc(sugerencia.id)
+            .update(sugerencia)
+            .then(() => {
+              console.log("edicion crud probando");
+              
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        } 
+    
+
+ 
+  }
 };
