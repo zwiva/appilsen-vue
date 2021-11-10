@@ -88,7 +88,7 @@
             <v-btn color="grey" dark @click="cancelAddNewSuggestion">
               CANCELAR
             </v-btn>
-            <v-btn color="gray" dark @click="createNewSuggestion">
+            <v-btn color="gray" dark @click="guardarSugerencias(newSuggestion)">
               GUARDAR
             </v-btn>
           </v-card-actions>
@@ -138,6 +138,7 @@ export default {
       if (this.$refs.form.validate()) {
         console.log("funciona validacion")
          store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+         this.newSuggestionDialog = false;
       }
     },
 

@@ -3,27 +3,23 @@
     <v-container grid-list-md>
       <v-col cols="12" md="4">
         <v-row>
-          <v-card
-            color="amber"
-            class="suggestions mx-auto"
-            max-width="340"
-          >
-            <v-img :src="sugerencia.imagen" height="250px" contain />
+          <v-card color="amber" class="suggestions mx-auto" max-width="280px">
+            <v-img :src="sugerencia.imagen" height="280px" contain />
             <p><strong>Nombre cerveza:</strong> {{ sugerencia.nombre }}</p>
             <p><strong>Pais de origen:</strong> {{ sugerencia.pais }}</p>
             <p><strong>Estilo: </strong>{{ sugerencia.estilo }}</p>
             <p><strong>alcohol:</strong> {{ sugerencia.alcohol }}°</p>
             <p><strong>Formato: </strong>{{ sugerencia.formato }}</p>
-            <p><strong>Precio: </strong>{{ sugerencia.precio }}$</p>
+            <p><strong>Precio: </strong>${{ sugerencia.precio }}</p>
 
-          <v-card-actions>
+            <v-card-actions>
               <v-btn @click="editDialog = true"
                 ><v-icon> mdi-pencil</v-icon></v-btn
               >
               <v-btn @click="deleteDialog = true"
-                ><v-icon>mdi-delete</v-icon></v-btn>
-          </v-card-actions>
-         
+                ><v-icon>mdi-delete</v-icon></v-btn
+              >
+            </v-card-actions>
           </v-card>
         </v-row>
       </v-col>
@@ -41,7 +37,7 @@
       <v-dialog v-model="deleteDialog">
         <v-card>
           modal de pregunta si quiere eliminar
-          <v-btn @click="showDeleteConfirmation">Si</v-btn>
+          <v-btn @click="deleteSuggestion(sugerencia.id)">Si</v-btn>
           <v-btn @click="deleteDialog = false">No</v-btn>
         </v-card>
       </v-dialog>
@@ -58,19 +54,10 @@
 </template>
 
 <script>
+import store from "../../../store";
 
 export default {
   name: "SuggestionCard",
-  
-  /* beforeRouteEnter(to, from, next) {
-    Firebase.firestore()
-    .collection("recomendaciones")
-    .doc(to.params.id)
-    .get()
-    .then(documents => {
-
-    })
-  }, */
 
   data: () => ({
     editDialog: false,
@@ -81,6 +68,12 @@ export default {
     showDeleteConfirmation() {
       this.deleteDialog == false;
       this.confirmDeleteDialog = true;
+    },
+
+    deleteSuggestion(sugerenciaId) {
+      store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
+      this.confirmDeleteDialog = true;
+      this.deleteDialog = false;
     },
   },
   props: {
