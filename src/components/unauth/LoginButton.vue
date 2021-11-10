@@ -4,9 +4,9 @@
       Iniciar Sesion
       <v-icon>mdi-login</v-icon>
     </v-btn>
-<v-container>
-    <v-dialog  max-width="370" v-model="loginForm">
-      <v-card >
+<v-container >
+    <v-dialog  max-width="350" v-model="loginForm">
+      <v-card class="background-login rounded-xl" >
         <v-card-title></v-card-title>
         <v-card-text>
           <LoginForm />
@@ -34,3 +34,14 @@ export default {
   },
 };
 </script>
+
+<style>
+
+.background-login {
+  background-image: url("../../assets/backgrounds/beer-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  rotate: 180;
+  /* opacity: 0.85;; */
+}
+</style>
