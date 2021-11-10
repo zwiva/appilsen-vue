@@ -48,7 +48,7 @@
       </v-card>
     </div>
 
-    <v-dialog v-model="showOrder">
+    <v-dialog v-model="shopFinished">
       <v-card>
         <h3>Mostrar dialogo con resumen de pedido</h3>
         <v-btn color="primary" @click="saveOrder">Confirmar</v-btn>
@@ -68,22 +68,24 @@ export default {
     products: [],
     showOrder: false,
     showLocation: false,
+    shopFinished: false, // modal que se muestra cuando se termina la compra, ideal que actualice la firestore
   }),
   methods: {
-    saveOrder() {
-      console.log("carrito");
+    irAArmar() {
+      this.$router.push("/armar");
+    },
+    irACatalogo() {
+      this.$router.push("/catalogo");
+    },
+    irAMerch() {
+      this.$router.push("/merch");
     },
     buyCart() {
       store.dispatch("carrito/buyCart");
+      this.shopFinished = true;
     },
-    irAArmar() {
-      console.log("redirigir a Armar");
-    },
-    irACatalogo() {
-      console.log("redirigir a catalogo");
-    },
-    irAMerch() {
-      console.log("redirigir a merch");
+    saveOrder() { // para ir a actualizar prop stock en firestore // cerrar compra y resetear carro
+      console.log("carrito");
     },
     // showOrder() {
     //   console.log("carrito");
