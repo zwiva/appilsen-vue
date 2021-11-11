@@ -82,6 +82,15 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-list-item :to="items[8].to" v-if="isUser || isAdmin">
+            <v-list-item-content v-model="tab" align-with-title>
+              <v-spacer></v-spacer>
+              <v-list-item-title text-align-center>
+                {{ items[8].title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
           <!-- </template> -->
         </v-toolbar-items>
@@ -177,6 +186,15 @@
                     </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
+
+                <v-list-item :to="items[8].to" v-if="isUser || isAdmin">
+                  <v-list-item-content v-model="tab" align-with-title>
+                    <v-spacer></v-spacer>
+                    <v-list-item-title text-align-center>
+                      {{ items[8].title }}
+                    </v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
                 <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
                 <!-- </template> -->
               </v-list>
@@ -209,8 +227,9 @@ export default {
         { id: 3, title: "Merch", icon: "", to: "/merch" },
         { id: 4, title: "Nuestro Equipo", icon: "info", to: "/ourteam" },
         { id: 5, title: "Recomendaciones", icon: "", to: "/recomendaciones" },
-        { id: 6, title: "Administrador stock", icon: "", to: "/beerstock" },
-        { id: 7, title: "Carrito", icon: "", to: "/carrito" },
+        { id: 6, title: "Random", icon: "", to: "/random" },
+        { id: 7, title: "Administrador stock", icon: "", to: "/beerstock" },
+        { id: 8, title: "Carrito", icon: "", to: "/carrito" },
       ],
     };
   },

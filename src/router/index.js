@@ -94,6 +94,18 @@ const routes = [
     },
   },
   {
+    path: "/random",
+    name: "Random",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "external" */ "../views/Random.vue"),
+    meta: {
+      requirelogin: false, // pasar a true
+    },
+  },
+  {
     path: "/carrito",
     name: "ShopCart",
     // route level code-splitting
