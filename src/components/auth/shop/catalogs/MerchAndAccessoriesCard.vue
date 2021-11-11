@@ -10,7 +10,11 @@
               <v-list-item-title> $ {{ merch.precio }}</v-list-item-title>
               <v-list-item-subtitle> {{ merch.detalles }}</v-list-item-subtitle>
             </div>
-            <v-btn color="gray" dark class="zoom"  @click="addProductoAlCarrito(merch)"
+            <v-btn
+              color="gray"
+              dark
+              class="zoom"
+              @click="addProductoAlCarrito(merch)"
               >Agregar al carrito</v-btn
             >
           </v-list-item-content>
@@ -25,13 +29,20 @@
           <v-container class="background-beer">
             <div class="background-white ma-5 pa-3">
               <h2 class="text-center">Producto agregado al carrito</h2>
-              <v-row class="ma-3 justify-space-around">
+              <v-row class="mt-3 justify-space-around">
                 <v-btn
                   color="amber"
-                  class="align-self-center zoom"
+                  class="align-self-center zoom ma-1"
                   @click="productAddedToCart = false"
                 >
-                  OK
+                  AGREGAR +
+                </v-btn>
+                <v-btn
+                  color="amber"
+                  class="align-self-center zoom ma-1"
+                  @click="goToCart"
+                >
+                  IR AL CARRITO
                 </v-btn>
               </v-row>
             </div>
@@ -57,6 +68,9 @@ export default {
       this.merchAlCarrito = merch;
       this.$store.dispatch("carrito/addProductoCarrito", this.merchAlCarrito);
       this.productAddedToCart = true;
+    },
+    goToCart() {
+      this.$router.push("/carrito");
     },
   },
 };
