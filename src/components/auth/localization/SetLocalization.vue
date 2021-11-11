@@ -2,13 +2,13 @@
   <div>
     <!-- <h1>componente para mapa</h1> -->
     <v-card>
-      <div class="ma-3">
+      <div class="pa-3 ma-3">
         <h4 class="py-3">¿Qué quieres hacer con tu pedido?</h4>
-        <v-row class="pa-1">
+        <v-row>
           <!-- ESCOGE RETIRAR -->
           <v-col cols="12" sm="4" class="text-center">
-            <v-btn small @click="selectPickup">
-              Retirar<v-icon small>mdi-shopping</v-icon>
+            <v-btn @click="selectPickup">
+              Retirar<v-icon>mdi-shopping</v-icon>
             </v-btn>
             <div v-if="pickup">
               <v-select
@@ -16,27 +16,31 @@
                 :rules="rules.selectedField"
                 v-model="destination.shop"
                 :items="shops"
+                @click="getLocation()"
                 @change="setDestination(destination.shop)"
               >
               </v-select>
-              <p>{{ destination.shop }}</p>
-              <v-btn
-                v-if="dispatch"
-                class="mx-1"
-                small
-                :disabled="loading"
-                :class="{ disabled: loading }"
-                @click="getLocation"
-              >
-                Obtener dirección
-              </v-btn>
+
+              <div v-if="destinationSelectedShop" class="">
+                <p>Local escogido: {{ destination.shop }}</p>
+                <p>Dirección: {{ location }}</p>
+                <v-btn
+                  small
+                  type="button"
+                  class="copy-btn mt-3"
+                  @click="copyLocation"
+                >
+                  Copiar direccion
+                  <v-icon small class="ml-1">mdi-content-copy</v-icon>
+                </v-btn>
+              </div>
             </div>
           </v-col>
 
           <!-- ESCOGE CONSUMIR -->
           <v-col cols="12" sm="4" class="text-center">
-            <v-btn small @click="selectStore">
-              Consumir<v-icon small>mdi-glass-mug-variant</v-icon>
+            <v-btn @click="selectStore">
+              Consumir<v-icon>mdi-glass-mug-variant</v-icon>
             </v-btn>
             <div v-if="store">
               <v-select
@@ -44,31 +48,33 @@
                 :rules="rules.selectedField"
                 v-model="destination.shop"
                 :items="shops"
+                @click="getLocation()"
                 @change="setDestination(destination.shop)"
               >
               </v-select>
-              <p>{{ destination.shop }}</p>
-
-              <v-btn
-                v-if="dispatch"
-                class="mx-1"
-                small
-                :disabled="loading"
-                :class="{ disabled: loading }"
-                @click="getLocation"
-              >
-                Obtener dirección
-              </v-btn>
+              <div v-if="destinationSelectedShop" class="">
+                <p>Local escogido: {{ destination.shop }}</p>
+                <p>Dirección: {{ location }}</p>
+                <v-btn
+                  small
+                  type="button"
+                  class="copy-btn mt-3"
+                  @click="copyLocation"
+                >
+                  Copiar direccion
+                  <v-icon small class="ml-1">mdi-content-copy</v-icon>
+                </v-btn>
+              </div>
             </div>
           </v-col>
 
           <!-- ESCOGE DESPACHO -->
           <v-col cols="12" sm="4" class="text-center">
-            <v-btn small @click="selectDispatch">
-              Despacho<v-icon small>mdi-truck-outline</v-icon>
+            <v-btn @click="selectDispatch">
+              Despacho<v-icon>mdi-truck-outline</v-icon>
             </v-btn>
             <div v-if="dispatch">
-              <v-row class="justify-center align-center">
+              <v-col class="">
                 <v-text-field
                   label="Ingresa una dirección"
                   :rules="rules.completedField"
@@ -76,52 +82,59 @@
                   class="px-6"
                 >
                 </v-text-field>
-                <v-btn
-                  class="mx-1"
-                  small
-                  v-if="dispatch"
-                  :disabled="loading"
-                  :class="{ disabled: loading }"
-                  @click="getLocation"
-                >
-                  Obtener dirección
-                </v-btn>
-              </v-row>
-              <input
+              </v-col>
+              <!-- <v-btn type="button" class="copy-btn" @click="copyLocation">
+                Copiar direccion
+              </v-btn> -->
+            </div>
+            <div v-if="destinationSelectedDispatch">
+              <!-- <span>Dirección ingresada: </span> -->
+              <!-- <input
                 type="text"
                 class="location-control"
-                :value="location"
+                :value="destination.address"
                 readonly
-              />
-
-              <v-btn type="button" class="copy-btn" @click="copyLocation">
+              /> -->
+              <p class="text-left">
+                Dirección ingresada: {{ destination.address }}
+              </p>
+              <v-btn
+                small
+                type="button"
+                class="copy-btn mt-3"
+                @click="copyAddress"
+              >
                 Copiar direccion
+                <v-icon small class="ml-1">mdi-content-copy</v-icon>
               </v-btn>
             </div>
           </v-col>
         </v-row>
-
         <v-spacer></v-spacer>
 
         <!-- MAPA !!! -->
         <div>
           <div class="main">
-            <div class="flex pa-3 ma-3">
+            <div class="flex">
               <!-- Map -->
-              <v-btn @click="showMap()">Mapa</v-btn>
+
+              <div
+                v-if="destinationSelectedShop || destinationSelectedDispatch"
+              >
+                <v-btn
+                  type="button"
+                  class="copy-btn mt-3"
+                  @click="copyLocation"
+                >
+                  Copiar direccion
+                  <v-icon class="ml-1">mdi-content-copy</v-icon>
+                </v-btn>
+              </div>
+              <v-btn @click="showMap()" class="my-3"
+                >Ver en Mapa <v-icon>mdi-map</v-icon></v-btn
+              >
               <div class="map-holder">
                 <div id="map"></div>
-              </div>
-              <!-- Configurations -->
-              <div class="display-arena">
-                <!-- coordenadas -->
-                <div class="coordinates-header">
-                  <h3></h3>
-                  <p>Latitude: {{ center[0] }}</p>
-                  <p>Longitude: {{ center[1] }}</p>
-                </div>
-
-                <!-- <v-btn @click="goShowOrder">Ver pedido</v-btn> -->
               </div>
             </div>
           </div>
@@ -139,14 +152,13 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   name: "SetLocalization",
   components: {},
-  mounted() {
-    // this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
-  },
   data: () => ({
+    loading: false,
     pickup: false,
     store: false,
     dispatch: false,
-
+    destinationSelectedShop: false,
+    destinationSelectedDispatch: false,
     rules: {
       completedField: [
         (val) => (val || "").length > 0 || "Por favor completar.",
@@ -159,26 +171,29 @@ export default {
       shop: "",
       address: "",
     },
-
-    // datos para mapas:
     shops: [
       "El Honesto Mike",
       "On Tap Chile",
-      "Apiádate De Mi ❤️🔥🍻",
+      "Apiádate De Mi",
       "KrossBar BordeRío",
       "KrossBar Bellavista",
     ],
-    lats: [-70.6074582, -70.611228, -70.6177036, -70.6122513, -70.6694633],
-    longs: [-33.4207783, -33.4203453, -33.4273828, -33.3814802, -33.4333333],
-    // construccion mapas:
-    loading: false,
+    lats: [-70.605477, -70.609142, -70.615195, -70.579915, -70.634291],
+    longs: [-33.42082, -33.420187, -33.426793, -33.381909, -33.43321],
+    address: [
+      "El Honesto Mike, Los Leones, Providencia",
+      "On Tap Amsterdam, Pasaje General Adolfo Holley 84, Providencia",
+      "Dr. Luis Middleton 1654, Providencia",
+      "Krossbar, 6400 Avenida San Josemaria Escriva de Balaguer, Vitacura",
+      "KrossBar Bellavista, Calle Dardignac 0127, Providencia",
+    ],
+
+    // mapas
     location: "",
-    latitude: "",
-    longitude: "",
+    map: {},
     access_token:
       "pk.eyJ1IjoiYW5kcmUwOSIsImEiOiJja3ZmaGpjYXZicWV0MnduenExamtra3UxIn0.hP-Qt5fSgf5qr4HF5EYGZQ",
-    center: [-70.648872, -33.437767], // armar arreglos y escoger para meter en selectores
-    map: {},
+    center: [-70.605477, -33.42082],
   }),
 
   methods: {
@@ -187,26 +202,48 @@ export default {
       this.store = false;
       this.dispatch = false;
     },
+    selectStore() {
+      console.log("escoge consumo en tienda");
+      this.store = true;
+      this.pickup = false;
+      this.dispatch = false;
+      this.destinationSelectedDispatch = false;
+    },
+    selectDispatch() {
+      console.log("escoge despacho");
+      this.dispatch = true;
+      this.pickup = false;
+      this.store = false;
+      this.destinationSelectedShop = false;
+      this.destinationSelectedDispatch = true;
+    },
+
     setDestination(shop) {
+      this.destinationSelectedShop = true;
+      this.destinationSelectedDispatch = false;
       switch (shop) {
         case this.shops[0]:
+          this.getLocation();
           this.center = [this.lats[0], this.longs[0]];
-          
           break;
         case this.shops[1]:
           this.center = [this.lats[1], this.longs[1]];
+          this.getLocation();
 
           break;
         case this.shops[2]:
           this.center = [this.lats[2], this.longs[2]];
+          this.getLocation();
 
           break;
         case this.shops[3]:
           this.center = [this.lats[3], this.longs[3]];
+          this.getLocation();
 
           break;
         case this.shops[4]:
           this.center = [this.lats[4], this.longs[4]];
+          this.getLocation();
 
           break;
         default:
@@ -214,22 +251,12 @@ export default {
       }
       console.log("escoge retiro en tienda ", this.destination.shop);
     },
-
-    selectStore() {
-      console.log("escoge consumo en tienda");
-      this.store = true;
-      this.pickup = false;
-      this.dispatch = false;
-    },
     setDestinationShop() {
       // console.log("escoge consumo en tienda ", this.destination.shop);
+      this.destinationSelectedShop = false;
+      this.destinationSelectedDispatch = false;
     },
-    selectDispatch() {
-      console.log("escoge despacho");
-      this.dispatch = true;
-      this.pickup = false;
-      this.store = false;
-    },
+
     goShowOrder() {
       this.showOrder = true;
       console.log("meter en la store");
@@ -238,6 +265,22 @@ export default {
       this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
     },
     // mapa:
+    async getLocation() {
+      try {
+        this.loading = true;
+        const response = await axios.get(
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
+        );
+        this.loading = false;
+        this.location = response.data.features[0].place_name;
+
+        console.log("location", this.location);
+      } catch (err) {
+        this.loading = false;
+        console.log(err);
+      }
+    },
+
     async createMap() {
       try {
         mapboxgl.accessToken = this.access_token;
@@ -274,32 +317,26 @@ export default {
         console.log("map error", err);
       }
     },
-    async getLocation() {
-      try {
-        this.loading = true;
-        // const response = await axios.get(
-        //   `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
-        // );
-        const response = await axios.get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
-        );
-        this.loading = false;
-        this.location = response.data.features[0].place_name;
-        console.log("location", this.location);
-      } catch (err) {
-        this.loading = false;
-        console.log(err);
-      }
-    },
 
     copyLocation() {
       if (this.location) {
         navigator.clipboard.writeText(this.location);
-        alert("Location Copied");
+        alert("Direccion copiada, por favor ingrésala en el mapa.");
       }
       return;
     },
+    copyAddress() {
+      navigator.clipboard.writeText(this.destination.address);
+      alert("Direccion copiada, por favor ingrésala en el mapa.");
+    },
   },
-  props: {},
+  // mounted() {
+  //   this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
+  // },
 };
 </script>
+<style>
+.mapboxgl-canvas {
+  height: 300px;
+}
+</style>
