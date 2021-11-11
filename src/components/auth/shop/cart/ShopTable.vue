@@ -45,7 +45,14 @@
       </v-col>
 
       <v-col v-else class="ma-5">
-        <p>No hay productos en tu carrito.</p>
+        <div class="d-flex align-center justify-center">
+          <span>No hay productos en tu carrito. </span>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg4vqp08beYz8yQrTKpl0WRYTfWDczZ9uh7A&usqp=CAU"
+            height="50px"
+            style="transform: rotate(210deg)"
+          />
+        </div>
       </v-col>
     </div>
 

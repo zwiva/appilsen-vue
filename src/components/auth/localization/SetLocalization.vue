@@ -5,7 +5,6 @@
       <div class="ma-3">
         <h4 class="py-3">¿Qué quieres hacer con tu pedido?</h4>
         <v-row class="pa-1">
-          
           <!-- botonera seleccion destino -->
           <v-col cols="12" sm="4" class="text-center">
             <v-btn small @click="selectPickup">
@@ -31,6 +30,7 @@
               v-model="destination.shop"
               :items="shops"
               v-if="pickup"
+              @change="setDestinationPickUp(destination.shop)"
             >
             </v-select>
             <v-select
@@ -39,8 +39,10 @@
               v-model="destination.shop"
               :items="shops"
               v-if="store"
+              @change="setDestinationShop()"
             >
             </v-select>
+
             <v-row class="justify-center align-center">
               <v-text-field
                 label="Ingresa una dirección"
@@ -79,10 +81,12 @@
           </div>
         </v-row>
         <v-spacer></v-spacer>
+        <!-- MAPA !!! -->
         <div>
           <div class="main">
             <div class="flex pa-3 ma-3">
               <!-- Map -->
+              <p>Mapa</p>
               <div class="map-holder">
                 <div id="map"></div>
               </div>
@@ -90,17 +94,12 @@
               <div class="display-arena">
                 <!-- coordenadas -->
                 <div class="coordinates-header">
-                  <h3>
-                    Current Coordinates (QUITAR
-                    <strong
-                      >despues de tener coordenadas de lugares), meter en
-                    </strong>
-                  </h3>
+                  <h3></h3>
                   <p>Latitude: {{ center[0] }}</p>
                   <p>Longitude: {{ center[1] }}</p>
                 </div>
 
-                <v-btn @click="goShowOrder">Ver pedido</v-btn>
+                <!-- <v-btn @click="goShowOrder">Ver pedido</v-btn> -->
               </div>
             </div>
           </div>
@@ -118,9 +117,9 @@ import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   name: "SetLocalization",
   components: {},
-  // mounted() {
-  //   this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
-  // },
+  mounted() {
+    // this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
+  },
   data: () => ({
     pickup: false,
     store: false,
@@ -133,37 +132,94 @@ export default {
         (val) => (val || "").length > 0 || "Por favor seleccionar.",
       ],
     },
-    destination: '',
+    destination: {
+      shop: "",
+      address: "",
+    },
+
+    // datos para mapas:
     shops: [
-      "tienda 1",
-      "tienda 2",
-      "tienda 3",
-      "tienda 4",
-      "tienda 5",
-      "tienda 6",
+      "El Honesto Mike",
+      "On Tap Chile",
+      "Apiádate De Mi ❤️🔥🍻",
+      "KrossBar BordeRío",
+      "KrossBar Bellavista",
     ],
-    // mapas:
+    lats: [-70.6074582, -70.611228, -70.6177036, -70.6122513, -70.6694633],
+    longs: [-33.4207783, -33.4203453, -33.4273828, -33.3814802, -33.4333333],
+    // construccion mapas:
     loading: false,
     location: "",
+    latitude: "",
+    longitude: "",
     access_token:
       "pk.eyJ1IjoiYW5kcmUwOSIsImEiOiJja3ZmaGpjYXZicWV0MnduenExamtra3UxIn0.hP-Qt5fSgf5qr4HF5EYGZQ",
     center: [-70.648872, -33.437767], // armar arreglos y escoger para meter en selectores
     map: {},
-    accessToken:
-      "pk.eyJ1IjoiYW5kcmUwOSIsImEiOiJja3ZmaGpjYXZicWV0MnduenExamtra3UxIn0.hP-Qt5fSgf5qr4HF5EYGZQ", // your access token. Needed if you using Mapbox maps
   }),
+
   methods: {
     selectPickup() {
-      console.log("escoge retiro en tienda");
       this.pickup = true;
       this.store = false;
       this.dispatch = false;
     },
+    setDestinationPickUp(shop) {
+      switch (shop) {
+        case this.shops[0]:
+          console.log("escogio ", this.shops[0]);
+          this.center = [this.lats[0], this.longs[0]];
+          // this.latitude = ;
+          // this.longitude = ;
+          console.log("center", this.center);
+          this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
+
+          // console.log("longitud ", this.longitude);
+          break;
+        case this.shops[1]:
+          this.latitude = this.lats[1];
+          this.longitude = this.longs[1];
+          console.log("escogio ", this.shops[1]);
+          console.log("latitud ", this.latitude);
+          console.log("longitud ", this.longitude);
+          this.createMap(); // COMENTADO PARA EVITAR HACER TODAS LAS PETICIONES
+
+          break;
+        case this.shops[2]:
+          this.latitude = this.lats[2];
+          this.longitude = this.longs[2];
+          console.log("escogio ", this.shops[2]);
+          console.log("latitud ", this.latitude);
+          console.log("longitud ", this.longitude);
+          break;
+        case this.shops[3]:
+          this.latitude = this.lats[3];
+          this.longitude = this.longs[3];
+          console.log("escogio ", this.shops[3]);
+          console.log("latitud ", this.latitude);
+          console.log("longitud ", this.longitude);
+          break;
+        case this.shops[4]:
+          this.latitude = this.lats[4];
+          this.longitude = this.longs[4];
+          console.log("escogio ", this.shops[4]);
+          console.log("latitud ", this.latitude);
+          console.log("longitud ", this.longitude);
+          break;
+        default:
+          break;
+      }
+      console.log("escoge retiro en tienda ", this.destination.shop);
+    },
+
     selectStore() {
       console.log("escoge consumo en tienda");
       this.store = true;
       this.pickup = false;
       this.dispatch = false;
+    },
+    setDestinationShop() {
+      // console.log("escoge consumo en tienda ", this.destination.shop);
     },
     selectDispatch() {
       console.log("escoge despacho");
@@ -213,15 +269,16 @@ export default {
     async getLocation() {
       try {
         this.loading = true;
+        // const response = await axios.get(
+        //   `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
+        // );
         const response = await axios.get(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${this.center[0]},${this.center[1]}.json?access_token=${this.access_token}`
         );
+        console.log("response", response);
         this.loading = false;
         this.location = response.data.features[0].place_name;
-        console.log(
-          "al hacer click esta info debe guardarse --> adjuntar a formulario y hacer dispatch",
-          this.location
-        );
+        console.log("location", this.location);
       } catch (err) {
         this.loading = false;
         console.log(err);

@@ -187,13 +187,20 @@
           <v-container class="background-beer">
             <div class="background-white ma-5 pa-3">
               <h2 class="text-center">Producto agregado al carrito</h2>
-              <v-row class="ma-3 justify-space-around">
+              <v-row class="mt-3 justify-space-around">
                 <v-btn
                   color="amber"
-                  class="align-self-center zoom"
+                  class="align-self-center zoom ma-1"
                   @click="productAddedToCart = false"
                 >
-                  OK
+                  AGREGAR +
+                </v-btn>
+                <v-btn
+                  color="amber"
+                  class="align-self-center zoom ma-1"
+                  @click="goToCart"
+                >
+                  IR AL CARRITO
                 </v-btn>
               </v-row>
             </div>
@@ -348,6 +355,9 @@ export default {
 
       // this.formShop = {}; // limpia formulario
       // pero falta ejecutar reset validations
+    },
+    goToCart() {
+      this.$router.push("/carrito");
     },
     resetForm1() {
       this.form = Object.assign({}, this.defaultForm);
