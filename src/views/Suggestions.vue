@@ -22,7 +22,7 @@
             v-for="sugerencia in $store.state.recomendaciones.sugerencias"
             :key="sugerencia.id"
           >
-             <SuggestionCard :sugerencia="sugerencia" /> 
+            <SuggestionCard :sugerencia="sugerencia" />
           </div>
         </v-row>
       </v-layout>
@@ -30,70 +30,104 @@
 
     <!-- dialogo para agregar sugerencia-->
     <v-dialog v-model="newSuggestionDialog" max-width="800px">
-      <v-card elevation="7" class="pa-3">
-        <v-container>
-          <h2 class="text-center">Ingresa el detalle de tu recomendación:</h2>
-          <v-form @submit.prevent="guardarSugerencias(newSuggestion)" class="my-5" ref="form">
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.nombre"
-              label="Nombre Cerveza:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.marca"
-              label="Marca:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.pais"
-              label="Pais origen:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.estilo"
-              label="Estilo:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.formato"
-              label="Formato:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.precio"
-              label="Precio:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.observaciones"
-              label="Observaciones:"
-              :rules="[required]"
-            ></v-text-field>
-            <v-text-field
-              :disabled="loading"
-              v-model="newSuggestion.imagen"
-              label="Imagen:"
-              :rules="[required]"
-            ></v-text-field>
-          </v-form>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="grey" dark @click="cancelAddNewSuggestion">
-              CANCELAR
-            </v-btn>
-            <v-btn color="gray" dark @click="guardarSugerencias(newSuggestion)">
-              GUARDAR
-            </v-btn>
-          </v-card-actions>
-        </v-container>
-      </v-card>
+      <template>
+        <v-card elevation="7" class="pa-3">
+          <v-container>
+            <v-card-title>
+              <span class="text-h5"
+                >Ingresa el detalle de tu recomendación:
+              </span>
+            </v-card-title>
+            <v-card-text>
+              <v-form
+                @submit.prevent="guardarSugerencias(newSuggestion)"
+                class="my-5"
+                ref="form"
+              >
+                <v-row>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.nombre"
+                      label="Nombre Cerveza:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.marca"
+                      label="Marca:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.pais"
+                      label="Pais origen:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.estilo"
+                      label="Estilo:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.formato"
+                      label="Formato:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.precio"
+                      label="Precio:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.observaciones"
+                      label="Observaciones:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
+                      :disabled="loading"
+                      v-model="newSuggestion.imagen"
+                      label="Imagen:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="grey" dark @click="cancelAddNewSuggestion">
+                CANCELAR
+              </v-btn>
+              <v-btn
+                color="gray"
+                dark
+                @click="guardarSugerencias(newSuggestion)"
+              >
+                GUARDAR
+              </v-btn>
+            </v-card-actions>
+          </v-container>
+        </v-card>
+      </template>
     </v-dialog>
   </v-container>
 </template>
@@ -110,7 +144,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     store.dispatch("recomendaciones/getAllSuggestionsFirestore");
     next();
-  }, 
+  },
 
   data: () => ({
     loading: false,
@@ -125,10 +159,9 @@ export default {
       observaciones: "",
       imagen: "",
     },
-    
   }),
 
-/*   mounted() {
+  /*   mounted() {
     store.dispatch("recomendaciones/getAllSuggestionsFirestore");
     console.log("mounted");
   }, */
@@ -136,9 +169,9 @@ export default {
   methods: {
     guardarSugerencias(newSuggestion) {
       if (this.$refs.form.validate()) {
-        console.log("funciona validacion")
-         store.dispatch("recomendaciones/addSuggestion", newSuggestion);
-         this.newSuggestionDialog = false;
+        console.log("funciona validacion");
+        store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+        this.newSuggestionDialog = false;
       }
     },
 
