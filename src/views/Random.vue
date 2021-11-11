@@ -1,9 +1,19 @@
 <template>
   <div class="container">
     <h1>Busca tu cerveza random del mundo</h1>
-    <p>Escribe un numero del 1 al 300</p>
 
-    
+    <div class="my-6">
+    <label>Escribe un numero del 1 al 300</label>
+     <v-text-field
+            label="numero al azar"
+            outlined
+            dense
+            dark
+          ></v-text-field>
+    <v-btn>buscar</v-btn>
+    </div>
+
+
 
     <v-card v-for="beer in beers" :key="beer.id">
       <v-img :src="beer.image_url" height="280px" contain />
