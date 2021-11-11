@@ -48,11 +48,30 @@
       </v-card>
     </div>
 
-    <v-dialog v-model="shopFinished">
-      <v-card>
-        <h3>Mostrar dialogo con resumen de pedido</h3>
-        <v-btn color="primary" @click="saveOrder">Confirmar</v-btn>
-        <v-btn color="primary" @click="showOrder = false">Cancelar</v-btn>
+    <v-dialog v-model="shopFinished" max-width="420px">
+      <v-card class="mx-auto" max-width="420px">
+        <div max-width="420px" class="pa-4">
+          <h3 class="text-center">Resumen de pedido</h3>
+          <div
+            v-for="(pedido, index) in $store.state.carrito.carrito"
+            :key="index"
+            class="shop-detail"
+          >
+            <!-- <v-row> -->
+            <v-col class="d-flex flex-column ma-2">
+              <span class="text-small">Nombre: {{ pedido.nombre }}</span>
+              <span class="text-small">Cantidad: {{ pedido.cantidad }}</span>
+              <span class="text-small"
+                >Pagar: ${{ pedido.precio * pedido.cantidad }}</span
+              >
+            </v-col>
+            <!-- </v-row> -->
+          </div>
+          <div class="text-center">
+            <v-btn color="primary" @click="saveOrder">Cerrar</v-btn>
+          </div>
+          <!-- <v-btn color="primary" @click="showOrder = false">Cancelar</v-btn> -->
+        </div>
       </v-card>
     </v-dialog>
   </div>
@@ -81,11 +100,13 @@ export default {
       this.$router.push("/merch");
     },
     buyCart() {
-      store.dispatch("carrito/buyCart");
       this.shopFinished = true;
     },
-    saveOrder() { // para ir a actualizar prop stock en firestore // cerrar compra y resetear carro
-      console.log("carrito");
+    saveOrder() {
+      // para ir a actualizar prop stock en firestore // cerrar compra y resetear carro
+      console.log("cierre carrito");
+      store.dispatch("carrito/buyCart");
+      this.shopFinished = false;
     },
     // showOrder() {
     //   console.log("carrito");
@@ -97,5 +118,11 @@ export default {
 <style>
 .v-data-footer {
   display: none;
+}
+.text-small {
+  font-size: 0.85em;
+}
+.shop-detail {
+  background-color: rgb(234, 234, 234);
 }
 </style>
