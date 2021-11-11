@@ -3,10 +3,9 @@ import Firebase from "firebase";
 export const moduloProductos = {
   namespaced: true,
   state: {
-    todosLosProductos: [],
-    cervezasCatalogo: [],
-    accesorios: [],
-    
+    todosLosProductos: [], // intento inventerio fallido
+    cervezasCatalogo: [], // cervezas externas
+    accesorios: [], // merch
   },
 
   mutations: {
@@ -21,11 +20,18 @@ export const moduloProductos = {
     SET_INVENTORY(state, products) {
       state.todosLosProductos.push(products);
     },
-
-    SET_SUGGESTIONS_DATA(state, newSuggestionsData) {
-      state.sugerencias = newSuggestionsData;
-      console.log("state.sugerencias", state.sugerencias);
-    }
+    DELETE_EXTERNAL_BEER(state, beerId) {
+      const beerToDelete = state.cervezasCatalogo.filter(
+        (beer) => beer.id === beerId
+      );
+      const indexOfBeer = state.cervezasCatalogo.indexOf(beerToDelete[0]);
+      state.cervezasCatalogo.splice(indexOfBeer, 1);
+      state.beerToDelete = [];
+    },
+    ADD_EXTERNAL_BEER(state, newExternalBeer) {
+      state.cervezasCatalogo.push(newExternalBeer);
+      console.log("state.sugerencias", state.cervezasCatalogo);
+    },
   },
   actions: {
     getAllexternalBeers(context) {
@@ -53,42 +59,41 @@ export const moduloProductos = {
         });
     },
 
-   /*  getAllSuggestionsFirestore(context) {
-      Firebase.firestore()
-        .collection("recomendaciones")
-        .get()
-        .then((documents) => {
-          const suggestionsFirestore = [];
-          documents.forEach((document) => {
-            suggestionsFirestore.push({ id: document.id, ...document.data() });
-          });
-          context.commit("SET_SUGGESTIONS_DATA", suggestionsFirestore);
-        });
-    }, */
-
     // CRUD INVENTARIO
     addNewExternalBeer(context, newExternalBeer) {
-      // OJO FALTA AGREGAR PROPIEDAD STOCK!!!
-      console.log("agregando", context, newExternalBeer);
       Firebase.firestore()
         .collection("externalBeers")
-        .add(this.beer)
-        .then(() => {
-          this.loading = false;
-          this.$router.push("/externalBeers");
-        })
-        .catch(() => {
-          this.loading = false;
+        .add(newExternalBeer)
+        .catch((e) => {
+          console.log(e);
         });
+      context.commit("ADD_EXTERNAL_BEER", newExternalBeer);
     },
+    deleteExternalBeer(context, beerId) {
+      Firebase.firestore()
+        .collection("externalBeers")
+        .doc(beerId)
+        .delete()
+        .then(() => {
+          console.log("la cerveza se borro satisfactoriamente");
+        })
+        .catch((error) => {
+          console.error("error: ", error);
+        });
+      context.commit("DELETE_EXTERNAL_BEER", beerId);
+    },
+
     editExternalBeer(context, beer) {
-      // falta codigo firebase para editar
-      this.$router.push(`/recomendaciones/${beer.id}`)
-      console.log("editando el ", context, "y la", beer);
-    },
-    deleteExternalBeer(context, beer) {
-      // falta codigo firebase para eliminar
-      console.log("eliminando", context, beer);
+      Firebase.firestore()
+        .collection("externalBeers")
+        .doc(beer.id)
+        .update(beer)
+        .then(() => {
+          console.log("edicion crud probando");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

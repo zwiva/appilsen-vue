@@ -23,19 +23,18 @@ export const moduloRecomendaciones = {
         (suggestion) => suggestion.id === suggestionId
       );
       // desde aca al borrar un elemento se hace en tiempo real
-      const indexOfSuggestion = state.sugerencias.indexOf(sugerenciaAeliminar[0]);
+      const indexOfSuggestion = state.sugerencias.indexOf(
+        sugerenciaAeliminar[0]
+      );
 
       state.sugerencias.splice(indexOfSuggestion, 1);
       state.sugerenciaAeliminar = [];
       /* console.log("probando id eliminar", sugerenciaAeliminar); */
     },
-
-   
   },
 
   actions: {
     getAllSuggestionsFirestore(context) {
-      /* console.log("ocurrio el dispatch"); */
       Firebase.firestore()
         .collection("recomendaciones")
         .get()
@@ -43,22 +42,23 @@ export const moduloRecomendaciones = {
           const suggestionsFirestore = [];
           documents.forEach((document) => {
             suggestionsFirestore.push({ id: document.id, ...document.data() });
-            /* console.log("funciona hasta qui"); */
           });
           context.commit("SET_SUGGESTIONSDATA", suggestionsFirestore);
-          /* console.log("y aqui tambien"); */
         });
     },
 
     addSuggestion(context, newSuggestion) {
-      Firebase.firestore().collection("recomendaciones").add(newSuggestion);
+      Firebase.firestore()
+        .collection("recomendaciones")
+        .add(newSuggestion)
+        .catch((e) => {
+          console.log(e);
+        });
       context.commit("ADD_SUGGESTION", newSuggestion);
     },
 
     // aca borramos alguna sugerencia
-
     deleteSuggestion(context, id) {
-      console.log("probando probando", id);
       Firebase.firestore()
         .collection("recomendaciones")
         .doc(id)
@@ -73,20 +73,16 @@ export const moduloRecomendaciones = {
     },
 
     editSuggestion(context, sugerencia) {
-          Firebase.firestore()
-            .collection("recomendaciones")
-            .doc(sugerencia.id)
-            .update(sugerencia)
-            .then(() => {
-              console.log("edicion crud probando");
-              
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-        } 
-    
-
- 
-  }
+      Firebase.firestore()
+        .collection("recomendaciones")
+        .doc(sugerencia.id)
+        .update(sugerencia)
+        .then(() => {
+          console.log("edicion crud probando");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
 };

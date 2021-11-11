@@ -38,55 +38,74 @@
               Recuerda que puedes editar tus recomendaciones en la sección
               "Recomendaciones"
             </p>
-            <v-form class="my-5" ref="form">
+            <v-form
+              @submit.prevent="guardarSugerencias(newSuggestion)"
+              class="my-5"
+              ref="form"
+            >
               <v-row>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.name"
+                    :disabled="loading"
+                    v-model="newSuggestion.nombre"
                     label="Nombre Cerveza:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.brand"
+                    :disabled="loading"
+                    v-model="newSuggestion.marca"
                     label="Marca:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.originCountry"
+                    :disabled="loading"
+                    v-model="newSuggestion.pais"
                     label="Pais origen:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.style"
+                    :disabled="loading"
+                    v-model="newSuggestion.estilo"
                     label="Estilo:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.format"
+                    :disabled="loading"
+                    v-model="newSuggestion.formato"
                     label="Formato:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.price"
+                    :disabled="loading"
+                    v-model="newSuggestion.precio"
                     label="Precio:"
-                    required
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    v-model="newSuggestion.observations"
+                    :disabled="loading"
+                    v-model="newSuggestion.observaciones"
                     label="Observaciones:"
-                    required
+                    :rules="[required]"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" class="fit_view">
+                  <v-text-field
+                    :disabled="loading"
+                    v-model="newSuggestion.imagen"
+                    label="Imagen:"
+                    :rules="[required]"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -96,7 +115,11 @@
               <v-btn color="grey" dark @click="cancelAddNewSuggestion">
                 CANCELAR
               </v-btn>
-              <v-btn color="gray" dark @click="createNewSuggestion">
+              <v-btn
+                color="gray"
+                dark
+                @click="guardarSugerencias(newSuggestion)"
+              >
                 GUARDAR
               </v-btn>
             </v-card-actions>
@@ -117,6 +140,7 @@ export default {
     next();
   },
   data: () => ({
+    loading: false,
     newSuggestionDialog: false,
     newSuggestion: {
       name: "",
@@ -129,6 +153,16 @@ export default {
     },
   }),
   methods: {
+    guardarSugerencias(newSuggestion) {
+      if (this.$refs.form.validate()) {
+        console.log("funciona validacion");
+        store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+        this.newSuggestionDialog = false;
+      }
+    },
+    required(v) {
+      return !!v || "Este campo es obligatorio";
+    },
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
       console.log("muestra dialogo");

@@ -134,7 +134,6 @@ export default {
     // CREANDO
     showAddNewBeerDialog() {
       this.newExternalBeerDialog = true;
-      console.log("dialogo agregar nueva cerveza externa");
     },
     addNewExternalBeer() {
       if (this.$refs.form.validate()) {
@@ -143,6 +142,7 @@ export default {
         );
         store.dispatch("productos/addNewExternalBeer", this.newExternalBeer);
       }
+      this.newExternalBeerDialog = false;
     },
     cancelAddNewExternalBeer() {
       this.newExternalBeerDialog = false;

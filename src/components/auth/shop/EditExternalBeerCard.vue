@@ -6,17 +6,30 @@
         <v-list-item>
           <v-list-item-content>
             <div class="my-4">
-              <v-list-item-title>{{ beer.nombre }}</v-list-item-title>
-              <v-list-item-title>${{ beer.precio }}</v-list-item-title>
-              <v-list-item-subtitle>{{ beer.estilo }}</v-list-item-subtitle>
-              <v-list-item-subtitle>{{ beer.alcohol }}°</v-list-item-subtitle>
-              <v-list-item-subtitle>{{ beer.formato }}</v-list-item-subtitle>
+              <v-list-item-subtitle
+                >Nombre: {{ beer.nombre }}</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                >Estilo: {{ beer.estilo }}</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                >Precio: ${{ beer.precio }}</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                >Alcohol: {{ beer.alcohol }}°</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                >Formato: {{ beer.formato }}</v-list-item-subtitle
+              >
+              <v-list-item-subtitle
+                >Stock: {{ beer.stock }}</v-list-item-subtitle
+              >
             </div>
             <v-card-actions class="d-flex justify-center">
-              <v-btn color="gray" dark @click="editExternalBeer(beer)"
+              <v-btn color="gray" dark @click="showModalEditExternalBeer()"
                 ><v-icon>mdi-pencil</v-icon></v-btn
               >
-              <v-btn color="gray" dark @click="deleteExternalBeer(beer)"
+              <v-btn color="gray" dark @click="showModalDeleteExternalBeer()"
                 ><v-icon>mdi-delete</v-icon></v-btn
               >
             </v-card-actions>
@@ -25,9 +38,34 @@
       </v-card>
     </v-container>
 
+    <!-- BORRAR -->
+    <!-- dialogo confirmacion borrar -->
+    <v-dialog v-model="showDeleteExternalBeer" persistent max-width="600px">
+      <p>Desea eliminar este producto</p>
+      <v-btn @click="deleteExternalBeer(beer.id)">Si</v-btn>
+      <v-btn @click="!showDeleteExternalBeer">No</v-btn>
+    </v-dialog>
+
+    <!-- dialogo borrado exitosa -->
+    <v-dialog v-model="externalBeerDeleted" persistent max-width="600px">
+      <p>Producto eliminado exitosamente</p>
+      <v-btn @click="!externalBeerDeleted">Ok</v-btn>
+    </v-dialog>
+
+    <!-- EDITAR -->
     <!-- dialogo para editar -->
     <v-dialog v-model="showEditExternalBeerForm" persistent max-width="600px">
-      <EditExternalBeerForm :beer="beer" @cancelEdition="closeEditionDialog" />
+      <EditExternalBeerForm
+        :beer="beer"
+        @cancelEdition="closeEditionDialog"
+        @completeEdition="closeEditionDialog"
+      />
+    </v-dialog>
+
+    <!-- dialogo edicion exitosa -->
+    <v-dialog v-model="externalBeerEdited" persistent max-width="600px">
+      <p>Producto editado exitosamente</p>
+      <v-btn @click="externalBeerEdited = false"></v-btn>
     </v-dialog>
   </div>
 </template>
@@ -41,24 +79,31 @@ export default {
   components: { EditExternalBeerForm },
   data: () => ({
     showEditExternalBeerForm: false,
-    // beerToEdit: {},
+    showDeleteExternalBeer: false,
+    externalBeerDeleted: false,
+    externalBeerEdited: false,
   }),
   props: {
     beer: { type: Object, require: true },
   },
   methods: {
     // ELIMINAR
-    deleteExternalBeer(beer) {
-      console.log("falta dialogo de confirmacion de eliminacion");
-      store.dispatch("productos/deleteExternalBeer", beer);
-      console.log("falta dialogo de aviso de eliminacion exitosa");
+    showModalDeleteExternalBeer() {
+      this.showDeleteExternalBeer = true;
+    },
+
+    deleteExternalBeer(beerId) {
+      store.dispatch("productos/deleteExternalBeer", beerId);
+      this.externalBeerDeleted = true;
     },
     // EDITAR
-    editExternalBeer(beer) {
-      // WORKS!!!
+    showModalEditExternalBeer() {
       this.showEditExternalBeerForm = true;
-      store.dispatch("productos/deleteExternalBeer", beer);
-      console.log("falta dialogo que avise que se edito", beer);
+    },
+    editExternalBeer(beer) {
+      this.showEditExternalBeerForm = false;
+      store.dispatch("productos/editExternalBeer", beer);
+      this.externalBeerEdited = true;
     },
     closeEditionDialog(value) {
       this.showEditExternalBeerForm = value;

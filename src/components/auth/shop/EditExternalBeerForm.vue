@@ -92,6 +92,7 @@ export default {
     },
     confirmEdition(beer) {
       store.dispatch("productos/editExternalBeer", beer);
+      this.$emit("completeEdition", false);
     },
     required(value) {
       return !!value || "Campo obligatorio, por favor ingresar credenciales.";
@@ -99,7 +100,4 @@ export default {
   },
 };
 </script>
-<style>
-.fit_view {
-}
-</style>
+
