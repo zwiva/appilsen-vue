@@ -100,9 +100,12 @@ export default {
           );
 
           this.$emit("success");
+          this.$emit("cerrarDialog", false);
+
         } catch (e) {
-          console.error("no funco el login");
+          console.error("no funciono el login");
         }
+
       }
     },
    /*  reset() {

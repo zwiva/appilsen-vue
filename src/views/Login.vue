@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <div v-if="login">
-      <LoginForm />
+      <LoginForm @cerrarDialog="cerrarDialog"/>
     </div>
     <div v-else>
       <RegisterForm />
@@ -21,5 +21,11 @@ export default {
   data: () => ({
     login: true,
   }),
+
+  methods: {
+    cerrarDialog() {
+     this.login = false;
+    },
+  }
 };
 </script>
