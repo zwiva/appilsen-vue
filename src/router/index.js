@@ -90,7 +90,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "external" */ "../views/Inventory.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {

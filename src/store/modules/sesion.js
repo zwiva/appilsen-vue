@@ -1,4 +1,4 @@
-/* import Firebase from "firebase"; */
+ import Firebase from "firebase"; 
 
 export const moduloSesion = {
   namespaced: true,
@@ -14,8 +14,17 @@ export const moduloSesion = {
   },
 
   actions: {
-    configurarUsuario(context, usuario) {
-      context.commit("SET_USUARIO", usuario);
+    configurarUsuario(context) {
+      Firebase.auth().onAuthStateChange((usuario) => {
+        context.commit("SET_USUARIO", usuario || null);
+      });
     },
+    async signIn(_context, credentials) {
+      await Firebase.auth().signInWithEmailAndPassword
+      (credentials.email, credentials.password);
+    },
+    async signOut() {
+      await Firebase.auth().signOut();
+    }
   },
 };
