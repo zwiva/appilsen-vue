@@ -20,14 +20,14 @@
       <br />
 
       <v-card class="mx-auto" max-width="800px" rounded dense>
-        <div class="d-flex flex-no-wrap justify-space-between">
+        <div class="d-flex flex-no-wrap">
           <v-img
             :src="beerDeepData.image_url"
             height="300px"
             :width="width"
             contain
           />
-          <div class="my-4">
+          <div class="my-3">
             <v-card-content>
               <v-card-title>Nombre: {{ beerDeepData.name }}</v-card-title>
               <v-card-subtitle
