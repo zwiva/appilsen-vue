@@ -145,11 +145,22 @@
     </v-dialog>
 
     <div>
-      <v-dialog v-model="deleteDialog">
-        <v-card>
-          modal de pregunta si quiere eliminar
-          <v-btn @click="deleteSuggestion(sugerencia.id)">Si</v-btn>
-          <v-btn @click="deleteDialog = false">No</v-btn>
+      <v-dialog v-model="deleteDialog" max-width="380px" class="flex">
+        <v-card elevation="7" rounded class="text-center">
+          <h2 class="text-center">Estas seguro?</h2>
+
+          <v-btn
+            color="amber"
+            class="align-self-center zoom ma-1"
+            @click="deleteSuggestion(sugerencia.id)"
+            >Si</v-btn
+          >
+          <v-btn
+            color="amber"
+            class="align-self-center zoom ma-1"
+            @click="deleteDialog = false"
+            >No</v-btn
+          >
         </v-card>
       </v-dialog>
     </div>
@@ -210,5 +221,12 @@ export default {
 <style scoped>
 .suggestions p {
   margin: 0;
+}
+
+.zoom {
+  transition: transform 0.5s;
+}
+.zoom:hover {
+  transform: scale(1.1);
 }
 </style>
