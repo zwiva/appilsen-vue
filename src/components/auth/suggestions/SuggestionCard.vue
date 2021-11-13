@@ -51,10 +51,10 @@
         </v-col>
 
         <v-col cols="12" class="text-center mb-4">
-          <v-btn @click="showDialogEditSuggestion()"
+          <v-btn class="zoom" @click="showDialogEditSuggestion()"
             ><v-icon> mdi-pencil</v-icon></v-btn
           >
-          <v-btn class="ml-3" @click="showDialogDeleteSuggestion()"
+          <v-btn class="ml-3 zoom" @click="showDialogDeleteSuggestion()"
             ><v-icon>mdi-delete</v-icon></v-btn
           >
         </v-col>
@@ -161,7 +161,7 @@
               Recomendacion editada satisfactoriamente.
             </h4>
             <v-row class="justify-center py-5">
-              <v-btn color="amber" @click="editSuccessDialog = false">Ok</v-btn>
+              <v-btn color="amber" class="zoom" @click="editSuccessDialog = false">Ok</v-btn>
             </v-row>
           </div>
         </v-card>
@@ -178,13 +178,13 @@
             </h4>
             <v-row class="justify-center py-5">
               <v-btn
-                class="mr-3"
+                class="mr-3 zoom"
                 color="amber"
                 dark
                 @click="deleteSuggestion(sugerencia.id)"
                 >Si</v-btn
               >
-              <v-btn dark @click="deleteDialog = false">No</v-btn>
+              <v-btn class="zoom" dark @click="deleteDialog = false">No</v-btn>
             </v-row>
           </div>
         </v-card>
@@ -200,7 +200,7 @@
               Recomendacion eliminada satisfactoriamente.
             </h4>
             <v-row class="justify-center py-5">
-              <v-btn color="amber" @click="confirmDeleteDialog = false"
+              <v-btn color="amber" class="zoom" @click="confirmDeleteDialog = false"
                 >Ok</v-btn
               >
             </v-row>
@@ -259,5 +259,11 @@ export default {
 }
 .delete_dialog {
   background-color: orangered;
+}
+.zoom {
+  transition: transform 0.5s;
+}
+.zoom:hover {
+  transform: scale(1.1);
 }
 </style>
