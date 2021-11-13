@@ -27,8 +27,9 @@
             </v-img>
 
             <v-card-text class="text--primary">
-              <div>Whitehaven Beach</div>
-              <div>Whitsunday Island, Whitsunday Islands</div>
+             <div>Elije que tipo de cerveza quieres armar</div>
+              <div>Escoge los ingredientes como que tipo de lupulos, 
+                malta y levaduras quieres usar y la cocinaremos por ti</div>
             </v-card-text>
 
             <v-card-actions>
@@ -49,12 +50,12 @@
               height="300px"
               src="../assets/imgbeers/home2.jpg"
             >
-              <v-card-title>Arma tu cerveza con nosotros</v-card-title>
+              <v-card-title>Mira nuestro catalogo de cervezas amigas</v-card-title>
             </v-img>
 
             <v-card-text class="text--primary">
-              <div>Whitehaven Beach</div>
-              <div>Whitsunday Island, Whitsunday Islands</div>
+              <div>Aparte de poder cocinar tu cerveza perfecta</div>
+              <div>Mira nuestro catalogo de cervezas amigas </div>
             </v-card-text>
 
             <v-card-actions>
@@ -79,8 +80,8 @@
             </v-img>
 
             <v-card-text class="text--primary">
-              <div>Whitehaven Beach</div>
-              <div>Whitsunday Island, Whitsunday Islands</div>
+              <div>Conoce un poco sobre nosotros</div>
+              <div>y que nos inspiro en este proyecto</div>
             </v-card-text>
 
             <v-card-actions>
