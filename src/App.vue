@@ -42,7 +42,7 @@ export default {
 h2 {
   font-family: "Permanent Marker", cursive;
   // font-family: "Amatic SC", cursive;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
 }
 h3 {
   font-family: 'Permanent Marker', cursive;

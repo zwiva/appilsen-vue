@@ -3,7 +3,6 @@
     <v-row>
       <v-col cols="12" sm="4" md="6">
         <div class="text-center">
-          <h1>Arma tu pilsen como quieras</h1>
           <img class="gif mt-6" src="@/assets/imgbeers/factory.gif" />
         </div>
         <div class="my-6">
