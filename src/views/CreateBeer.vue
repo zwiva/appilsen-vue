@@ -1,6 +1,9 @@
 <template>
-  <v-container>
+  <v-container class="content-grid mx-auto">
+        <h2 class="text-center title_section ">Arma tu pilsen como quieras</h2>
+    <div>
     <ShopForm />
+    </div>
   </v-container>
 </template>
 

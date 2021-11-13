@@ -2,7 +2,7 @@
   <v-container>
     <!-- principal -->
     <div class="content-grid mx-auto">
-      <h1 class="text-center ma-6">R e c o m i é n d a n o s</h1>
+      <h2 class="text-center ma-6 title_section">Recomiéndanos</h2>
       <div class="my-6">
         <p>
           Si encuentras una cerveza que no está en nuestro catalogo, por favor
@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <h2 class="text-center ma-6">Tus recomendadas:</h2>
+      <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
       
       <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row class="d-flex flex-column justify-center">

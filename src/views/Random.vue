@@ -1,7 +1,7 @@
 <template>
   <div class="content-grid mx-auto">
     <div class="d-flex flex-column justify-center">
-      <h3 class="text-center mt-2">Busca tu cerveza random del mundo</h3>
+      <h2 class="text-center mt-2 title_section">Descubre cervezas del mundo </h2>
       <div class="text-center ma-4" max-width="200px">
         <div class="d-flex flex-column justify-center align-center">
           <label class="mb-1">Escribe un numero del 1 al 300</label>
@@ -21,24 +21,24 @@
       <v-card class="mx-auto" max-width="800px" rounded dense>
         <div class="d-flex flex-column pa-5">
           <v-card-title class="pt-0"
-            ><strong>Numero:</strong> {{ beerDeepData.id }}</v-card-title
+            ><strong>Numero: </strong> {{ beerDeepData.id }}</v-card-title
           >
           <v-card-title class="pt-0"
-            ><strong>Nombre:</strong> {{ beerDeepData.name }}</v-card-title
+            ><strong>Nombre: </strong> {{ beerDeepData.name }}</v-card-title
           >
           <v-img :src="beerDeepData.image_url" height="300px" contain />
           <v-card-text class="pb-0"
-            ><strong>Estilo:</strong> {{ beerDeepData.tagline }}</v-card-text
+            ><strong>Estilo: </strong> {{ beerDeepData.tagline }}</v-card-text
           >
           <v-card-text class="pb-0"
-            ><strong>Descripcion:</strong>
+            ><strong>Descripcion: </strong>
             {{ beerDeepData.description }}</v-card-text
           >
           <v-card-text class="pb-0"
-            ><strong>Alcohol:</strong> {{ beerDeepData.abv }}</v-card-text
+            ><strong>Alcohol: </strong> {{ beerDeepData.abv }}</v-card-text
           >
           <v-card-text class="pb-0"
-            ><strong>IBU:</strong> {{ beerDeepData.ibu }}</v-card-text
+            ><strong>IBU: </strong> {{ beerDeepData.ibu }}</v-card-text
           >
         </div>
       </v-card>

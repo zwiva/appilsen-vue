@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="content-grid mx-auto">
-      <h3 class="ma-6 text-center">Accesorios cerveceros</h3>
+      <h2 class="ma-6 text-center title_section">Accesorios cerveceros</h2>
       <p class="my-6">
         Puedes agregar accesorios a tu pedido, fueron escogidos para que sean la
         mejor compañía de tus cervezas:
