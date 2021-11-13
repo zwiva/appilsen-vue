@@ -14,7 +14,7 @@
         </p>
       </div>
 
-      <h3 class="text-center">Tus recomendadas:</h3>
+      <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
       
       <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row class="d-flex flex-column justify-center">

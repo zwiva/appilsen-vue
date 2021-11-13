@@ -39,22 +39,19 @@ export default {
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   text-decoration: none !important;
 }
-h1 {
-  font-family: "Permanent Marker", cursive;
-  // font-family: "Amatic SC", cursive;
-  font-weight: 700;
-}
 h2 {
   font-family: "Permanent Marker", cursive;
   // font-family: "Amatic SC", cursive;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
 h3 {
   font-family: 'Permanent Marker', cursive;
 }
-
 .title_section {
   font-size: 2.5em;
+}
+.subtitle_section {
+  font-size: 2em;
 }
 .v-application a {
   color: white;

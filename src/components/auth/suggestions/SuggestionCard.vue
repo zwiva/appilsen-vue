@@ -29,7 +29,7 @@
           >
           <div max-width="50%">
             <v-card-text class="py-0" max-width="200px"
-              ><strong>Observaciones </strong
+              ><strong>Observaciones: </strong
               >{{ sugerencia.observaciones }}</v-card-text
             >
           </div>
