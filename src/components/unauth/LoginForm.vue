@@ -16,7 +16,7 @@
             <div class="ma-3 pt-6">
               <v-form
                 ref="form"
-                @submit.prevent="paraValidar"
+                @submit.prevent="iniciarSesion"
                 v-model="valid"
                 lazy-validation
               >
@@ -57,7 +57,13 @@
             <v-card-text>
               ¿No estas registrado? Registrate:
 
-              <v-btn color="amber darken-2" class="ma-3" depressed large rounded dark
+              <v-btn
+                color="amber darken-2"
+                class="ma-3"
+                depressed
+                large
+                rounded
+                dark
                 >Registrarse</v-btn
               >
             </v-card-text>
@@ -69,7 +75,8 @@
 </template>
 
 <script>
-import Firebase from "firebase";
+import store from "../../store";
+// import Firebase from "firebase";
 
 export default {
   name: "LoginForm",
@@ -87,28 +94,12 @@ export default {
   methods: {
     async iniciarSesion() {
       if (this.$refs.form.validate()) {
-        try {
-          console.log(this.signInForm);
-          await Firebase.auth().signInWithEmailAndPassword(
-            this.signInForm.email,
-            this.signInForm.password
-          );
-
-          this.$store.dispatch(
-            "sesion/configurarUsuario",
-            Firebase.auth().currentUser
-          );
-
-          this.$emit("success");
-          this.$emit("cerrarDialog", false);
-
-        } catch (e) {
-          console.error("no funciono el login");
-        }
-
+        store.dispatch("sesion/signIn", this.signInForm);
+        this.$emit("closeModal");
+        // store.dispatch("sesion/configurarUsuario", Firebase.auth().currentUser);
       }
     },
-   /*  reset() {
+    /*  reset() {
       this.$refs.form.reset();
     },
     resetValidation() {

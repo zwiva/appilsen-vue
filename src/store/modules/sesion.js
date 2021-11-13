@@ -1,31 +1,62 @@
- import Firebase from "firebase"; 
+import Firebase from "firebase";
 
 export const moduloSesion = {
   namespaced: true,
   state: {
-    usuario: null,
+    user: "",
   },
 
   mutations: {
-    SET_USUARIO(state, newUsuario) {
-      state.usuario = newUsuario;
-      console.log("current usuario", state.usuario);
+    SET_USUARIO(state, newUserData) {
+      state.user = newUserData;
+      console.log("current usuario", state.user); // aca debe mostrarse un usuario que ademas tenga tipo:admin/user 
+    },
+    CLOSE_SESSION(state) {
+      state.user = "";
     },
   },
 
   actions: {
-    configurarUsuario(context, usuario) {
-      console.log('usuario', usuario)
-      Firebase.auth().onAuthStateChange((usuario) => {
-        context.commit("SET_USUARIO", usuario || null);
-      });
+    async signIn(context, form) {
+      try {
+        console.log("formulario login", form);
+        await Firebase.auth().signInWithEmailAndPassword(
+          form.email,
+          form.password
+        );
+
+        // this.$emit("cerrarDialog", false);
+      } catch (e) {
+        console.error("no funciono el login");
+      }
+      context.commit("SET_USUARIO", form);
     },
-    async signIn(_context, credentials) {
-      await Firebase.auth().signInWithEmailAndPassword
-      (credentials.email, credentials.password);
-    },
-    async signOut() {
+    async signOut(context) {
       await Firebase.auth().signOut();
-    }
+      context.commit("CLOSE_SESSION");
+    },
+
+    // async signIn(credentials) {
+    //   await Firebase.auth().signInWithEmailAndPassword(
+    //     credentials.email,
+    //     credentials.password
+    //   );
+    // },
+
+    // configurarUsuario(context, user) {
+    //   console.log("usuario", user);
+    //   Firebase.auth().onAuthStateChange((user) => {
+    //     console.log("usuario", user);
+    //   });
+    //   context.commit("SET_USUARIO", user || null);
+    // },
+
+    // registerNewUser(context, user) {
+    //   context.commit("REGISTER_USER", user);
+    // },
+
+    // activateSession(context, user) {
+    //   context.commit("SET_USER_SESSION", user);
+    // },
   },
 };
