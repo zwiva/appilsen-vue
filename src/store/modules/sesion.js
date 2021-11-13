@@ -36,13 +36,6 @@ export const moduloSesion = {
       context.commit("CLOSE_SESSION");
     },
 
-    // async signIn(credentials) {
-    //   await Firebase.auth().signInWithEmailAndPassword(
-    //     credentials.email,
-    //     credentials.password
-    //   );
-    // },
-
     // configurarUsuario(context, user) {
     //   console.log("usuario", user);
     //   Firebase.auth().onAuthStateChange((user) => {

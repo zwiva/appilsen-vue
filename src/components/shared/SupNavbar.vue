@@ -23,7 +23,7 @@
       >
       </v-img>
       <v-spacer></v-spacer>
-
+      <!-- boton sesion activa -->
       <div v-if="$store.state.sesion.user">
         <v-btn text depressed dark @click="showLogOutModal()">
           {{
@@ -31,22 +31,19 @@
               ? $store.state.sesion.user.email
               : "no existe"
           }}
-
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </div>
-
+      <!-- boton sin sesion iniciada -->
       <div v-else>
         <v-btn text depressed @click="showLoginForm()">
           Inicia sesion
           <v-icon>mdi-login</v-icon>
         </v-btn>
       </div>
-
-      <!-- <Logout v-if="this.$store.state.session.user" /> -->
-      <!-- <LoginButton v-else /> -->
     </v-app-bar>
 
+    <!-- formulario de inicio de sesion -->
     <v-dialog max-width="350" v-model="loginForm">
       <v-container>
         <v-card class="background-login rounded-xl">
@@ -58,6 +55,12 @@
       </v-container>
     </v-dialog>
 
+    <!-- ----------------- -->
+    <!-- falta -->
+    <!-- dialogo que avise inicio de sesion exitosa -->
+    <!-- ----------------- -->
+
+    <!-- dialogo para confirmar cierre de sesion -->
     <v-dialog v-model="signOutDialog" width="300">
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">Atención:</v-card-title>
@@ -74,6 +77,13 @@
         </v-card>
       </v-card>
     </v-dialog>
+
+    <!-- ----------------- -->
+    <!-- falta -->
+    <!-- dialogo con formulario de registro -->
+    <!-- dialogo que avise creacion de usuario -->
+    <!-- diálogo que avise inicio de sesion -->
+    <!-- ----------------- -->
   </div>
 </template>
 
@@ -104,7 +114,8 @@ export default {
     stayInSession() {
       this.signOutDialog = false; // se queda en sesion
     },
-    confirmLogOutSession() { // cierra sesion con firebase 
+    confirmLogOutSession() {
+      // cierra sesion con firebase
       store.dispatch("sesion/signOut");
       this.signOutDialog = false;
     },
