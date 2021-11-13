@@ -76,10 +76,13 @@ export default {
 
 <style>
 .hero {
-  background-image: url("../assets/imgbeers/bg-beer4.jpg");
+  background-image: url("../assets/imgbeers/bg-beer5.jpg");
   background-repeat: no-repeat;
   /* background-size: cover; */
-  background-position: left;
+
+  background-position: center top;
+  
+  background-size: cover;
   color: white;
   /* padding-bottom: 10rem; */
 }
