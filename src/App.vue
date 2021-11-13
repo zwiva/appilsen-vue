@@ -25,9 +25,10 @@ export default {
     SupNavbar,
     Banner,
   },
-  // mounted() {
-  //   this.$store.dispatch("sesion/configurarUsuario", );
-  // }
+  mounted() {
+    this.$store.dispatch("sesion/getCurrentUsers");
+    // this.$store.dispatch("sesion/configurarSesion");
+  }
 };
 </script>
 
