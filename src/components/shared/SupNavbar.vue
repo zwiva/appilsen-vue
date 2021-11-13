@@ -58,6 +58,7 @@
     <!-- ----------------- -->
     <!-- falta -->
     <!-- dialogo que avise inicio de sesion exitosa -->
+    <!-- dialogo que avise inicio de sesion fallida y redirija y no asigne usuario -->
     <!-- ----------------- -->
 
     <!-- dialogo para confirmar cierre de sesion -->
