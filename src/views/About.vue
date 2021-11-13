@@ -1,9 +1,9 @@
 <template>
-  <div class="content-grid mx-auto"> 
+  <div class="content-grid mx-auto">
+    <h2 class="title_section text-center">Quienes somos</h2>
     <v-container class="hero">
       <div class="mx-6">
         <v-col class="text-left" cols="12" sm="12" md="8">
-          <h3 class="font-weight-bold">Quienes somos</h3>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos, quos
             magnam? Vitae nihil vel voluptatum delectus temporibus voluptatibus,

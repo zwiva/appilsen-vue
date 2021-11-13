@@ -39,20 +39,22 @@ export default {
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   text-decoration: none !important;
 }
-h2 {
-  // font-family: 'Yuji Boku', serif; //titulo?
-  // font-family: 'Questrial', sans-serif;
-  // font-family: 'Shadows Into Light', cursive;
-  font-family: "Permanent Marker", cursive;
-  font-family: 'Amatic SC', cursive;
-  letter-spacing: 3px;
-}
-
 h1 {
   font-family: "Permanent Marker", cursive;
-  font-family: 'Amatic SC', cursive;
+  // font-family: "Amatic SC", cursive;
   font-weight: 700;
+}
+h2 {
+  font-family: "Permanent Marker", cursive;
+  // font-family: "Amatic SC", cursive;
+  letter-spacing: 3px;
+}
+h3 {
+  font-family: 'Permanent Marker', cursive;
+}
 
+.title_section {
+  font-size: 2.5em;
 }
 .v-application a {
   color: white;
