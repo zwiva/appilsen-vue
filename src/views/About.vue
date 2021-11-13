@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content-grid mx-auto"> 
     <v-container class="hero">
       <div class="mx-6">
         <v-col class="text-left" cols="12" sm="12" md="8">

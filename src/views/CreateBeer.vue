@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="content-grid mx-auto">
     <ShopForm />
   </v-container>
 </template>
