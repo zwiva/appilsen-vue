@@ -2,7 +2,7 @@
   <div>
     <!-- ACA SE EDITAN LAS CERVEZAS -->
     <div class="content-grid mx-auto">
-      <h1 class="text-center">Inventario de cervezas</h1>
+      <h3 class="text-center">Inventario de cervezas</h3>
       <div class="ma-6 text-center">
         <p>
           Editor de inventario

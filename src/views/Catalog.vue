@@ -2,7 +2,7 @@
   <div>
     <!-- ACA SE COMPRA -->
     <div class="content-grid mx-auto">
-      <h1 class="text-center ma-6">Catalogo de cervezas</h1>
+      <h3 class="text-center ma-6">Catalogo de cervezas</h3>
       <div class="my-6">
         <p>
           Acá puedes agregar una o mas cervezas a tu pedido, son nuestras marcas

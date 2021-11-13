@@ -2,7 +2,7 @@
   <v-container>
     <!-- principal -->
     <div class="content-grid mx-auto">
-      <h1 class="text-center ma-6">Recomiéndanos</h1>
+      <h1 class="text-center ma-6">R e c o m i é n d a n o s</h1>
       <div class="my-6">
         <p>
           Si encuentras una cerveza que no está en nuestro catalogo, por favor
@@ -14,16 +14,23 @@
         </p>
       </div>
 
-      <h1 class="text-center ma-6">Tus recomendadas:</h1>
+      <h2 class="text-center ma-6">Tus recomendadas:</h2>
+      
       <v-layout align-center justify-space-between class="my-6 mx-auto">
-        <v-row d-flex flex-wrap class="justify-center">
+        <v-row class="d-flex flex-column justify-center">
           <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
-          <div
-            v-for="sugerencia in $store.state.recomendaciones.sugerencias"
-            :key="sugerencia.id"
-          >
-            <SuggestionCard :sugerencia="sugerencia" />
-          </div>
+          <v-container>
+            <div
+              v-for="sugerencia in $store.state.recomendaciones.sugerencias"
+              :key="sugerencia.id"
+            >
+              <v-row class="justify-center">
+                <v-col cols="12" xs="8" md="8" >
+                  <SuggestionCard :sugerencia="sugerencia" class="my-5" />
+                </v-col>
+              </v-row>
+            </div>
+          </v-container>
         </v-row>
       </v-layout>
     </div>
@@ -38,6 +45,7 @@
                 >Ingresa el detalle de tu recomendación:
               </span>
             </v-card-title>
+
             <v-card-text>
               <v-form
                 @submit.prevent="guardarSugerencias(newSuggestion)"
@@ -47,7 +55,6 @@
                 <v-row>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.nombre"
                       label="Nombre Cerveza:"
                       :rules="[required]"
@@ -55,7 +62,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.marca"
                       label="Marca:"
                       :rules="[required]"
@@ -63,7 +69,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.pais"
                       label="Pais origen:"
                       :rules="[required]"
@@ -71,7 +76,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.estilo"
                       label="Estilo:"
                       :rules="[required]"
@@ -79,7 +83,13 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
+                      v-model="newSuggestion.alcohol"
+                      label="Alcohol:"
+                      :rules="[required]"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="fit_view">
+                    <v-text-field
                       v-model="newSuggestion.formato"
                       label="Formato:"
                       :rules="[required]"
@@ -87,7 +97,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.precio"
                       label="Precio:"
                       :rules="[required]"
@@ -95,7 +104,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.observaciones"
                       label="Observaciones:"
                       :rules="[required]"
@@ -103,7 +111,6 @@
                   </v-col>
                   <v-col cols="12" sm="6" class="fit_view">
                     <v-text-field
-                      :disabled="loading"
                       v-model="newSuggestion.imagen"
                       label="Imagen:"
                       :rules="[required]"
@@ -117,6 +124,7 @@
               <v-btn color="grey" dark @click="cancelAddNewSuggestion">
                 CANCELAR
               </v-btn>
+
               <v-btn
                 color="gray"
                 dark
@@ -150,8 +158,8 @@ export default {
     loading: false,
     newSuggestionDialog: false,
     newSuggestion: {
-      nombre: "",
       marca: "",
+      nombre: "",
       pais: "",
       estilo: "",
       formato: "",
@@ -190,12 +198,6 @@ export default {
     createNewSuggestion() {
       console.log("guarda sugerencia");
       this.newSuggestionDialog = false;
-    },
-    deleteSuggestion() {
-      console.log("eliminar");
-    },
-    editSuggestion() {
-      console.log("editar");
     },
   },
 };

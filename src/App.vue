@@ -25,10 +25,9 @@ export default {
     SupNavbar,
     Banner,
   },
-
-  mounted() {
-    this.$store.dispatch("sesion/configurarUsuario");
-  }
+  // mounted() {
+  //   this.$store.dispatch("sesion/configurarUsuario", );
+  // }
 };
 </script>
 
@@ -40,7 +39,21 @@ export default {
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   text-decoration: none !important;
 }
+h2 {
+  // font-family: 'Yuji Boku', serif; //titulo?
+  // font-family: 'Questrial', sans-serif;
+  // font-family: 'Shadows Into Light', cursive;
+  font-family: "Permanent Marker", cursive;
+  font-family: 'Amatic SC', cursive;
+  letter-spacing: 3px;
+}
 
+h1 {
+  font-family: "Permanent Marker", cursive;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+
+}
 .v-application a {
   color: white;
   text-decoration: none !important;

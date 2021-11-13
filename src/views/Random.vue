@@ -1,54 +1,52 @@
 <template>
-  <div>
-    <v-container>
-      <h1 class="text-center">Busca tu cerveza random del mundo</h1>
-      <br />
-
-      <div class="text-center" max-width="200px">
-        <label>Escribe un numero del 1 al 300</label>
-        <v-text-field
-          class="input-name p-2 styled-input"
-          justify="center"
-          align="right"
-          v-model="beer"
-          label="numero al azar"
-          outlined
-          dark
-        ></v-text-field>
-        <v-btn color="grey darken-1" dark @click="getBeers">buscar</v-btn>
+  <div class="content-grid mx-auto">
+    <div class="d-flex flex-column justify-center">
+      <h3 class="text-center mt-2">Busca tu cerveza random del mundo</h3>
+      <div class="text-center ma-4" max-width="200px">
+        <div class="d-flex flex-column justify-center align-center">
+          <label class="mb-1">Escribe un numero del 1 al 300</label>
+          <v-text-field
+            class="input-name"
+            v-model="beer"
+            label="numero al azar"
+            outlined
+            dark
+          ></v-text-field>
+        </div>
+        <v-btn class="mb-4" color="grey darken-1" dark @click="getBeers(beer)"
+          >buscar</v-btn
+        >
       </div>
-      <br />
 
       <v-card class="mx-auto" max-width="800px" rounded dense>
-        <div class="d-flex flex-no-wrap">
-          <v-img
-            :src="beerDeepData.image_url"
-            height="300px"
-            :width="width"
-            contain
-          />
-          <div class="my-3">
-            <v-card-content>
-              <v-card-title>Nombre: {{ beerDeepData.name }}</v-card-title>
-              <v-card-subtitle
-                >Estilo: {{ beerDeepData.tagline }}</v-card-subtitle
-              >
-              <v-card-subtitle
-                >Descripcion: {{ beerDeepData.description }}</v-card-subtitle
-              >
-              <v-card-subtitle>Alcohol: {{ beerDeepData.abv }}</v-card-subtitle>
-              <v-card-subtitle>IBU: {{ beerDeepData.ibu }}</v-card-subtitle>
-              <v-card-subtitle>Numero: {{ beerDeepData.id }}</v-card-subtitle>
-            </v-card-content>
-          </div>
+        <div class="d-flex flex-column pa-5">
+          <v-card-title class="pt-0"
+            ><strong>Numero:</strong> {{ beerDeepData.id }}</v-card-title
+          >
+          <v-card-title class="pt-0"
+            ><strong>Nombre:</strong> {{ beerDeepData.name }}</v-card-title
+          >
+          <v-img :src="beerDeepData.image_url" height="300px" contain />
+          <v-card-text class="pb-0"
+            ><strong>Estilo:</strong> {{ beerDeepData.tagline }}</v-card-text
+          >
+          <v-card-text class="pb-0"
+            ><strong>Descripcion:</strong>
+            {{ beerDeepData.description }}</v-card-text
+          >
+          <v-card-text class="pb-0"
+            ><strong>Alcohol:</strong> {{ beerDeepData.abv }}</v-card-text
+          >
+          <v-card-text class="pb-0"
+            ><strong>IBU:</strong> {{ beerDeepData.ibu }}</v-card-text
+          >
         </div>
       </v-card>
-    </v-container>
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -57,15 +55,11 @@ export default {
       beerDeepData: {},
     };
   },
-
-  /*  mounted() {
-    this.getBeers();
-  }, */
-
   methods: {
-    getBeers() {
+    getBeers(beer) {
+      // por parametro en boton le mando el valor del v-model
       axios
-        .get(`https://api.punkapi.com/v2/beers/${this.beer}`)
+        .get(`https://api.punkapi.com/v2/beers/${beer}`)
         .then((response) => {
           /* console.log(response); */
           this.beerData = response.data;
@@ -77,20 +71,13 @@ export default {
       this.beer = "";
     },
   },
+  mounted() {
+    this.getBeers("1"); // por defecto que cargue la 1 cuando se cargue esta vista, que no este en blanco
+  },
 };
 </script>
-
-<!--  v-on:keyup.enter="getBeers"  //  /* v-for="beer in beers" :key="beer.id" */ -->
-
 <style>
-.v-img {
-  padding-top: 4rem;
-}
-
 .input-name {
-  justify-content: center;
-  text-align: center;
   width: 300px;
-  margin-left: 8rem;
 }
 </style>

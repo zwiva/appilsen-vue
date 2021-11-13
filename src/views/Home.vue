@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content-grid mx-auto">
     <div>
       <v-carousel cycle max-width="500">
         <v-carousel-item
@@ -16,7 +16,7 @@
     <v-container class="justify-center text-center">
       <v-row>
         <v-col>
-          <h1 class="ma-3">Arma tu cerveza</h1>
+          <h3 class="ma-3">Arma tu cerveza</h3>
           <v-card class="mx-auto" max-width="500">
             <v-img
               class="white--text align-end zoom"
@@ -42,7 +42,7 @@
           </v-card>
         </v-col>
         <v-col>
-          <h1 class="ma-3">catalogo de cervezas</h1>
+          <h3 class="ma-3">catalogo de cervezas</h3>
           <v-card class="mx-auto" max-width="500">
             <v-img
               class="white--text align-end zoom"
@@ -68,7 +68,7 @@
           </v-card>
         </v-col>
         <v-col>
-          <h1 class="ma-3">Quienes somos</h1>
+          <h3 class="ma-3">Quienes somos</h3>
           <v-card class="mx-auto" max-width="500">
             <v-img
               class="white--text align-end zoom"

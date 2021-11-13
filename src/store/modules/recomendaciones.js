@@ -9,16 +9,16 @@ export const moduloRecomendaciones = {
   mutations: {
     SET_SUGGESTIONSDATA(state, newSuggestionsData) {
       state.sugerencias = newSuggestionsData;
-      console.log("state.sugerencias", state.sugerencias);
+      // console.log("state.sugerencias", state.sugerencias);
     },
 
     ADD_SUGGESTION(state, newSuggestion) {
       state.sugerencias.push(newSuggestion);
-      console.log("state.sugerencias", state.sugerencias);
+      // console.log("state.sugerencias", state.sugerencias);
     },
 
     DELETE_SUGGESTION(state, suggestionId) {
-      console.log("id que llega", suggestionId);
+      // console.log("id que llega", suggestionId);
       const sugerenciaAeliminar = state.sugerencias.filter(
         (suggestion) => suggestion.id === suggestionId
       );
@@ -78,7 +78,7 @@ export const moduloRecomendaciones = {
         .doc(sugerencia.id)
         .update(sugerencia)
         .then(() => {
-          console.log("edicion crud probando");
+          console.log("sugerencia", sugerencia);
         })
         .catch((e) => {
           console.log(e);

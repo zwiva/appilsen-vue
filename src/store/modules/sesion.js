@@ -14,7 +14,8 @@ export const moduloSesion = {
   },
 
   actions: {
-    configurarUsuario(context) {
+    configurarUsuario(context, usuario) {
+      console.log('usuario', usuario)
       Firebase.auth().onAuthStateChange((usuario) => {
         context.commit("SET_USUARIO", usuario || null);
       });
