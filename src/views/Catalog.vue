@@ -46,7 +46,6 @@
               <v-row>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.nombre"
                     label="Nombre Cerveza:"
                     :rules="[required]"
@@ -54,7 +53,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.marca"
                     label="Marca:"
                     :rules="[required]"
@@ -62,7 +60,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.pais"
                     label="Pais origen:"
                     :rules="[required]"
@@ -70,7 +67,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.estilo"
                     label="Estilo:"
                     :rules="[required]"
@@ -78,7 +74,13 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
+                    v-model="newSuggestion.alcohol"
+                    label="Alcohol:"
+                    :rules="[required]"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" class="fit_view">
+                  <v-text-field
                     v-model="newSuggestion.formato"
                     label="Formato:"
                     :rules="[required]"
@@ -86,7 +88,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.precio"
                     label="Precio:"
                     :rules="[required]"
@@ -94,7 +95,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.observaciones"
                     label="Observaciones:"
                     :rules="[required]"
@@ -102,7 +102,6 @@
                 </v-col>
                 <v-col cols="12" sm="6" class="fit_view">
                   <v-text-field
-                    :disabled="loading"
                     v-model="newSuggestion.imagen"
                     label="Imagen:"
                     :rules="[required]"
@@ -126,6 +125,27 @@
           </v-container>
         </v-card>
       </v-dialog>
+      <div class="edit_dialog">
+        <v-dialog v-model="suggestionSuccessful" max-width="400px">
+          <v-card class="pa-5 edit_dialog">
+            <div class="ma-4">
+              <h3 class="ma-3 py-5 text-center">
+                Hemos registrado tu recomendación.
+                <p>Revísala en la seccion "RECOMENDACIONES"</p>
+                <h2>Muchas gracias!</h2>
+              </h3>
+              <v-row class="justify-center py-5">
+                <v-btn
+                  color="amber"
+                  class="zoom"
+                  @click="suggestionSuccessful = false"
+                  >Ok</v-btn
+                >
+              </v-row>
+            </div>
+          </v-card>
+        </v-dialog>
+      </div>
     </div>
   </div>
 </template>
@@ -142,6 +162,7 @@ export default {
   data: () => ({
     loading: false,
     newSuggestionDialog: false,
+    suggestionSuccessful: false,
     newSuggestion: {
       name: "",
       style: "",
@@ -158,6 +179,7 @@ export default {
         console.log("funciona validacion");
         store.dispatch("recomendaciones/addSuggestion", newSuggestion);
         this.newSuggestionDialog = false;
+        this.suggestionSuccessful = true;
       }
     },
     required(v) {
@@ -174,12 +196,6 @@ export default {
     createNewSuggestion() {
       console.log("guarda sugerencia");
       this.newSuggestionDialog = false;
-    },
-    deleteSuggestion() {
-      console.log("eliminar");
-    },
-    editSuggestion() {
-      console.log("editar");
     },
   },
   mounted() {},

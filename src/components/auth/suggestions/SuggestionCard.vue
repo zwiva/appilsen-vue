@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card color="amber" class="mx-auto" outlined>
-      <v-row class="">
+      <v-row>
         <v-col class="ma-4">
           <!-- <div class="text-overline mb-4">RECOMENDACION</div> -->
 
@@ -65,9 +65,7 @@
     <div class="edit_dialog">
       <v-dialog v-model="editDialog" class="ma-6" max-width="800px">
         <v-card class="pa-6">
-          <v-card-title>
-            <h2>Edita tu recomendacion:</h2>
-          </v-card-title>
+          <h3 class="text-center subtitle_section">Edita tu recomendacion:</h3>
           <v-form
             @submit.prevent="confirmEditSuggestion(sugerencia)"
             class="my-5"
@@ -157,11 +155,16 @@
       <v-dialog v-model="editSuccessDialog" max-width="400px">
         <v-card class="pa-5 edit_dialog">
           <div class="ma-4">
-            <h4 class="ma-3 py-5 text-center">
+            <h3 class="ma-3 py-5 text-center">
               Recomendacion editada satisfactoriamente.
-            </h4>
+            </h3>
             <v-row class="justify-center py-5">
-              <v-btn color="amber" class="zoom" @click="editSuccessDialog = false">Ok</v-btn>
+              <v-btn
+                color="amber"
+                class="zoom"
+                @click="editSuccessDialog = false"
+                >Ok</v-btn
+              >
             </v-row>
           </div>
         </v-card>
@@ -173,9 +176,9 @@
       <v-dialog v-model="deleteDialog" max-width="400px">
         <v-card class="pa-5 delete_dialog">
           <div class="ma-4">
-            <h4 class="ma-3 py-5 text-center">
+            <h3 class="ma-3 py-5 text-center">
               ¿Deseas eliminar esta recomendación?
-            </h4>
+            </h3>
             <v-row class="justify-center py-5">
               <v-btn
                 class="mr-3 zoom"
@@ -196,11 +199,14 @@
       <v-dialog v-model="deleteSuccesDialog" max-width="400px">
         <v-card class="pa-5 delete_dialog">
           <div class="ma-4">
-            <h4 class="ma-3 py-5 text-center">
+            <h3 class="ma-3 py-5 text-center">
               Recomendacion eliminada satisfactoriamente.
-            </h4>
+            </h3>
             <v-row class="justify-center py-5">
-              <v-btn color="amber" class="zoom" @click="confirmDeleteDialog = false"
+              <v-btn
+                color="amber"
+                class="zoom"
+                @click="deleteSuccesDialog = false"
                 >Ok</v-btn
               >
             </v-row>
@@ -228,8 +234,9 @@ export default {
     },
     deleteSuggestion(sugerenciaId) {
       console.log("eliminando");
-      store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
       this.deleteDialog = false;
+      store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
+      this.deleteSuccesDialog = true;
     },
 
     showDialogEditSuggestion() {

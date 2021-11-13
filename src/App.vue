@@ -46,6 +46,7 @@ h2 {
 }
 h3 {
   font-family: 'Permanent Marker', cursive;
+  text-align: center;
 }
 .title_section {
   font-size: 2.5em;
