@@ -118,16 +118,16 @@ export const moduloSesion = {
       console.log("registrando nuevo usuario", form);
       try {
         await Firebase.auth()
-          .createUserWithEmailAndPassword(form.email,form.password)
+          .createUserWithEmailAndPassword(form.email, form.password)
           .catch((error) => {
             console.log("error code", error.code);
             console.log("error message", error.message);
           });
 
-      //   await Firebase.auth().signInWithEmailAndPassword(
-      //     form.email,
-      //     form.password
-      //   );
+        //   await Firebase.auth().signInWithEmailAndPassword(
+        //     form.email,
+        //     form.password
+        //   );
         // this.$router.push("/home");
       } catch (e) {
         console.log("error: ", e);

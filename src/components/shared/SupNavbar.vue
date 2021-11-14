@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <v-app-bar color="black" dark height="100px">
-      <div class="d-flex align-center">
-        <div id="supnav">
-          <!-- icono marca -->
-          <v-img
-            class="mr-1"
-            src="../../assets/imgbeers/logoAppilsen.jpg"
-            width="4.5em"
-            max-width="85px"
-          >
-          </v-img>
-          <v-spacer></v-spacer>
-        </div>
-      </div>
+  <div color="black" class="background-nav">
+    <v-app-bar
+      color="black"
+      dark
+      height="80px"
+      class="px-1 content-grid mx-auto"
+    >
+      <!-- icono marca -->
+      <v-img
+        class="mr-1"
+        src="../../assets/imgbeers/logoAppilsen.jpg"
+        width="3em"
+        max-width="70px"
+      >
+      </v-img>
+      <v-spacer></v-spacer>
+      <!-- </div> -->
       <v-spacer></v-spacer>
       <v-img
         class="mr-1"
@@ -24,35 +26,58 @@
       </v-img>
       <v-spacer></v-spacer>
       <!-- boton sesion activa -->
-      <div v-if="$store.state.sesion.user">
-        <v-btn text depressed dark @click="showLogOutModal()">
-          {{
-            $store.state.sesion.user.email
-              ? $store.state.sesion.user.email
-              : "no existe"
-          }}
-          <v-icon>mdi-logout</v-icon>
-        </v-btn>
-      </div>
-      <!-- boton sin sesion iniciada -->
-      <div v-else>
-        <v-btn text depressed @click="showLoginForm()">
-          Inicia sesion
-          <v-icon>mdi-login</v-icon>
-        </v-btn>
+      <div>
+        <div v-if="$store.state.sesion.user">
+          <!-- vista desktop -->
+          <div class="hidden-sm-and-down">
+            <v-btn text depressed dark @click="showLogOutModal()">
+              {{
+                $store.state.sesion.user.email
+                  ? $store.state.sesion.user.email
+                  : "no existe"
+              }}
+              <v-icon>mdi-logout</v-icon>
+            </v-btn>
+          </div>
+          <!-- vista mobile -->
+          <div class="hidden-md-and-up">
+            <v-btn
+              text
+              depressed
+              dark
+              @click="showLogOutModal()"
+              style="font-size: 0.75em"
+            >
+              {{
+                $store.state.sesion.user.email ? "CERRAR SESION" : "no existe"
+              }}
+              <v-icon>mdi-logout</v-icon>
+            </v-btn>
+          </div>
+        </div>
+        <!-- boton sin sesion iniciada -->
+        <div v-else>
+          <v-btn
+            text
+            depressed
+            @click="showLoginForm()"
+            style="font-size: 0.75em"
+          >
+            Inicia sesion
+            <v-icon>mdi-login</v-icon>
+          </v-btn>
+        </div>
       </div>
     </v-app-bar>
 
     <!-- formulario de inicio de sesion -->
     <v-dialog max-width="350" v-model="loginForm">
-      
-        <v-card class="background-login rounded-xl">
-          <v-card-title></v-card-title>
-          <v-card-text>
-            <LoginForm @closeModal="closeLoginModal()" />
-          </v-card-text>
-        </v-card>
-      
+      <v-card class="background-login rounded-xl">
+        <v-card-title></v-card-title>
+        <v-card-text>
+          <LoginForm @closeModal="closeLoginModal()" />
+        </v-card-text>
+      </v-card>
     </v-dialog>
 
     <!-- ----------------- -->
@@ -130,5 +155,8 @@ export default {
   background-size: cover;
   rotate: 180;
   /* opacity: 0.85;; */
+}
+.background-nav {
+  background-color: black;
 }
 </style>
