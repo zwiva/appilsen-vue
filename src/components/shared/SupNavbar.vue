@@ -102,7 +102,7 @@ export default {
   methods: {
     // inicio sesion
     showLoginForm() {
-      console.log("muestra formulario");
+      // console.log("muestra formulario");
       this.loginForm = true;
     },
     closeLoginModal() {

@@ -26,8 +26,9 @@ export default {
     Banner,
   },
   mounted() {
-    this.$store.dispatch("sesion/getCurrentUsers");
-    // this.$store.dispatch("sesion/configurarSesion");
+    this.$store.dispatch("sesion/getRegisteredUsers");
+    this.$store.dispatch("sesion/showAuthUser");
+    // this.$store.dispatch("sesion/signOut");
   }
 };
 </script>

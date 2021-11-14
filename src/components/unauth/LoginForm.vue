@@ -45,7 +45,7 @@
             </div>
             <v-btn
               rounded
-              class="grey darken-2"
+              class="grey darken-2 ma-3"
               large
               href="#"
               right
@@ -54,6 +54,11 @@
               dark
               >Ingresar</v-btn
             >
+            <div class="pa-2">
+              <strong>
+                {{ $store.getters["sesion/showAuthenticationStatus"] }}
+              </strong>
+            </div>
             <v-card-text>
               ¿No estas registrado? Registrate:
 
@@ -64,6 +69,7 @@
                 large
                 rounded
                 dark
+                @click="registrarNuevoUsuario"
                 >Registrarse</v-btn
               >
             </v-card-text>
@@ -92,12 +98,18 @@ export default {
   components: {},
 
   methods: {
-    async iniciarSesion() {
+    iniciarSesion() {
       if (this.$refs.form.validate()) {
-        store.dispatch("sesion/signIn", this.signInForm);
-        this.$emit("closeModal");
-        // store.dispatch("sesion/configurarUsuario", Firebase.auth().currentUser);
+        store.dispatch("sesion/setCurrentUser", this.signInForm);
+        store.dispatch("sesion/signInRegisteredUser", this.signInForm);
+        store.dispatch("sesion/showAuthUser");
       }
+      if (this.$store.state.sesion.user) {
+        this.$emit("closeModal");
+      }
+    },
+    registrarNuevoUsuario() {
+      
     },
     /*  reset() {
       this.$refs.form.reset();
