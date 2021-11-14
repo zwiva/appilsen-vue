@@ -54,7 +54,7 @@
         <v-col cols="12" md="6">
           <v-img
             class="mx-auto"
-            src="../assets/imgbeers/logoAppilsen.jpg"
+            src="../assets/imgbeers/logoappilsenfinal.png"
             height="250px"
             width="250px"
             ><router-link :to="{ name: 'Home' }"> </router-link>
@@ -76,14 +76,11 @@ export default {
 
 <style>
 .hero {
-  background-image: url("../assets/imgbeers/bg-beer5.jpg");
+  background-image: url("../assets/imgbeers/bg-beer6.jpg");
   background-repeat: no-repeat;
-  /* background-size: cover; */
-
   background-position: center top;
-  
   background-size: cover;
   color: white;
-  /* padding-bottom: 10rem; */
+  
 }
 </style>
