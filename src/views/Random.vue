@@ -26,7 +26,7 @@
           <v-card-title class="pt-0"
             ><strong>Nombre: </strong> {{ beerDeepData.name }}</v-card-title
           >
-          <v-img :src="beerDeepData.image_url" height="300px" contain />
+          <v-img :src="beerDeepData.image_url" max-width="250px" contain class="mx-auto" />
           <v-card-text class="pb-0"
             ><strong>Estilo: </strong> {{ beerDeepData.tagline }}</v-card-text
           >

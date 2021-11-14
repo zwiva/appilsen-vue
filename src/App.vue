@@ -28,8 +28,7 @@ export default {
   mounted() {
     this.$store.dispatch("sesion/getRegisteredUsers");
     this.$store.dispatch("sesion/showAuthUser");
-    // this.$store.dispatch("sesion/signOut");
-  }
+  },
 };
 </script>
 
@@ -47,7 +46,7 @@ h2 {
   letter-spacing: 3px;
 }
 h3 {
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
   text-align: center;
 }
 .title_section {

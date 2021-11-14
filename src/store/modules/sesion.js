@@ -10,13 +10,6 @@ export const moduloSesion = {
   },
   getters: {
     showAuthenticationStatus(state) {
-      // if (state.users) {
-      //   return "pendiente verificacion";
-      // } else if (state.userEmail) {
-      //   return "usuario encontrado";
-      // } else {
-      //   return "usuario no registrado";
-      // }
       return state.userStatus;
     },
   },
@@ -33,7 +26,6 @@ export const moduloSesion = {
           usuarioYaRegistrado = user;
         }
       });
-
       if (usuarioYaRegistrado) {
         state.userEmail = form.email;
         state.user = usuarioYaRegistrado;
@@ -42,7 +34,7 @@ export const moduloSesion = {
         state.user = "";
         state.userStatus = "Usuario no registrado ❌";
       }
-      console.log('datos usuario: ', state.user)
+      console.log("datos usuario: ", state.user);
     },
     CLOSE_SESSION(state) {
       state.user = "";
@@ -51,8 +43,13 @@ export const moduloSesion = {
     // SET_SESSION(state, newUserData) {
     //   state.user = newUserData;
     // },
+    REGISTER_NEWUSER(state) {
+      console.log("state", state);
+      // hacer un push a la store para que tenga este nuevo usuario por mientras?
+      // o
+      // hacer un get para traer a todos los nuevos usuarios con este nuevo incluido?
+    },
   },
-
   actions: {
     // traer todos los usuarios
     async getRegisteredUsers(context) {
@@ -71,7 +68,6 @@ export const moduloSesion = {
     setCurrentUser(context, form) {
       context.commit("SET_CURRENT_USER_IDENTIFIER", form);
     },
-
     async signInRegisteredUser(context, form) {
       if (context.state.user) {
         try {
@@ -92,7 +88,6 @@ export const moduloSesion = {
       Firebase.auth().onAuthStateChanged((user) => {
         console.log("usuario: ", user);
       });
-      
     },
     async signOut(context) {
       await Firebase.auth().signOut();
@@ -119,8 +114,25 @@ export const moduloSesion = {
     //   context.commit("SET_SESSION", user || null);
     // },
 
-    registerNewUser(context, user) {
-      context.commit("REGISTER_NEWUSER", user);
+    async registerNewUser(context, form) {
+      console.log("registrando nuevo usuario", form);
+      try {
+        await Firebase.auth()
+          .createUserWithEmailAndPassword(form.email,form.password)
+          .catch((error) => {
+            console.log("error code", error.code);
+            console.log("error message", error.message);
+          });
+
+      //   await Firebase.auth().signInWithEmailAndPassword(
+      //     form.email,
+      //     form.password
+      //   );
+        // this.$router.push("/home");
+      } catch (e) {
+        console.log("error: ", e);
+      }
+      context.commit("REGISTER_NEWUSER", form);
     },
 
     // activateSession(context, user) {

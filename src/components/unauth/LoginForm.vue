@@ -77,13 +77,62 @@
         </v-card>
       </div>
     </v-container>
+
+    <v-dialog v-model="registerForm" height="400" width="380">
+      <v-sheet class="mx-auto">
+        <v-card color="amber" amber elevation="8" shaped>
+          <v-layout column align-center justify-center>
+            <v-card-title color="black">
+              <p>Ingresa tus datos para registrarte</p>
+              <p>Debes estar registrado para comprar productos.</p>
+              <v-divider class="mx-4 black"></v-divider>
+            </v-card-title>
+            <v-form ref="form" lazy-validation>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="register.email"
+                  :rules="emailRules"
+                  label="email"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="register.password"
+                  :rules="passwordRules"
+                  label="password"
+                  type="password"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field
+              ></v-col>
+            </v-form>
+            <v-card-text>
+              <v-btn
+                rounded
+                class="blue-grey darken-2"
+                large
+                href="#"
+                right
+                @click="executeRegistration"
+                dark
+                >Registrate</v-btn
+              >
+            </v-card-text>
+          </v-layout>
+        </v-card>
+      </v-sheet>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import store from "../../store";
-// import Firebase from "firebase";
-
 export default {
   name: "LoginForm",
   data: () => ({
@@ -94,6 +143,11 @@ export default {
       (v) => /.+@.+\..+/.test(v) || "* Formato email no válido.",
     ],
     passwordRules: [(v) => !!v || "* Password es requerido"],
+    registerForm: false,
+    register: {
+      email: "",
+      password: "",
+    },
   }),
   components: {},
 
@@ -109,7 +163,11 @@ export default {
       }
     },
     registrarNuevoUsuario() {
-      
+      this.registerForm = true;
+    },
+    executeRegistration() {
+      console.log("intento registro");
+      store.dispatch("sesion/registerNewUser", this.register);
     },
     /*  reset() {
       this.$refs.form.reset();
