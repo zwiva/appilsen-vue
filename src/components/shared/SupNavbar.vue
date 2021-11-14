@@ -45,14 +45,14 @@
 
     <!-- formulario de inicio de sesion -->
     <v-dialog max-width="350" v-model="loginForm">
-      <v-container>
+      
         <v-card class="background-login rounded-xl">
           <v-card-title></v-card-title>
           <v-card-text>
             <LoginForm @closeModal="closeLoginModal()" />
           </v-card-text>
         </v-card>
-      </v-container>
+      
     </v-dialog>
 
     <!-- ----------------- -->

@@ -4,7 +4,7 @@
       <v-layout row wrap align-center justify-center>
         <v-sheet  class="mx-auto" height="400" width="380">
           <v-card color="amber" amber elevation="8" shaped>
-            <v-container>
+            
               <v-layout column align-center justify-center>
                 <v-card-title color="black">
                   <v-text-title>Registrate </v-text-title>
@@ -50,7 +50,7 @@
                   >
                 </v-card-text>
               </v-layout>
-            </v-container>
+          
           </v-card>
         </v-sheet>
       </v-layout>
