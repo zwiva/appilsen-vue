@@ -14,25 +14,49 @@
         </p>
       </div>
 
-      <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
+      <div
+        v-if="this.$store.state.sesion.user.tipodeusuario === 'administrador'"
+      >
+        <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
+        <v-layout align-center justify-space-between class="my-6 mx-auto">
+          <v-row class="d-flex flex-column justify-center">
+            <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
+            <v-container>
+              <div
+                v-for="sugerencia in $store.state.recomendaciones.sugerencias"
+                :key="sugerencia.id"
+              >
+                <v-row class="justify-center">
+                  <v-col cols="12" xs="8" md="8">
+                    <SuggestionCard :sugerencia="sugerencia" class="my-5" />
+                  </v-col>
+                </v-row>
+              </div>
+            </v-container>
+          </v-row>
+        </v-layout>
+      </div>
 
-      <v-layout align-center justify-space-between class="my-6 mx-auto">
-        <v-row class="d-flex flex-column justify-center">
-          <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
-          <v-container>
-            <div
-              v-for="sugerencia in $store.state.recomendaciones.sugerencias"
-              :key="sugerencia.id"
-            >
-              <v-row class="justify-center">
-                <v-col cols="12" xs="8" md="8">
-                  <SuggestionCard :sugerencia="sugerencia" class="my-5" />
-                </v-col>
-              </v-row>
-            </div>
-          </v-container>
-        </v-row>
-      </v-layout>
+      <div v-else>
+        <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
+        <v-layout align-center justify-space-between class="my-6 mx-auto">
+          <v-row class="d-flex flex-column justify-center">
+            <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
+            <v-container>
+              <div
+                v-for="sugerencia in $store.state.sesion.user.recomendaciones"
+                :key="sugerencia.id"
+              >
+                <v-row class="justify-center">
+                  <v-col cols="12" xs="8" md="8">
+                    <SuggestionCard :sugerencia="sugerencia" class="my-5" />
+                  </v-col>
+                </v-row>
+              </div>
+            </v-container>
+          </v-row>
+        </v-layout>
+      </div>
     </div>
 
     <!-- dialogo para agregar sugerencia-->
@@ -45,10 +69,9 @@
                 >Ingresa el detalle de tu recomendación:
               </span>
             </v-card-title>
-
             <v-card-text>
               <v-form
-                @submit.prevent="guardarSugerencias(newSuggestion)"
+                @submit.prevent="guardarSugerencias()"
                 class="my-5"
                 ref="form"
               >
@@ -124,12 +147,7 @@
               <v-btn color="grey" dark @click="cancelAddNewSuggestion">
                 CANCELAR
               </v-btn>
-
-              <v-btn
-                color="gray"
-                dark
-                @click="guardarSugerencias(newSuggestion)"
-              >
+              <v-btn color="gray" dark @click="guardarSugerencias()">
                 GUARDAR
               </v-btn>
             </v-card-actions>
@@ -141,10 +159,7 @@
 </template>
 <script>
 import store from "../store";
-/* import Firebase from "firebase"; */
-
 import SuggestionCard from "../components/auth/suggestions/SuggestionCard.vue";
-
 export default {
   name: "UserSuggestions",
   components: { SuggestionCard },
@@ -167,10 +182,11 @@ export default {
     },
   }),
   methods: {
-    guardarSugerencias(newSuggestion) {
+    guardarSugerencias() {
       if (this.$refs.form.validate()) {
         // console.log("funciona validacion");
-        store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+        store.dispatch("recomendaciones/addSuggestion", this.newSuggestion);
+        store.dispatch("sesion/createUserSuggestions", this.newSuggestion);
         this.newSuggestionDialog = false;
       }
     },

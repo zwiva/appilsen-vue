@@ -72,7 +72,7 @@ export const moduloRecomendaciones = {
       context.commit("DELETE_SUGGESTION", id);
     },
 
-    editSuggestion(context, sugerencia) {
+    editSuggestion(sugerencia) {
       Firebase.firestore()
         .collection("recomendaciones")
         .doc(sugerencia.id)

@@ -42,6 +42,9 @@ export const moduloSesion = {
       state.users.push(newUser);
       // console.log("todos", state.users);
     },
+    ADD_USER_SUGGESTION(state, sugerencia) {
+      console.log("user suggestion", state, sugerencia);
+    },
   },
   actions: {
     // cargar la store con todos los usuarios desde la firestores
@@ -135,11 +138,31 @@ export const moduloSesion = {
         context.commit("REGISTER_NEWUSER", newUser);
       }
     },
-    createUserSuggetions() {
+    async createUserSuggestions(context, sugerencia) {
+      console.log("idusuario***: ", context.state.user.id);
       console.log(
-        "hay que editar elemento usuario en firestore, pusheando a arreglo de recomendaciones de propiedad recomendaciones de usuario, ademas sugerencia se debe agregar a arreglo general"
+        "recomendacionesusuario***: ",
+        context.state.user.recomendaciones
       );
+      console.log("sugerencia***: ", sugerencia);
+
+      let user = context.state.user;
+      user.recomendaciones.push(sugerencia);
+      console.log("usuario", user);
+      
+      await Firebase.firestore()
+        .collection("usuarios")
+        .doc(context.state.user.id)
+        .update(user)
+        .then(() => {
+          console.log("sugerencia", );
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      context.commit("ADD_USER_SUGGESTION", sugerencia);
     },
+    
     editUserSuggestion() {
       console.log(
         "hay que editar elemento usuario, propiedad recomendaciones, sugerencia se debe ademas editar en arreglo general"
