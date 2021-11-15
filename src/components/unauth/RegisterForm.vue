@@ -1,12 +1,28 @@
 <template>
-  <v-sheet class="mx-auto">
-    <v-card color="amber" amber elevation="8" shaped>
+  <div class="text-center">
+    <v-card
+      color="amber lighten-2"
+      class="mx-auto dialog"
+      elevation="8"
+      max-width="300px"
+      filled
+      rounded
+      dense
+    >
       <v-layout column align-center justify-center>
         <!-- ENCABEZADO -->
-        <v-card-title color="black">
-          <p>Ingresa tus datos para registrarte:</p>
-          <v-divider class="mx-4 black"></v-divider>
-        </v-card-title>
+        <div
+          class="d-flex justify-center"
+          style="
+            background-color: white;
+            width: 100%;
+            height: 4em;
+            align-items: center;
+            font-size: 1.25em;
+          "
+        >
+          <h3 class="text-center">Ingresa tus datos <br />para registrarte:</h3>
+        </div>
 
         <!-- FORMULARIO REGISTRO -->
         <div>
@@ -35,28 +51,41 @@
               ></v-text-field
             ></v-col>
           </v-form>
-
+        <div class="text-center">
+          <p>¿No estas registrado? Registrate:</p>
           <v-btn
-            rounded
             class="blue-grey darken-2"
-            large
             href="#"
-            right
-            @click="executeRegistration"
+            depressed
+            large
+            rounded
             dark
+            @click="executeRegistration"
             >Registrate</v-btn
           >
         </div>
+        </div>
         <!-- Confirmacion de registro -->
-        <v-dialog v-model="showRegisterDialogConfirmation">
-          <v-card>
+        <v-dialog max-width="350px" v-model="showRegisterDialogConfirmation">
+          <v-card 
+          color="amber lighten-2"
+          class="text-center mx-auto dialog" 
+          elevation="8" 
+          max-width="350px"
+          >
             <p>Usuario registrado exitosamente</p>
-            <v-btn @click="confirmRegistration">Ok</v-btn>
+            <div class="text-center">
+              
+            <v-btn 
+            class="grey darken-2" 
+            @click="confirmRegistration"
+            dark>Ok</v-btn>
+            </div>
           </v-card>
         </v-dialog>
       </v-layout>
     </v-card>
-  </v-sheet>
+  </div>
 </template>
 
 <script>

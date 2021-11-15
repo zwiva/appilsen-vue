@@ -62,11 +62,13 @@
             <v-btn @click="showLoginForm">INICIA SESION</v-btn>
           </h2>
           <!-- inicio de sesion -->
-          <v-dialog v-model="showLoginDialog">
-            <LoginForm
+          <v-dialog max-width="350px" v-model="showLoginDialog">
+            <v-card class="background-login rounded-xl">
+            <LoginForm 
               @closeModal="closeLoginModal()"
               @openRegisterForm="openRegisterForm"
             />
+            </v-Card>
           </v-dialog>
         </div>
         <div class="ma-2 text-center">
@@ -75,8 +77,10 @@
             <v-btn @click="showRegisterForm">REGISTRATE</v-btn>
           </h2>
           <!-- Registro -->
-          <v-dialog v-model="showRegisterDialog">
+          <v-dialog max-width="350px" v-model="showRegisterDialog">
+            <v-card class="background-login rounded-xl">
             <RegisterForm @closeRegisterForm="closeRegisterForm" />
+            </v-card>
           </v-dialog>
         </div>
       </div>
@@ -135,5 +139,13 @@ export default {
 .background_4 {
   background-image: url("../assets/imgbeers/stout.jpg");
   max-width: 280px;
+}
+
+.background-login {
+  background-image: url("../assets/backgrounds/beer-back.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  rotate: 180;
+  /* opacity: 0.85;; */
 }
 </style>
