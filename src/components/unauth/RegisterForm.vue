@@ -4,7 +4,7 @@
       <v-layout column align-center justify-center>
         <!-- ENCABEZADO -->
         <v-card-title color="black">
-          <p>Ingresa tus datos para registrarte, debes estar registrado para comprar productos.</p>
+          <p>Ingresa tus datos para registrarte:</p>
           <v-divider class="mx-4 black"></v-divider>
         </v-card-title>
 
@@ -47,6 +47,13 @@
             >Registrate</v-btn
           >
         </div>
+        <!-- Confirmacion de registro -->
+        <v-dialog v-model="showRegisterDialogConfirmation">
+          <v-card>
+            <p>Usuario registrado exitosamente</p>
+            <v-btn @click="confirmRegistration">Ok</v-btn>
+          </v-card>
+        </v-dialog>
       </v-layout>
     </v-card>
   </v-sheet>
@@ -67,10 +74,22 @@ export default {
       email: "",
       password: "",
     },
+    showRegisterDialogConfirmation: false,
   }),
   methods: {
     executeRegistration() {
       store.dispatch("sesion/registerNewUser", this.register);
+      this.$emit("closeRegisterForm");
+      this.showRegisterDialogConfirmation = true;
+    },
+    confirmRegistration() {
+      
+      store.dispatch("sesion/setCurrentUser", this.register);
+      // store.dispatch("sesion/signInRegisteredUser", this.register);
+      // store.dispatch("sesion/showAuthUser");
+      // inicio de sesion
+      this.showRegisterDialogConfirmation = false;
+      // this.$router.push("/");
     },
   },
 };

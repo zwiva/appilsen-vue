@@ -11,7 +11,6 @@
     <Footer />
   </v-app>
 </template>
-
 <script>
 import Footer from "../src/components/shared/Footer.vue";
 import Navbar from "./components/shared/Navbar.vue";
@@ -28,11 +27,10 @@ export default {
   mounted() {
     this.$store.dispatch("sesion/getRegisteredUsers");
     this.$store.dispatch("sesion/showAuthUser");
-    // this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario 
+    // this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario
   },
 };
 </script>
-
 <style lang="scss">
 .v-application--wrap {
   font-family: "Ubuntu", sans-serif;
@@ -43,7 +41,6 @@ export default {
 }
 h2 {
   font-family: "Permanent Marker", cursive;
-  // font-family: "Amatic SC", cursive;
   letter-spacing: 3px;
 }
 h3 {

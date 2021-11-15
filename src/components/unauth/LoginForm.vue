@@ -115,6 +115,8 @@ export default {
     },
     registrarNuevoUsuario() {
       console.log("click en boton desde fomrulario login");
+
+      this.$emit("closeModal");
     },
     /*  reset() {
       this.$refs.form.reset();

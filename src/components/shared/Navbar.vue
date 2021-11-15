@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="content-grid mx-auto"> -->
   <!-- todo el navbar -->
   <v-toolbar color="grey darken-4" dark class="px-0">
     <!-- navbar desktop -->
@@ -10,7 +9,8 @@
       flat
       height="90px"
     >
-      <v-list-item :to="items[0].to" v-if="isUser || isAdmin" dark>
+      <!-- HOME -->
+      <v-list-item :to="items[0].to" dark>
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -18,8 +18,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+      <!-- ARMAR -->
+      <v-list-item :to="items[1].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -27,8 +27,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+      <!-- CATALOGO -->
+      <v-list-item :to="items[2].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -36,8 +36,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+      <!-- MERCH -->
+      <v-list-item :to="items[3].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -45,8 +45,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+      <!-- NOSOTROS -->
+      <v-list-item :to="items[4].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -54,8 +54,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[5].to" v-if="isUser">
+      <!-- RECOMENDACIONES -->
+      <v-list-item :to="items[5].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -63,8 +63,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[6].to" v-if="isAdmin">
+      <!-- RANDOM -->
+      <v-list-item :to="items[6].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -72,8 +72,11 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+      <!-- ADM STOCK -->
+      <v-list-item
+        :to="items[7].to"
+        v-if="this.$store.state.sesion.user.tipodeusuario === 'administrador'"
+      >
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -81,8 +84,8 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-
-      <v-list-item :to="items[8].to" v-if="isUser || isAdmin">
+      <!-- CARRITO -->
+      <v-list-item :to="items[8].to">
         <v-list-item-content v-model="tab" align-with-title>
           <v-spacer></v-spacer>
           <v-list-item-title text-align-center>
@@ -90,8 +93,6 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-      <!-- </template> -->
     </v-toolbar-items>
     <!-- navbar mobile -->
     <v-spacer></v-spacer>
@@ -113,7 +114,8 @@
           </template>
 
           <v-list color="grey darken-4" dark class="px-0">
-            <v-list-item :to="items[0].to" v-if="isUser || isAdmin">
+            <!-- HOME -->
+            <v-list-item :to="items[0].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -121,8 +123,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[1].to" v-if="isUser || isAdmin">
+            <!-- ARMAR -->
+            <v-list-item :to="items[1].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -130,8 +132,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[2].to" v-if="isUser || isAdmin">
+            <!-- CATALOGO -->
+            <v-list-item :to="items[2].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -139,8 +141,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[3].to" v-if="isUser || isAdmin">
+            <!-- MERCH -->
+            <v-list-item :to="items[3].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -148,8 +150,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[4].to" v-if="isUser || isAdmin">
+            <!-- NOSOTROS -->
+            <v-list-item :to="items[4].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -157,8 +159,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[5].to" v-if="isUser">
+            <!-- RECOMENDACIONES -->
+            <v-list-item :to="items[5].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -166,8 +168,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[6].to" v-if="isAdmin">
+            <!-- RANDOM -->
+            <v-list-item :to="items[6].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -175,8 +177,13 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[7].to" v-if="isUser || isAdmin">
+            <!-- ADM STOCK -->
+            <v-list-item
+              :to="items[7].to"
+              v-if="
+                this.$store.state.sesion.user.tipodeusuario === 'administrador'
+              "
+            >
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -184,8 +191,8 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-
-            <v-list-item :to="items[8].to" v-if="isUser || isAdmin">
+            <!-- CARRITO -->
+            <v-list-item :to="items[8].to">
               <v-list-item-content v-model="tab" align-with-title>
                 <v-spacer></v-spacer>
                 <v-list-item-title text-align-center>
@@ -193,14 +200,11 @@
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
-            <!-- </template> -->
           </v-list>
         </v-menu>
       </div>
     </v-toolbar-items>
   </v-toolbar>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -209,9 +213,6 @@ export default {
   data() {
     return {
       tab: null,
-      user: "",
-      isAdmin: true, // este (los dos deben ser false al inicio, en el mounted con la props que llega se carga el tipo de usuario)
-      isUser: true, // vs este (uno u otro)
       items: [
         {
           id: 0,
@@ -235,24 +236,6 @@ export default {
     menuItems() {
       return this.items;
     },
-  },
-
-  props: {
-    // typeUser: { type: String, required: true },
-  },
-  mounted() {
-    this.user = this.typeUser; // por props llega el tipo de usuario
-    if (this.user === "admin") {
-      // si el usuario es admin:
-      console.log("usuario es admin");
-      this.isAdmin = true;
-      this.isUser = false;
-    } else {
-      // si no: (cualquier otro caso -->  sin login "" es usuario)
-      console.log("usuario simple");
-      this.isAdmin = false;
-      this.isUser = true;
-    }
   },
 };
 </script>

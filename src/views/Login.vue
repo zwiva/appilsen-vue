@@ -52,14 +52,26 @@
         </div>
       </div>
 
-      <div class="mx-auto pb-6">
+      <div v-if="$store.state.sesion.user.email" class="mx-auto pb-6">
+        <div class="ma-2 text-center">
+          <h2>
+            Ya puedes navegar
+            <v-btn @click="goToHome">IR A INICIO</v-btn>
+          </h2>
+        </div>
+      </div>
+
+      <div v-else class="mx-auto pb-6">
         <div class="ma-2 text-center">
           <h2>
             Para continuar debes iniciar sesion:
             <v-btn @click="showLoginForm">INICIA SESION</v-btn>
           </h2>
           <v-dialog v-model="showLoginDialog">
-            <LoginForm />
+            <LoginForm
+              @closeModal="closeLoginModal()"
+              @openRegisterForm="openRegisterForm"
+            />
           </v-dialog>
         </div>
         <div class="ma-2 text-center">
@@ -69,7 +81,7 @@
           </h2>
           <!-- Registro -->
           <v-dialog v-model="showRegisterDialog">
-            <RegisterForm />
+            <RegisterForm @closeRegisterForm="closeRegisterForm" />
           </v-dialog>
         </div>
       </div>
@@ -77,6 +89,8 @@
   </div>
 </template>
 <script>
+// import store from "../store";
+
 export default {
   name: "Login",
   components: {
@@ -89,13 +103,25 @@ export default {
   }),
   methods: {
     showLoginForm() {
-      console.log("mostrarndo formulario registro");
       this.showLoginDialog = true;
     },
+    closeLoginModal() {
+      this.showLoginDialog = false;
+      console.log('cerrando modal login el usuario es: ', this.$store.state.sesion.user.email)
+
+    },
     showRegisterForm() {
-      console.log("mostrarndo formulario registro");
       this.showRegisterDialog = true;
     },
+    openRegisterForm() {
+      console.log("mjdkdkdsjd");
+    },
+    closeRegisterForm() {
+      this.showRegisterDialog = false;
+    },
+    goToHome(){
+      this.$router.push('/')
+    }
   },
 };
 </script>

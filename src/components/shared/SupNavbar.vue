@@ -143,7 +143,6 @@ export default {
     },
     closeLoginModal() {
       this.loginForm = false;
-      this.$router.push("/");
     },
 
     // CIERRE SESION
