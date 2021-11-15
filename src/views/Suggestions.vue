@@ -15,7 +15,7 @@
       </div>
 
       <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
-      
+
       <v-layout align-center justify-space-between class="my-6 mx-auto">
         <v-row class="d-flex flex-column justify-center">
           <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
@@ -25,7 +25,7 @@
               :key="sugerencia.id"
             >
               <v-row class="justify-center">
-                <v-col cols="12" xs="8" md="8" >
+                <v-col cols="12" xs="8" md="8">
                   <SuggestionCard :sugerencia="sugerencia" class="my-5" />
                 </v-col>
               </v-row>
@@ -148,12 +148,10 @@ import SuggestionCard from "../components/auth/suggestions/SuggestionCard.vue";
 export default {
   name: "UserSuggestions",
   components: { SuggestionCard },
-
   beforeRouteEnter(to, from, next) {
     store.dispatch("recomendaciones/getAllSuggestionsFirestore");
     next();
   },
-
   data: () => ({
     loading: false,
     newSuggestionDialog: false,
@@ -168,36 +166,28 @@ export default {
       imagen: "",
     },
   }),
-
-  /*   mounted() {
-    store.dispatch("recomendaciones/getAllSuggestionsFirestore");
-    console.log("mounted");
-  }, */
-
   methods: {
     guardarSugerencias(newSuggestion) {
       if (this.$refs.form.validate()) {
-        console.log("funciona validacion");
+        // console.log("funciona validacion");
         store.dispatch("recomendaciones/addSuggestion", newSuggestion);
         this.newSuggestionDialog = false;
       }
     },
-
-    required(v) {
-      return !!v || "Este campo es obligatorio";
-    },
-
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
-      console.log("muestra dialogo");
+      // console.log("muestra dialogo");
     },
     cancelAddNewSuggestion() {
       this.newSuggestionDialog = false;
-      console.log("cancela nueva sugerencia");
+      // console.log("cancela nueva sugerencia");
     },
     createNewSuggestion() {
-      console.log("guarda sugerencia");
+      // console.log("guarda sugerencia");
       this.newSuggestionDialog = false;
+    },
+    required(v) {
+      return !!v || "Este campo es obligatorio";
     },
   },
 };

@@ -3,7 +3,6 @@
     <!-- Inicio sesion 2 -->
     <v-card color="black" dark class="mx-auto">
       <h1 class="title_section text-center">Bienvenid@ a Appilsen</h1>
-
       <div class="ma-5 text-center">
         <div class="d-flex flex-wrap justify-center mx-auto">
           <div class="d-flex flex-wrap justify-center">
@@ -16,7 +15,6 @@
                 </strong>
               </div>
             </v-card>
-
             <v-card class="ma-4">
               <div class="background_2 pa-4">
                 <strong class="ma-5 login_text">
@@ -27,7 +25,6 @@
               </div>
             </v-card>
           </div>
-
           <div class="d-flex flex-wrap justify-center">
             <v-card class="ma-4">
               <div class="background_3 pa-4">
@@ -38,7 +35,6 @@
                 </strong>
               </div>
             </v-card>
-
             <v-card class="ma-4">
               <div class="background_4 pa-4">
                 <strong class="ma-5 login_text">
@@ -51,7 +47,6 @@
           </div>
         </div>
       </div>
-
       <div v-if="$store.state.sesion.user.email" class="mx-auto pb-6">
         <div class="ma-2 text-center">
           <h2>
@@ -60,13 +55,13 @@
           </h2>
         </div>
       </div>
-
       <div v-else class="mx-auto pb-6">
         <div class="ma-2 text-center">
           <h2>
             Para continuar debes iniciar sesion:
             <v-btn @click="showLoginForm">INICIA SESION</v-btn>
           </h2>
+          <!-- inicio de sesion -->
           <v-dialog v-model="showLoginDialog">
             <LoginForm
               @closeModal="closeLoginModal()"
@@ -89,8 +84,6 @@
   </div>
 </template>
 <script>
-// import store from "../store";
-
 export default {
   name: "Login",
   components: {
@@ -107,8 +100,6 @@ export default {
     },
     closeLoginModal() {
       this.showLoginDialog = false;
-      console.log('cerrando modal login el usuario es: ', this.$store.state.sesion.user.email)
-
     },
     showRegisterForm() {
       this.showRegisterDialog = true;
@@ -119,9 +110,9 @@ export default {
     closeRegisterForm() {
       this.showRegisterDialog = false;
     },
-    goToHome(){
-      this.$router.push('/')
-    }
+    goToHome() {
+      this.$router.push("/");
+    },
   },
 };
 </script>
