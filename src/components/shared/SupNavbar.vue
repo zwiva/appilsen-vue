@@ -143,6 +143,7 @@ export default {
     },
     closeLoginModal() {
       this.loginForm = false;
+      this.$router.push("/");
     },
 
     // CIERRE SESION
@@ -156,6 +157,7 @@ export default {
       // cierra sesion con firebase
       store.dispatch("sesion/signOut");
       this.signOutDialog = false;
+      this.$router.push("/login");
     },
 
     //REGISTRO
