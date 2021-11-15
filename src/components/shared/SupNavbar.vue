@@ -75,11 +75,13 @@
       <v-card class="background-login rounded-xl">
         <v-card-title></v-card-title>
         <v-card-text>
-          <LoginForm @closeModal="closeLoginModal()" />
+          <LoginForm
+            @closeModal="closeLoginModal()"
+            @openRegisterForm="openRegisterForm"
+          />
         </v-card-text>
       </v-card>
     </v-dialog>
-
     <!-- ----------------- -->
     <!-- falta -->
     <!-- dialogo que avise inicio de sesion exitosa -->
@@ -105,8 +107,17 @@
     </v-dialog>
 
     <!-- ----------------- -->
-    <!-- falta -->
     <!-- dialogo con formulario de registro -->
+
+    <!-- <v-dialog max-width="350" v-model="loginForm">
+      <v-card class="background-login rounded-xl">
+        <v-card-title></v-card-title>
+        <v-card-text>
+          <RegisterForm @closeRegisterForm="closeRegisterForm()" />
+        </v-card-text>
+      </v-card>
+    </v-dialog> -->
+
     <!-- dialogo que avise creacion de usuario -->
     <!-- diálogo que avise inicio de sesion -->
     <!-- ----------------- -->
@@ -125,7 +136,7 @@ export default {
     loginForm: false,
   }),
   methods: {
-    // inicio sesion
+    // INICIO SESION:
     showLoginForm() {
       // console.log("muestra formulario");
       this.loginForm = true;
@@ -133,7 +144,8 @@ export default {
     closeLoginModal() {
       this.loginForm = false;
     },
-    // cierre sesion
+
+    // CIERRE SESION
     showLogOutModal() {
       this.signOutDialog = true;
     },
@@ -144,6 +156,13 @@ export default {
       // cierra sesion con firebase
       store.dispatch("sesion/signOut");
       this.signOutDialog = false;
+    },
+
+    //REGISTRO
+    openRegisterForm() {
+      console.log("click");
+      // this.showRegisterForm = true;
+      // this.$emit('showRegisterForm', this.showRegisterForm)
     },
   },
 };

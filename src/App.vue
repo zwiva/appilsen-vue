@@ -28,6 +28,7 @@ export default {
   mounted() {
     this.$store.dispatch("sesion/getRegisteredUsers");
     this.$store.dispatch("sesion/showAuthUser");
+    // this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario 
   },
 };
 </script>

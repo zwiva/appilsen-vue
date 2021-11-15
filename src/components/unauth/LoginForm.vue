@@ -8,18 +8,19 @@
         max-width="300px"
         rounded
       >
-        <!-- <v-layout column align-center justify-center> -->
-        <div class="d-flex justify-center"
+        <div
+          class="d-flex justify-center"
           style="
             background-color: white;
             width: 100%;
             height: 4em;
             align-items: center;
-            font-size: 1.25em
+            font-size: 1.25em;
           "
         >
           <h2>Inicia sesion</h2>
         </div>
+        <!-- FORMULARIO -->
         <div class="px-2">
           <v-form
             ref="form"
@@ -47,18 +48,19 @@
               dense
             ></v-text-field>
           </v-form>
+          <v-btn
+            rounded
+            class="grey darken-2"
+            large
+            href="#"
+            right
+            type="submit"
+            @click="iniciarSesion"
+            dark
+            >Ingresar</v-btn
+          >
         </div>
-        <v-btn
-          rounded
-          class="grey darken-2"
-          large
-          href="#"
-          right
-          type="submit"
-          @click="iniciarSesion"
-          dark
-          >Ingresar</v-btn
-        >
+        <!-- STATUS INGRESO -->
         <div class="pa-3 pt-4">
           <h2>
             <strong>
@@ -66,6 +68,7 @@
             </strong>
           </h2>
         </div>
+        <!-- SOLICITUD REGISTRO -->
         <v-card-text>
           ¿No estas registrado? Registrate:
           <v-btn
@@ -79,60 +82,8 @@
             >Registrarse</v-btn
           >
         </v-card-text>
-        <!-- </v-layout> -->
       </v-card>
     </div>
-
-    <v-dialog v-model="registerForm" height="400" width="380">
-      <v-sheet class="mx-auto">
-        <v-card color="amber" amber elevation="8" shaped>
-          <v-layout column align-center justify-center>
-            <v-card-title color="black">
-              <p>Ingresa tus datos para registrarte</p>
-              <p>Debes estar registrado para comprar productos.</p>
-              <v-divider class="mx-4 black"></v-divider>
-            </v-card-title>
-            <v-form ref="form" lazy-validation>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="register.email"
-                  :rules="emailRules"
-                  label="email"
-                  filled
-                  rounded
-                  dense
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="register.password"
-                  :rules="passwordRules"
-                  label="password"
-                  type="password"
-                  filled
-                  rounded
-                  dense
-                  required
-                ></v-text-field
-              ></v-col>
-            </v-form>
-            <v-card-text>
-              <v-btn
-                rounded
-                class="blue-grey darken-2"
-                large
-                href="#"
-                right
-                @click="executeRegistration"
-                dark
-                >Registrate</v-btn
-              >
-            </v-card-text>
-          </v-layout>
-        </v-card>
-      </v-sheet>
-    </v-dialog>
   </div>
 </template>
 
@@ -148,11 +99,6 @@ export default {
       (v) => /.+@.+\..+/.test(v) || "* Formato email no válido.",
     ],
     passwordRules: [(v) => !!v || "* Password es requerido"],
-    registerForm: false,
-    register: {
-      email: "",
-      password: "",
-    },
   }),
   components: {},
 
@@ -168,11 +114,7 @@ export default {
       }
     },
     registrarNuevoUsuario() {
-      this.registerForm = true;
-    },
-    executeRegistration() {
-      console.log("intento registro");
-      store.dispatch("sesion/registerNewUser", this.register);
+      console.log("click en boton desde fomrulario login");
     },
     /*  reset() {
       this.$refs.form.reset();

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store"
 
 Vue.use(VueRouter);
 
@@ -34,7 +35,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "shopform" */ "../views/CreateBeer.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -42,7 +43,7 @@ const routes = [
     name: "Catalog",
     component: () => import("../views/Catalog.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -54,7 +55,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "otherproducts" */ "../views/Merch.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -66,7 +67,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "internal" */ "../views/About.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -78,7 +79,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "internal" */ "../views/Suggestions.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -102,7 +103,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "external" */ "../views/Random.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
   {
@@ -114,7 +115,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "shopcart" */ "../views/ShopCart.vue"),
     meta: {
-      requirelogin: false, // pasar a true
+      requirelogin: true, // pasar a true
     },
   },
 ];
@@ -125,16 +126,16 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.requirelogin)
-//     if (Store.state.currentUser) {
-//       next(); //siguiente
-//     } else {
-//       next("/login"); //arg opcional para que lleve para el login
-//     }
-//   else {
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.requirelogin)
+    if (store.state.sesion.user) {
+      next(); //siguiente
+    } else {
+      next("/login"); //arg opcional para que lleve para el login
+    }
+  else {
+    next();
+  }
+});
 
 export default router;

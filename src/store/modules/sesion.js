@@ -43,12 +43,12 @@ export const moduloSesion = {
     // SET_SESSION(state, newUserData) {
     //   state.user = newUserData;
     // },
-    REGISTER_NEWUSER(state) {
-      console.log("state", state);
-      // hacer un push a la store para que tenga este nuevo usuario por mientras?
-      // o
-      // hacer un get para traer a todos los nuevos usuarios con este nuevo incluido?
-    },
+    // REGISTER_NEWUSER(state) {
+    //   console.log("state", state);
+    //   // hacer un push a la store para que tenga este nuevo usuario por mientras?
+    //   // o
+    //   // hacer un get para traer a todos los nuevos usuarios con este nuevo incluido?
+    // },
   },
   actions: {
     // traer todos los usuarios
@@ -128,11 +128,24 @@ export const moduloSesion = {
         //     form.email,
         //     form.password
         //   );
-        // this.$router.push("/home");
+        // this.$router.push("/home")
       } catch (e) {
         console.log("error: ", e);
       }
-      context.commit("REGISTER_NEWUSER", form);
+
+      // agregar nuevo usuario a usuarios en firestore:
+
+      let newUser = { tipodeusuario: "usuario", email: form.email, recomendaciones: [] };
+      console.log('nuevo usuario', newUser)
+
+      Firebase.firestore()
+        .collection("usuarios")
+        .add(newUser)
+        .catch((e) => {
+          console.log(e);
+        });
+
+      // context.commit("REGISTER_NEWUSER", form);
     },
 
     // activateSession(context, user) {

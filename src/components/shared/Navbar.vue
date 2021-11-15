@@ -241,18 +241,18 @@ export default {
     // typeUser: { type: String, required: true },
   },
   mounted() {
-    // this.user = this.typeUser; // por props llega el tipo de usuario
-    // if (this.user === "admin") {
-    //   // si el usuario es admin:
-    //   console.log("usuario es admin");
-    //   this.isAdmin = true;
-    //   this.isUser = false;
-    // } else {
-    //   // si no: (cualquier otro caso -->  sin login "" es usuario)
-    //   console.log("usuario simple");
-    //   this.isAdmin = false;
-    //   this.isUser = true;
-    // }
+    this.user = this.typeUser; // por props llega el tipo de usuario
+    if (this.user === "admin") {
+      // si el usuario es admin:
+      console.log("usuario es admin");
+      this.isAdmin = true;
+      this.isUser = false;
+    } else {
+      // si no: (cualquier otro caso -->  sin login "" es usuario)
+      console.log("usuario simple");
+      this.isAdmin = false;
+      this.isUser = true;
+    }
   },
 };
 </script>
