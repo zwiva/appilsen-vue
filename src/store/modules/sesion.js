@@ -139,30 +139,27 @@ export const moduloSesion = {
       }
     },
     async createUserSuggestions(context, sugerencia) {
-      console.log("idusuario***: ", context.state.user.id);
-      console.log(
-        "recomendacionesusuario***: ",
-        context.state.user.recomendaciones
-      );
-      console.log("sugerencia***: ", sugerencia);
-
+      // console.log("idusuario***: ", context.state.user.id);
+      // console.log(
+      //   "recomendacionesusuario***: ",
+      //   context.state.user.recomendaciones
+      // );
+      // console.log("sugerencia***: ", sugerencia);
       let user = context.state.user;
       user.recomendaciones.push(sugerencia);
-      console.log("usuario", user);
-      
+      console.log("usuario con recomendacion agregada: ", user);
       await Firebase.firestore()
         .collection("usuarios")
         .doc(context.state.user.id)
         .update(user)
         .then(() => {
-          console.log("sugerencia", );
+          console.log("sugerencia");
         })
         .catch((e) => {
           console.log(e);
         });
       context.commit("ADD_USER_SUGGESTION", sugerencia);
     },
-    
     editUserSuggestion() {
       console.log(
         "hay que editar elemento usuario, propiedad recomendaciones, sugerencia se debe ademas editar en arreglo general"

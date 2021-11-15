@@ -83,7 +83,6 @@ export default {
       this.showRegisterDialogConfirmation = true;
     },
     confirmRegistration() {
-      
       store.dispatch("sesion/setCurrentUser", this.register);
       // store.dispatch("sesion/signInRegisteredUser", this.register);
       // store.dispatch("sesion/showAuthUser");

@@ -1,7 +1,9 @@
 <template>
   <div class="content-grid mx-auto">
     <div class="d-flex flex-column justify-center">
-      <h2 class="text-center mt-2 title_section">Descubre cervezas del mundo </h2>
+      <h2 class="text-center mt-2 title_section">
+        Descubre cervezas del mundo
+      </h2>
       <div class="text-center ma-4" max-width="200px">
         <div class="d-flex flex-column justify-center align-center">
           <label class="mb-1">Escribe un numero del 1 al 300</label>
@@ -26,7 +28,12 @@
           <v-card-title class="pt-0"
             ><strong>Nombre: </strong> {{ beerDeepData.name }}</v-card-title
           >
-          <v-img :src="beerDeepData.image_url" max-width="250px" contain class="mx-auto" />
+          <v-img
+            :src="beerDeepData.image_url"
+            max-width="250px"
+            contain
+            class="mx-auto"
+          />
           <v-card-text class="pb-0"
             ><strong>Estilo: </strong> {{ beerDeepData.tagline }}</v-card-text
           >
