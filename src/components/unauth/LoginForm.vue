@@ -1,6 +1,6 @@
 <template>
   <div id="inspire">
-    <div class="text-center">
+    <div class="text-center pa-4">
       <v-card
         color="amber lighten-2"
         class="mx-auto dialog"

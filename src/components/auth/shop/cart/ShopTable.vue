@@ -40,7 +40,9 @@
         </template>
 
         <div class="py-4 text-right">
-          <h4>Subtotal: $ (( aca va un getter con la suma del carro))</h4>
+          <h4>
+            Subtotal: $ {{ $store.getters["carrito/shopCartTotalAmount"].toLocaleString() }}
+          </h4>
         </div>
       </v-col>
 

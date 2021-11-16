@@ -2,8 +2,8 @@
   <div class="content-grid mx-auto">
     <!-- Inicio sesion 2 -->
     <v-card color="black" dark class="mx-auto">
-      <h1 class="title_section text-center">Bienvenid@ a Appilsen</h1>
-      <div class="ma-5 text-center">
+      <h1 class="main_title text-center pt-5">Bienvenid@ a Appilsen</h1>
+      <div class="ma-3 text-center">
         <div class="d-flex flex-wrap justify-center mx-auto">
           <div class="d-flex flex-wrap justify-center">
             <v-card class="ma-4">
@@ -123,17 +123,18 @@ export default {
 <style>
 .login_text {
   font-size: 0.75em;
+  text-shadow: 2px 1px black;
 }
 .background_1 {
-  background-image: url("../assets/imgbeers/stout.jpg");
+  background-image: url("../assets/imgbeers/pale-ale.png");
   max-width: 280px;
 }
 .background_2 {
-  background-image: url("../assets/imgbeers/stout.jpg");
+  background-image: url("../assets/imgbeers/ipa.jpg");
   max-width: 280px;
 }
 .background_3 {
-  background-image: url("../assets/imgbeers/stout.jpg");
+  background-image: url("../assets/imgbeers/lager.jpg");
   max-width: 280px;
 }
 .background_4 {

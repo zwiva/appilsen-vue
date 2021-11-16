@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center pa-4">
     <v-card
       color="amber lighten-2"
       class="mx-auto dialog"
@@ -21,7 +21,7 @@
             font-size: 1.25em;
           "
         >
-          <h3 class="text-center">Ingresa tus datos <br />para registrarte:</h3>
+          <h3 class="text-center">Registrate:</h3>
         </div>
 
         <!-- FORMULARIO REGISTRO -->
@@ -52,9 +52,9 @@
             ></v-col>
           </v-form>
           <div class="text-center">
-            <p>¿No estas registrado? Registrate:</p>
+            <!-- <p>¿No estas registrado? Registrate:</p> -->
             <v-btn
-              class="blue-grey darken-2"
+              class="blue-grey darken-2 ma-3"
               href="#"
               depressed
               large
@@ -120,5 +120,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

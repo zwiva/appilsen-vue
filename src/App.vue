@@ -46,6 +46,9 @@ h3 {
   letter-spacing: 3px;
   text-align: center;
 }
+.main_title {
+  font-size: 3em;
+}
 .title_section {
   font-size: 2.5em;
 }
