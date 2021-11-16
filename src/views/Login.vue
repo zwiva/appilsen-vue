@@ -64,11 +64,11 @@
           <!-- inicio de sesion -->
           <v-dialog max-width="350px" v-model="showLoginDialog">
             <v-card class="background-login rounded-xl">
-            <LoginForm 
-              @closeModal="closeLoginModal()"
-              @openRegisterForm="openRegisterForm"
-            />
-            </v-Card>
+              <LoginForm
+                @closeModal="closeLoginModal()"
+                @openRegisterForm="openRegisterForm"
+              />
+            </v-card>
           </v-dialog>
         </div>
         <div class="ma-2 text-center">
@@ -79,7 +79,7 @@
           <!-- Registro -->
           <v-dialog max-width="350px" v-model="showRegisterDialog">
             <v-card class="background-login rounded-xl">
-            <RegisterForm @closeRegisterForm="closeRegisterForm" />
+              <RegisterForm @closeRegisterForm="closeRegisterForm" />
             </v-card>
           </v-dialog>
         </div>

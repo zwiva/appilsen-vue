@@ -7,6 +7,7 @@ export const moduloSesion = {
     user: "",
     userEmail: "",
     userStatus: "",
+    recommendedBeer: "",
   },
   getters: {
     showAuthenticationStatus(state) {
@@ -44,6 +45,10 @@ export const moduloSesion = {
     },
     ADD_USER_SUGGESTION(state, sugerencia) {
       console.log("user suggestion", state, sugerencia);
+    },
+    SET_RECOMMENDED_BEER(state, numBeer) {
+      state.recommendedBeer = numBeer;
+      // console.log('recommended', state.recommendedBeer)
     },
   },
   actions: {
@@ -169,6 +174,9 @@ export const moduloSesion = {
       console.log(
         "hay que editar elemento usuario, eliminando del arreglo interno de recomendaciones, la sugerencia se debe ademas eliminar de arreglo general"
       );
+    },
+    setRecommendedBeer(context, numBeer) {
+      context.commit("SET_RECOMMENDED_BEER", numBeer);
     },
   },
 };

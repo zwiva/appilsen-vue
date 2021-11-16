@@ -6,11 +6,13 @@
       </h2>
       <div class="text-center ma-4" max-width="200px">
         <div class="d-flex flex-column justify-center align-center">
-          <label class="mb-1">Escribe un numero del 1 al 300</label>
+          <label class="mb-1"
+            >Escribe un numero del 1 al 300 para conocer recetas.</label
+          >
           <v-text-field
             class="input-name"
             v-model="beer"
-            label="numero al azar"
+            label="ingresa un numero"
             outlined
             dark
           ></v-text-field>
@@ -19,41 +21,14 @@
           >buscar</v-btn
         >
       </div>
-
-      <v-card class="mx-auto" max-width="800px" rounded dense>
-        <div class="d-flex flex-column pa-5">
-          <v-card-title class="pt-0"
-            ><strong>Numero: </strong> {{ beerDeepData.id }}</v-card-title
-          >
-          <v-card-title class="pt-0"
-            ><strong>Nombre: </strong> {{ beerDeepData.name }}</v-card-title
-          >
-          <v-img
-            :src="beerDeepData.image_url"
-            max-width="250px"
-            contain
-            class="mx-auto"
-          />
-          <v-card-text class="pb-0"
-            ><strong>Estilo: </strong> {{ beerDeepData.tagline }}</v-card-text
-          >
-          <v-card-text class="pb-0"
-            ><strong>Descripcion: </strong>
-            {{ beerDeepData.description }}</v-card-text
-          >
-          <v-card-text class="pb-0"
-            ><strong>Alcohol: </strong> {{ beerDeepData.abv }}</v-card-text
-          >
-          <v-card-text class="pb-0"
-            ><strong>IBU: </strong> {{ beerDeepData.ibu }}</v-card-text
-          >
-        </div>
-      </v-card>
+      <p>Por mientras te recomendamos:</p>
+      <RandomCard :beerDeepData="beerDeepData" />
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
+import RandomCard from "../components/auth/random/RandomCard.vue";
 export default {
   data() {
     return {
@@ -62,6 +37,7 @@ export default {
       beerDeepData: {},
     };
   },
+  components: { RandomCard },
   methods: {
     getBeers(beer) {
       // por parametro en boton le mando el valor del v-model
@@ -71,7 +47,7 @@ export default {
           /* console.log(response); */
           this.beerData = response.data;
           this.beerDeepData = this.beerData[0];
-          console.log("funcionaaaaaa", this.beerDeepData);
+          // console.log("funcionaaaaaa", this.beerDeepData);
         })
         .catch((e) => console.log(e));
 
@@ -79,7 +55,8 @@ export default {
     },
   },
   mounted() {
-    this.getBeers("1"); // por defecto que cargue la 1 cuando se cargue esta vista, que no este en blanco
+    // this.getBeers("1"); // por defecto que cargue la 1 cuando se cargue esta vista, que no este en blanco
+    this.getBeers(this.$store.state.sesion.recommendedBeer);
   },
 };
 </script>

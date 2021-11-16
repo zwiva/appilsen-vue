@@ -51,35 +51,33 @@
               ></v-text-field
             ></v-col>
           </v-form>
-        <div class="text-center">
-          <p>¿No estas registrado? Registrate:</p>
-          <v-btn
-            class="blue-grey darken-2"
-            href="#"
-            depressed
-            large
-            rounded
-            dark
-            @click="executeRegistration"
-            >Registrate</v-btn
-          >
-        </div>
+          <div class="text-center">
+            <p>¿No estas registrado? Registrate:</p>
+            <v-btn
+              class="blue-grey darken-2"
+              href="#"
+              depressed
+              large
+              rounded
+              dark
+              @click="executeRegistration"
+              >Registrate</v-btn
+            >
+          </div>
         </div>
         <!-- Confirmacion de registro -->
         <v-dialog max-width="350px" v-model="showRegisterDialogConfirmation">
-          <v-card 
-          color="amber lighten-2"
-          class="text-center mx-auto dialog" 
-          elevation="8" 
-          max-width="350px"
+          <v-card
+            color="amber lighten-2"
+            class="text-center mx-auto dialog"
+            elevation="8"
+            max-width="350px"
           >
             <p>Usuario registrado exitosamente</p>
             <div class="text-center">
-              
-            <v-btn 
-            class="grey darken-2" 
-            @click="confirmRegistration"
-            dark>Ok</v-btn>
+              <v-btn class="grey darken-2" @click="confirmRegistration" dark
+                >Ok</v-btn
+              >
             </div>
           </v-card>
         </v-dialog>
