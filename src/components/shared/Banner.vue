@@ -29,6 +29,21 @@
         </div>
       </v-row>
     </v-card>
+    <v-dialog v-model="showDialogRandom" width="300px">
+      <v-card class="pa-6 justify-center">
+        <h3 class="subtitle_section">Atencion:</h3>
+        <p class="pa-3 text-center">
+          El numero de esta cerveza es:
+          <strong>
+            {{ this.$store.state.sesion.recommendedBeer }}
+          </strong>
+        </p>
+
+        <div class="d-flex justify-center">
+          <v-btn color="amber" @click="showDialogRandom = false">Ok</v-btn>
+        </div>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
@@ -65,6 +80,7 @@ export default {
     ],
     region: "Santiago",
     floor: null,
+    showDialogRandom: false,
   }),
   methods: {
     //MOSTRAR CLIMA CON EMOJI
@@ -145,7 +161,11 @@ export default {
     },
     goToRandom() {
       store.dispatch("sesion/setRecommendedBeer", this.floor);
-      this.$router.push("/random");
+      if (this.$router.history.current.path != "/random") {
+        this.$router.push("/random");
+      } else {
+        this.showDialogRandom = true;
+      }
     },
   },
   mounted() {
@@ -196,7 +216,6 @@ export default {
         let data = response.data[0];
         // console.log("random beer", data);
         this.randomBeer = data.name;
-        this.randomBeerAbv = data.abv;
       })
       .catch((e) => console.log(e));
   },
