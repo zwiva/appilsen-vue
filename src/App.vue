@@ -39,12 +39,11 @@ export default {
   background: linear-gradient(135deg, rgb(19, 19, 19), #3c3c3c);
   text-decoration: none !important;
 }
-h2 {
-  font-family: "Permanent Marker", cursive;
-  letter-spacing: 3px;
-}
+h1,
+h2,
 h3 {
   font-family: "Permanent Marker", cursive;
+  letter-spacing: 3px;
   text-align: center;
 }
 .title_section {
