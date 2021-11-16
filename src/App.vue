@@ -44,7 +44,7 @@ h2,
 h3 {
   font-family: "Permanent Marker", cursive;
   letter-spacing: 3px;
-  text-align: center;
+  // text-align: center;
 }
 .main_title {
   font-size: 3em;

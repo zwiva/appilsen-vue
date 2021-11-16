@@ -1,9 +1,9 @@
 <template>
   <div class="content-grid mx-auto" width="90%">
     <div>
-      <h2 class="title_section">Carrito Cervecero</h2>
+      <h2 class="ma-6 text-center title_section">Carrito Cervecero</h2>
 
-      <v-card class="justify-center" >
+      <v-card class="justify-center">
         <v-sheet color="white" elevation="9" with="80%">
           <v-col cols="12">
             <ShopTable :carrito="$store.state.carrito.carrito" />

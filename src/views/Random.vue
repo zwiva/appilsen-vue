@@ -1,10 +1,10 @@
 <template>
   <div class="content-grid mx-auto">
     <div class="d-flex flex-column justify-center">
-      <h2 class="text-center mt-2 title_section">
+      <h2 class="ma-6 text-center title_section">
         Descubre cervezas del mundo
       </h2>
-      <div class="text-center ma-4" max-width="200px">
+      <div class="text-center ma-2" max-width="200px">
         <div class="d-flex flex-column justify-center align-center">
           <label class="mb-1"
             >Escribe un numero del 1 al 300 para conocer recetas.</label

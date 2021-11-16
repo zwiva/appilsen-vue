@@ -10,7 +10,7 @@
         >
         <v-img
           :src="beerDeepData.image_url"
-          max-width="150px"
+          max-width="100px"
           contain
           class="mx-auto"
         />

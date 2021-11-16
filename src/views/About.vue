@@ -1,6 +1,6 @@
 <template>
   <div class="content-grid mx-auto">
-    <h2 class="title_section text-center">Quienes somos</h2>
+    <h2 class="ma-6 text-center title_section">Quienes somos</h2>
     <v-container class="hero">
       <div class="mx-6">
         <v-col class="text-left" cols="12" sm="12" md="8">
@@ -81,6 +81,5 @@ export default {
   background-position: center top;
   background-size: cover;
   color: white;
-  
 }
 </style>

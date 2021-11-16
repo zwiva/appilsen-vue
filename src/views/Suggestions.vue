@@ -2,7 +2,7 @@
   <v-container>
     <!-- principal -->
     <div class="content-grid mx-auto">
-      <h2 class="text-center ma-6 title_section">Recomiéndanos</h2>
+      <h2 class="ma-6 text-center title_section">Recomiéndanos</h2>
       <div class="my-6">
         <p>
           Si encuentras una cerveza que no está en nuestro catalogo, por favor

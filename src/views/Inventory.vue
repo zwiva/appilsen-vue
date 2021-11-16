@@ -2,10 +2,10 @@
   <div>
     <!-- ACA SE EDITAN LAS CERVEZAS -->
     <div class="content-grid mx-auto">
-      <h2 class="text-center title_section">Inventario de cervezas</h2>
+      <h2 class="ma-6 text-center title_section">Inventario de cervezas</h2>
       <div class="ma-6 text-center">
         <p>
-          Edita tu inventario, puedes agregar, editar o eliminar cervezas: 
+          Edita tu inventario, puedes agregar, editar o eliminar cervezas:
           <v-btn color="primary" class="ml-3" @click="showAddNewBeerDialog"
             >Agregar nueva</v-btn
           >

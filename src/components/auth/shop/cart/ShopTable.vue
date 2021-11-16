@@ -38,14 +38,13 @@
             </template>
           </v-data-table>
         </template>
-
         <div class="py-4 text-right">
-          <h4>
-            Subtotal: $ {{ $store.getters["carrito/shopCartTotalAmount"].toLocaleString() }}
+          <h4 class="text-center">
+            Subtotal: $
+            {{ $store.getters["carrito/shopCartTotalAmount"].toLocaleString() }}
           </h4>
         </div>
       </v-col>
-
       <v-col v-else class="ma-5">
         <div class="d-flex align-center justify-center">
           <span>No hay productos en tu carrito. </span>
