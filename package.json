@@ -15,7 +15,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "firebase": "^8.10.0",
-    "firebase-tools": "^9.21.0",
+    "firebase-tools": "^9.22.0",
     "mapbox-gl": "^2.5.1",
     "vue": "^2.6.11",
     "vue-mapbox": "^0.4.1",
