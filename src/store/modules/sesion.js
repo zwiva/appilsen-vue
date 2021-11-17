@@ -23,6 +23,7 @@ export const moduloSesion = {
       state.users.filter((user) => {
         if (user.email === form.email) {
           usuarioYaRegistrado = user;
+          console.log('usuario completo?',user)
         }
       });
       if (usuarioYaRegistrado) {
@@ -49,9 +50,6 @@ export const moduloSesion = {
     SET_RECOMMENDED_BEER(state, numBeer) {
       state.recommendedBeer = numBeer;
       // console.log('recommended', state.recommendedBeer)
-    },
-    SET_SESSION(state, newUser) {
-      state.user = newUser;
     },
   },
   actions: {
@@ -86,7 +84,7 @@ export const moduloSesion = {
       } else {
         console.log("no esta registrado");
       }
-      context.commit("SET_SESSION", form);
+      context.commit("SET_CURRENT_USER_IDENTIFIER", form);
     },
     // validar inicio de sesion en firebase:
     showAuthUser() {
@@ -155,6 +153,7 @@ export const moduloSesion = {
       // );
       // console.log("sugerencia***: ", sugerencia);
       let user = context.state.user;
+      console.log('usuario creando sugerencia', user)
       user.recomendaciones.push(sugerencia);
       console.log("usuario con recomendacion agregada: ", user);
       await Firebase.firestore()
@@ -169,10 +168,23 @@ export const moduloSesion = {
         });
       context.commit("ADD_USER_SUGGESTION", sugerencia);
     },
-    editUserSuggestion() {
-      console.log(
-        "hay que editar elemento usuario, propiedad recomendaciones, sugerencia se debe ademas editar en arreglo general"
-      );
+    editUserSuggestion(sugerencia) {
+      console.log('editando sugerencia', sugerencia);
+      // let user = context.state.user;
+      // console.log('usuario creando sugerencia', user)
+      // user.recomendaciones.push(sugerencia);
+      // console.log("usuario con recomendacion agregada: ", user);
+      // await Firebase.firestore()
+      //   .collection("usuarios")
+      //   .doc(context.state.user.id)
+      //   .update(user)
+      //   .then(() => {
+      //     console.log("sugerencia");
+      //   })
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
+      // context.commit("ADD_USER_SUGGESTION", sugerencia);
     },
     deleteUserSuggestion() {
       console.log(

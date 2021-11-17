@@ -245,6 +245,7 @@ export default {
     confirmEditSuggestion(sugerencia) {
       this.editDialog = false;
       store.dispatch("recomendaciones/editSuggestion", sugerencia);
+      store.dispatch("sesion/editUserSuggestion", sugerencia);
       this.editSuccessDialog = true;
     },
 
