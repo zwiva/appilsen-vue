@@ -66,18 +66,22 @@
           </div>
         </div>
         <!-- Confirmacion de registro -->
-        <v-dialog max-width="350px" class="pa-4" v-model="showRegisterDialogConfirmation">
+        <v-dialog
+          max-width="350px"
+          class="pa-4"
+          v-model="showRegisterDialogConfirmation"
+        >
           <v-card
-            color="amber lighten-2"
-            class="text-center mx-auto dialog"
+            color=""
+            class="text-center mx-auto dialog pa-5"
             elevation="8"
             max-width="350px"
           >
-            <p>Usuario registrado exitosamente</p>
+            <h2 class="mark py-3">Usuario registrado exitosamente</h2>
             <div class="text-center">
-                <v-btn class="grey darken-2" @click="confirmRegistration" dark
-                  >Ok</v-btn
-                >
+              <v-btn class="amber zoom" @click="confirmRegistration" light
+                >Ok</v-btn
+              >
             </div>
           </v-card>
         </v-dialog>
@@ -112,12 +116,8 @@ export default {
     confirmRegistration() {
       store.dispatch("sesion/setCurrentUser", this.register);
       store.dispatch("sesion/signInRegisteredUser", this.register);
-
-      // store.dispatch("sesion/signInRegisteredUser", this.register);
-      // store.dispatch("sesion/showAuthUser");
-      // inicio de sesion
       this.showRegisterDialogConfirmation = false;
-      // this.$router.push("/");
+      this.$emit("closeRegistrationModal");
     },
   },
 };

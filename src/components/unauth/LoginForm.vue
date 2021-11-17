@@ -1,5 +1,5 @@
 <template>
-  <div id="inspire">
+  <div>
     <div class="text-center pa-4">
       <v-card
         color="amber lighten-2"
@@ -37,7 +37,6 @@
               dense
               class="pt-3"
             ></v-text-field>
-
             <v-text-field
               v-model="signInForm.password"
               :rules="passwordRules"
@@ -84,15 +83,21 @@
         </v-card-text>
       </v-card>
     </div>
+    <v-dialog max-width="350px" v-model="showRegisterDialog">
+      <v-card class="background-login rounded-xl">
+        <RegisterForm @closeRegistrationModal="closeRegistrationModal" />
+      </v-card>
+    </v-dialog>
   </div>
 </template>
-
 <script>
 import store from "../../store";
+import RegisterForm from "./RegisterForm.vue";
 export default {
   name: "LoginForm",
   data: () => ({
     valid: true,
+    showRegisterDialog: false,
     signInForm: { email: "", password: "" },
     emailRules: [
       (v) => !!v || "* Campo requerido.",
@@ -100,8 +105,7 @@ export default {
     ],
     passwordRules: [(v) => !!v || "* Password es requerido"],
   }),
-  components: {},
-
+  components: { RegisterForm },
   methods: {
     iniciarSesion() {
       if (this.$refs.form.validate()) {
@@ -114,16 +118,13 @@ export default {
       }
     },
     registrarNuevoUsuario() {
-      console.log("click en boton desde fomrulario login");
-
+      console.log("click en boton desde formulario login");
+      this.showRegisterDialog = true;
       this.$emit("closeModal");
     },
-    /*  reset() {
-      this.$refs.form.reset();
+    closeRegistrationModal() {
+      this.showRegisterDialog = false;
     },
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    }, */
   },
 };
 </script>
