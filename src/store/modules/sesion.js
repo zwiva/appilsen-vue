@@ -50,6 +50,9 @@ export const moduloSesion = {
       state.recommendedBeer = numBeer;
       // console.log('recommended', state.recommendedBeer)
     },
+    SET_SESSION(state, newUser) {
+      state.user = newUser;
+    },
   },
   actions: {
     // cargar la store con todos los usuarios desde la firestores
@@ -83,6 +86,7 @@ export const moduloSesion = {
       } else {
         console.log("no esta registrado");
       }
+      context.commit("SET_SESSION", form);
     },
     // validar inicio de sesion en firebase:
     showAuthUser() {
@@ -99,7 +103,7 @@ export const moduloSesion = {
     },
     // registrar nuevo usuario evitando duplicados:
     async registerNewUser(context, form) {
-      // crea nuevo usuario, si existe inicia sesión
+      // crea nuevo usuario, pero si existe inicia sesión y no crea duplicado
       try {
         await Firebase.auth()
           .createUserWithEmailAndPassword(form.email, form.password)

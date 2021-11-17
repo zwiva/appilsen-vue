@@ -66,7 +66,7 @@
           </div>
         </div>
         <!-- Confirmacion de registro -->
-        <v-dialog max-width="350px" v-model="showRegisterDialogConfirmation">
+        <v-dialog max-width="350px" class="pa-4" v-model="showRegisterDialogConfirmation">
           <v-card
             color="amber lighten-2"
             class="text-center mx-auto dialog"
@@ -75,9 +75,9 @@
           >
             <p>Usuario registrado exitosamente</p>
             <div class="text-center">
-              <v-btn class="grey darken-2" @click="confirmRegistration" dark
-                >Ok</v-btn
-              >
+                <v-btn class="grey darken-2" @click="confirmRegistration" dark
+                  >Ok</v-btn
+                >
             </div>
           </v-card>
         </v-dialog>
@@ -111,6 +111,8 @@ export default {
     },
     confirmRegistration() {
       store.dispatch("sesion/setCurrentUser", this.register);
+      store.dispatch("sesion/signInRegisteredUser", this.register);
+
       // store.dispatch("sesion/signInRegisteredUser", this.register);
       // store.dispatch("sesion/showAuthUser");
       // inicio de sesion
