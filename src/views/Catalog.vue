@@ -125,9 +125,9 @@
           </v-container>
         </v-card>
       </v-dialog>
-      <div class="edit_dialog">
+      <div class="">
         <v-dialog v-model="suggestionSuccessful" max-width="400px">
-          <v-card class="pa-5 edit_dialog">
+          <v-card class="pa-5">
             <div class="ma-4">
               <h3 class="ma-3 py-5 text-center">
                 Hemos registrado tu recomendación.

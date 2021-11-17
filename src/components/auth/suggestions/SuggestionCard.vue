@@ -66,7 +66,7 @@
     </v-card>
 
     <!-- dialogo para editar  -->
-    <div class="edit_dialog">
+    <div class="">
       <v-dialog v-model="editDialog" class="ma-6" max-width="800px">
         <v-card class="pa-6">
           <h3 class="text-center subtitle_section">Edita tu recomendacion:</h3>
@@ -155,9 +155,9 @@
     </div>
 
     <!-- dialogo de aviso de edicion completada -->
-    <div class="edit_dialog">
+    <div class="">
       <v-dialog v-model="editSuccessDialog" max-width="400px">
-        <v-card class="pa-5 edit_dialog">
+        <v-card class="pa-5">
           <div class="ma-4">
             <h3 class="ma-3 py-5 text-center">
               Recomendacion editada satisfactoriamente.
@@ -184,6 +184,7 @@
               ¿Deseas eliminar esta recomendación?
             </h3>
             <v-row class="justify-center py-5">
+              <v-btn class="zoom" dark @click="deleteDialog = false">No</v-btn>
               <v-btn
                 class="mr-3 zoom"
                 color="amber"
@@ -191,7 +192,6 @@
                 @click="deleteSuggestion(sugerencia.id)"
                 >Si</v-btn
               >
-              <v-btn class="zoom" dark @click="deleteDialog = false">No</v-btn>
             </v-row>
           </div>
         </v-card>
@@ -260,12 +260,6 @@ export default {
 <style scoped>
 .suggestions p {
   margin: 0;
-}
-.edit_dialog {
-  background-color: yellow;
-}
-.delete_dialog {
-  background-color: orangered;
 }
 .zoom {
   transition: transform 0.5s;
