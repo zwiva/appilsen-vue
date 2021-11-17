@@ -23,7 +23,7 @@ export const moduloSesion = {
       state.users.filter((user) => {
         if (user.email === form.email) {
           usuarioYaRegistrado = user;
-          console.log('usuario completo?',user)
+          // console.log("usuario completo?", user);
         }
       });
       if (usuarioYaRegistrado) {
@@ -34,7 +34,7 @@ export const moduloSesion = {
         state.user = "";
         state.userStatus = "Usuario no registrado ❌";
       }
-      console.log("datos usuario: ", state.user);
+      // console.log("datos usuario: ", state.user);
     },
     CLOSE_SESSION(state) {
       state.user = "";
@@ -44,9 +44,9 @@ export const moduloSesion = {
       state.users.push(newUser);
       // console.log("todos", state.users);
     },
-    ADD_USER_SUGGESTION(state, sugerencia) {
-      console.log("user suggestion", state, sugerencia);
-    },
+    // ADD_USER_SUGGESTION(state, sugerencia) {
+    //   console.log("user suggestion", state, sugerencia);
+    // },
     SET_RECOMMENDED_BEER(state, numBeer) {
       state.recommendedBeer = numBeer;
       // console.log('recommended', state.recommendedBeer)
@@ -72,18 +72,18 @@ export const moduloSesion = {
     },
     // inicio de sesion para registrados:
     async signInRegisteredUser(context, form) {
-      if (context.state.user) {
-        try {
-          await Firebase.auth().signInWithEmailAndPassword(
-            form.email,
-            form.password
-          );
-        } catch (e) {
-          console.error("no funciono el login");
-        }
-      } else {
-        console.log("no esta registrado");
+      // if (context.state.user) {
+      try {
+        await Firebase.auth().signInWithEmailAndPassword(
+          form.email,
+          form.password
+        );
+      } catch (e) {
+        console.error("no funciono el login");
       }
+      // } else {
+      //   console.log("no esta registrado");
+      // }
       context.commit("SET_CURRENT_USER_IDENTIFIER", form);
     },
     // validar inicio de sesion en firebase:
@@ -131,6 +131,7 @@ export const moduloSesion = {
         email: form.email,
         recomendaciones: [],
       };
+      console.log("newUser", newUser);
       if (userAlreadyCreated) {
         // si usuario ya esta creado inicia sesion con store, evitando duplicados:
         context.commit("SET_CURRENT_USER_IDENTIFIER", newUser);
@@ -142,55 +143,33 @@ export const moduloSesion = {
           .catch((e) => {
             console.log(e);
           });
+        let allWithNewCreatedUsers = [];
+        let allUsers = await Firebase.firestore().collection("usuarios").get();
+        allUsers.forEach((user) => {
+          allWithNewCreatedUsers.push({ id: user.id, ...user.data() });
+        });
+
         context.commit("REGISTER_NEWUSER", newUser);
+        context.commit("GET_ALL_USERS", allWithNewCreatedUsers);
       }
     },
-    async createUserSuggestions(context, sugerencia) {
-      // console.log("idusuario***: ", context.state.user.id);
-      // console.log(
-      //   "recomendacionesusuario***: ",
-      //   context.state.user.recomendaciones
-      // );
-      // console.log("sugerencia***: ", sugerencia);
-      let user = context.state.user;
-      console.log('usuario creando sugerencia', user)
-      user.recomendaciones.push(sugerencia);
-      console.log("usuario con recomendacion agregada: ", user);
-      await Firebase.firestore()
-        .collection("usuarios")
-        .doc(context.state.user.id)
-        .update(user)
-        .then(() => {
-          console.log("sugerencia");
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-      context.commit("ADD_USER_SUGGESTION", sugerencia);
-    },
-    editUserSuggestion(sugerencia) {
-      console.log('editando sugerencia', sugerencia);
-      // let user = context.state.user;
-      // console.log('usuario creando sugerencia', user)
-      // user.recomendaciones.push(sugerencia);
-      // console.log("usuario con recomendacion agregada: ", user);
-      // await Firebase.firestore()
-      //   .collection("usuarios")
-      //   .doc(context.state.user.id)
-      //   .update(user)
-      //   .then(() => {
-      //     console.log("sugerencia");
-      //   })
-      //   .catch((e) => {
-      //     console.log(e);
-      //   });
-      // context.commit("ADD_USER_SUGGESTION", sugerencia);
-    },
-    deleteUserSuggestion() {
-      console.log(
-        "hay que editar elemento usuario, eliminando del arreglo interno de recomendaciones, la sugerencia se debe ademas eliminar de arreglo general"
-      );
-    },
+    // async createUserSuggestions(context, sugerencia) {
+    //   let user = context.state.user;
+    //   console.log("usuario creando sugerencia", user);
+    //   user.recomendaciones.push(sugerencia);
+    //   console.log("usuario con recomendacion agregada: ", user);
+    //   await Firebase.firestore()
+    //     .collection("usuarios")
+    //     .doc(context.state.user.id)
+    //     .update(user)
+    //     .then(() => {
+    //       console.log("sugerencia");
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     });
+    //   context.commit("ADD_USER_SUGGESTION", sugerencia);
+    // },
     setRecommendedBeer(context, numBeer) {
       context.commit("SET_RECOMMENDED_BEER", numBeer);
     },

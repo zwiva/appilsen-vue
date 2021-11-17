@@ -4,6 +4,8 @@ export const moduloCarrito = {
   namespaced: true,
   state: {
     carrito: [],
+    method: "",
+    finallocation: "",
   },
   getters: {
     shopCartTotalAmount(state) {
@@ -16,27 +18,33 @@ export const moduloCarrito = {
   mutations: {
     ADD_PRODUCT_TO_CARRITO(state, newProducto) {
       state.carrito.push(newProducto);
-      console.log("en el carrito hay: ", state.carrito);
+      // console.log("en el carrito hay: ", state.carrito);
     },
     ADD_QUANTITY(state, productIndexFinded) {
       state.carrito[productIndexFinded].cantidad++;
-      console.log("en el carrito hay: ", state.carrito);
+      // console.log("en el carrito hay: ", state.carrito);
     },
     SUB_QUANTITY(state, productIndexFinded) {
       state.carrito[productIndexFinded].cantidad--;
-      console.log("en el carrito hay: ", state.carrito);
+      // console.log("en el carrito hay: ", state.carrito);
     },
     SUB_PRODUCT(state, productIndexFinded) {
       state.carrito.splice(productIndexFinded, 1);
-      console.log("en el carrito hay: ", state.carrito);
+      // console.log("en el carrito hay: ", state.carrito);
     },
     ERASE_PRODUCT(state, productIndexFinded) {
       state.carrito.splice(productIndexFinded, 1);
-      console.log("en el carrito hay: ", state.carrito);
+      // console.log("en el carrito hay: ", state.carrito);
     },
     CLEAR_CART(state) {
       // console.log('CLEAR_CART -> lo que hay en el carrito', state);
       state.carrito = [];
+    },
+    SET_SHOP_METHOD(state, method) {
+      state.method = method;
+    },
+    SET_DESTINATION_ADDRESS(state, address) {
+      state.finallocation = address;
     },
   },
   actions: {
@@ -55,22 +63,21 @@ export const moduloCarrito = {
           ...carrito,
           cantidad: product.cantidad,
         });
-        console.log("agrega cerveza armada");
+        // console.log("agrega cerveza armada");
       } else if (productIndex === -1) {
         // eslint-disable-next-line no-unused-vars
         const { stock, ...carrito } = product;
         context.commit("ADD_PRODUCT_TO_CARRITO", { ...carrito, cantidad: 1 });
-        console.log("agrega cerveza externa");
+        // console.log("agrega cerveza externa");
       } else {
         context.commit("ADD_QUANTITY", productIndex);
-        console.log("incrementa cantidad cerveza externa");
+        // console.log("incrementa cantidad cerveza externa");
       }
     },
     increaseQuantity(context, product) {
       const productIndex = context.state.carrito.findIndex(
         (productInCart) => productInCart.id === product.id
       );
-      // console.log(productIndex);
       if (productIndex >= 0) {
         if (context.state.carrito[productIndex].cantidad > 0) {
           context.commit("ADD_QUANTITY", productIndex);
@@ -81,7 +88,6 @@ export const moduloCarrito = {
       const productIndex = context.state.carrito.findIndex(
         (productInCart) => productInCart.id === product.id
       );
-      // console.log(productIndex);
       if (productIndex >= 0) {
         if (context.state.carrito[productIndex].cantidad > 1) {
           context.commit("SUB_QUANTITY", productIndex);
@@ -104,16 +110,17 @@ export const moduloCarrito = {
           setTimeout(() => {
             resolve();
             console.log("operacion ok");
-
-            // ACTUALIZAR FIRESTORE en base a context.state.carrito
-            // editar cantidad de x producto
-            // eliminar si cantidad es cero
           }, ms);
         });
       };
-      await delay(3000);
-
+      await delay(1500);
       context.commit("CLEAR_CART");
+    },
+    setMethod(context, method) {
+      context.commit("SET_SHOP_METHOD", method);
+    },
+    setLocation(context, address) {
+      context.commit("SET_DESTINATION_ADDRESS", address);
     },
   },
 };

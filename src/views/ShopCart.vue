@@ -21,24 +21,30 @@
               v-if="$store.state.carrito.carrito.length > 0"
               class="d-flex justify-center"
             >
-              <v-btn elevation="2" dark color="gray" @click="buyCart()">
+              <v-btn
+                class="zoom"
+                elevation="2"
+                dark
+                color="gray"
+                @click="buyCart()"
+              >
                 COMPRAR
               </v-btn>
             </div>
 
             <div v-else class="d-flex justify-center flex-wrap">
               <div class="ma-2">
-                <v-btn elevation="2" @click="irAArmar()">
+                <v-btn class="zoom" dark elevation="2" @click="irAArmar()">
                   IR A ARMAR TU PILSEN</v-btn
                 >
               </div>
               <div class="ma-2">
-                <v-btn elevation="2" @click="irACatalogo()">
+                <v-btn class="zoom" dark elevation="2" @click="irACatalogo()">
                   IR POR CERVEZAS</v-btn
                 >
               </div>
               <div class="ma-2">
-                <v-btn elevation="2" @click="irAMerch()">
+                <v-btn class="zoom" dark elevation="2" @click="irAMerch()">
                   IR POR ACCESORIOS
                 </v-btn>
               </div>
@@ -49,7 +55,7 @@
     </div>
 
     <v-dialog v-model="shopFinished" max-width="420px">
-      <v-card class="mx-auto" max-width="420px">
+      <v-card class="mx-auto pa-4" max-width="420px">
         <div max-width="420px" class="pa-4">
           <h3 class="text-center">Resumen de pedido</h3>
           <div
@@ -66,6 +72,16 @@
               >
             </v-col>
             <!-- </v-row> -->
+          </div>
+          <div >
+            <p class="text-small mb-0">
+              <strong>Metodo de entrega:</strong>
+              {{ $store.state.carrito.method }}
+            </p>
+            <p class="text-small">
+              <strong>Dirección:</strong>
+              {{ $store.state.carrito.finallocation }}
+            </p>
           </div>
           <div class="text-center">
             <v-btn color="primary" @click="saveOrder">Cerrar</v-btn>

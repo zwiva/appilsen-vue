@@ -17,7 +17,7 @@
       <div
         v-if="this.$store.state.sesion.user.tipodeusuario === 'administrador'"
       >
-        <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
+        <h3 class="text-center subtitle_section">Todas las recomendadas:</h3>
         <v-layout align-center justify-space-between class="my-6 mx-auto">
           <v-row class="d-flex flex-column justify-center">
             <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
@@ -44,7 +44,8 @@
             <!-- <div v-for="(suggestion, index) in suggestions" :key="index"> -->
             <v-container>
               <div
-                v-for="sugerencia in $store.state.sesion.user.recomendaciones"
+                v-for="sugerencia in $store.state.recomendaciones
+                  .sugerenciasUsuario"
                 :key="sugerencia.id"
               >
                 <v-row class="justify-center">
@@ -184,9 +185,21 @@ export default {
   methods: {
     guardarSugerencias() {
       if (this.$refs.form.validate()) {
-        // console.log("funciona validacion");
+        this.newSuggestion = {
+          usuarioid: this.$store.state.sesion.user.id,
+          usuarioemail: this.$store.state.sesion.user.email,
+          ...this.newSuggestion,
+        };
         store.dispatch("recomendaciones/addSuggestion", this.newSuggestion);
-        store.dispatch("sesion/createUserSuggestions", this.newSuggestion);
+        store.dispatch(
+          "recomendaciones/setUsuarioEmail",
+          this.$store.state.sesion.user.email
+        );
+        store.dispatch(
+          "recomendaciones/getUserSuggestionsFirestore",
+          this.newSuggestion
+        );
+        this.$refs.form.reset();
         this.newSuggestionDialog = false;
       }
     },
@@ -205,6 +218,16 @@ export default {
     required(v) {
       return !!v || "Este campo es obligatorio";
     },
+  },
+  mounted() {
+    store.dispatch(
+      "recomendaciones/setUsuarioEmail",
+      this.$store.state.sesion.user.email
+    );
+    store.dispatch(
+      "recomendaciones/getUserSuggestionsFirestore",
+      this.newSuggestion
+    );
   },
 };
 </script>

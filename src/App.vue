@@ -25,9 +25,9 @@ export default {
     Banner,
   },
   mounted() {
+    this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario
     this.$store.dispatch("sesion/getRegisteredUsers");
     this.$store.dispatch("sesion/showAuthUser");
-    // this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario
   },
 };
 </script>
@@ -45,6 +45,9 @@ h3 {
   font-family: "Permanent Marker", cursive;
   letter-spacing: 3px;
   // text-align: center;
+}
+.marker {
+  font-family: "Permanent Marker", cursive;
 }
 .main_title {
   font-size: 3em;

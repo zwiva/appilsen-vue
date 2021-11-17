@@ -10,7 +10,7 @@
             </span>
             y te recomendamos armar una
             <v-btn small dark @click="goToRandom" class="mb-1">
-              <span style="color: white">
+              <span style="color: white" class="zoom">
                 {{ randomBeer }}
               </span>
             </v-btn>
@@ -40,7 +40,7 @@
         </p>
 
         <div class="d-flex justify-center">
-          <v-btn color="amber" @click="showDialogRandom = false">Ok</v-btn>
+          <v-btn color="amber" class="zoom" @click="showDialogRandom = false">Ok</v-btn>
         </div>
       </v-card>
     </v-dialog>

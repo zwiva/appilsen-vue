@@ -48,10 +48,10 @@
         </div>
       </div>
       <div v-if="$store.state.sesion.user.email" class="mx-auto pb-6">
-        <div class="ma-2 text-center">
-          <h2>
+        <div class="ma-2 text-center ">
+          <h2 >
             Ya puedes navegar
-            <v-btn @click="goToHome">IR A INICIO</v-btn>
+            <v-btn @click="goToHome" light color="amber zoom">IR A INICIO</v-btn>
           </h2>
         </div>
       </div>
@@ -59,7 +59,9 @@
         <div class="ma-2 text-center">
           <h2>
             Para continuar debes iniciar sesion:
-            <v-btn @click="showLoginForm">INICIA SESION</v-btn>
+            <v-btn color="amber" class="zoom" light @click="showLoginForm"
+              >INICIA SESION</v-btn
+            >
           </h2>
           <!-- inicio de sesion -->
           <v-dialog max-width="350px" v-model="showLoginDialog">
@@ -74,7 +76,9 @@
         <div class="ma-2 text-center">
           <h2>
             Si no estas registrado, por favor registrate:
-            <v-btn @click="showRegisterForm">REGISTRATE</v-btn>
+            <v-btn color="amber" class="zoom" light @click="showRegisterForm"
+              >REGISTRATE</v-btn
+            >
           </h2>
           <!-- Registro -->
           <v-dialog max-width="350px" v-model="showRegisterDialog">
@@ -141,12 +145,14 @@ export default {
   background-image: url("../assets/imgbeers/stout.jpg");
   max-width: 280px;
 }
-
 .background-login {
   background-image: url("../assets/backgrounds/beer-back.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   rotate: 180;
   /* opacity: 0.85;; */
+}
+.bg-amber{
+  background-color:"#ffc107";
 }
 </style>

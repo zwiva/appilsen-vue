@@ -4,19 +4,32 @@ export const moduloRecomendaciones = {
   namespaced: true,
   state: {
     sugerencias: [],
+    sugerenciasUsuario: [],
+    usuarioemail: "",
   },
 
   mutations: {
     SET_SUGGESTIONSDATA(state, newSuggestionsData) {
       state.sugerencias = newSuggestionsData;
-      // console.log("state.sugerencias", state.sugerencias);
     },
-
+    SET_USER_EMAIL(state, userEmail) {
+      state.usuarioemail = userEmail;
+      // console.log("state.usuarioemail", state.usuarioemail);
+    },
+    SET_USER_SUGGESTIONS(state, allSuggestions) {
+      let userSuggestions = [];
+      allSuggestions.forEach((element) => {
+        if (element.usuarioemail === state.usuarioemail) {
+          userSuggestions.push(element);
+        }
+      });
+      state.sugerenciasUsuario = userSuggestions;
+      // console.log("sugerencias usuario: ", state.sugerenciasUsuario);
+    },
     ADD_SUGGESTION(state, newSuggestion) {
       state.sugerencias.push(newSuggestion);
       // console.log("state.sugerencias", state.sugerencias);
     },
-
     DELETE_SUGGESTION(state, suggestionId) {
       // console.log("id que llega", suggestionId);
       const sugerenciaAeliminar = state.sugerencias.filter(
@@ -26,14 +39,15 @@ export const moduloRecomendaciones = {
       const indexOfSuggestion = state.sugerencias.indexOf(
         sugerenciaAeliminar[0]
       );
-
       state.sugerencias.splice(indexOfSuggestion, 1);
       state.sugerenciaAeliminar = [];
       /* console.log("probando id eliminar", sugerenciaAeliminar); */
     },
   },
-
   actions: {
+    setUsuarioEmail(context, userEmail) {
+      context.commit("SET_USER_EMAIL", userEmail);
+    },
     getAllSuggestionsFirestore(context) {
       Firebase.firestore()
         .collection("recomendaciones")
@@ -43,10 +57,23 @@ export const moduloRecomendaciones = {
           documents.forEach((document) => {
             suggestionsFirestore.push({ id: document.id, ...document.data() });
           });
+          // console.log("suggestionsFirestore", suggestionsFirestore);
           context.commit("SET_SUGGESTIONSDATA", suggestionsFirestore);
         });
     },
-
+    getUserSuggestionsFirestore(context) {
+      Firebase.firestore()
+        .collection("recomendaciones")
+        .get()
+        .then((documents) => {
+          const allSuggestions = [];
+          documents.forEach((document) => {
+            allSuggestions.push({ id: document.id, ...document.data() });
+          });
+          // console.log("suggestionsFirestore", allSuggestions);
+          context.commit("SET_USER_SUGGESTIONS", allSuggestions);
+        });
+    },
     addSuggestion(context, newSuggestion) {
       Firebase.firestore()
         .collection("recomendaciones")
@@ -84,7 +111,7 @@ export const moduloRecomendaciones = {
         .catch((e) => {
           console.log(e);
         });
-      console.log('context', context);
+      console.log("context", context);
     },
   },
 };

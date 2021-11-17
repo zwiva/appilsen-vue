@@ -351,9 +351,8 @@ export default {
     addToCart(shopForm) {
       store.dispatch("carrito/addProductoCarrito", shopForm);
       this.productAddedToCart = true;
-
-      // this.formShop = {}; // limpia formulario
-      // pero falta ejecutar reset validations
+      this.$refs.form.reset();
+      this.showOrderSummary = false;
     },
     goToCart() {
       this.$router.push("/carrito");

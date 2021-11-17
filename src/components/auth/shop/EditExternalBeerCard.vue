@@ -40,18 +40,28 @@
 
     <!-- BORRAR -->
     <!-- dialogo confirmacion borrar -->
-    <v-dialog v-model="showDeleteExternalBeer" persistent max-width="600px">
+    <v-dialog v-model="showDeleteExternalBeer" persistent max-width="320px">
       <v-card class="pa-5 delete_dialog">
-        <p>Desea eliminar este producto</p>
-        <v-btn @click="deleteExternalBeer(beer.id)">Si</v-btn>
-        <v-btn @click="showDeleteExternalBeer = false">No</v-btn>
+        <h3 class="pa-3">Desea eliminar este producto</h3>
+        <v-row class="pa-3 justify-center justify-space-around">
+          <v-btn color="gray" dark @click="showDeleteExternalBeer = false"
+            >No</v-btn
+          >
+          <v-btn color="amber" dark @click="deleteExternalBeer(beer.id)"
+            >Si</v-btn
+          >
+        </v-row>
       </v-card>
     </v-dialog>
 
     <!-- dialogo borrado exitosa -->
-    <v-dialog v-model="externalBeerDeleted" persistent max-width="600px">
-      <p>Producto eliminado exitosamente</p>
-      <v-btn @click="!externalBeerDeleted">Ok</v-btn>
+    <v-dialog v-model="externalBeerDeleted" persistent max-width="320px">
+      <v-card class="pa-5 delete_dialog">
+        <h3 class="pa-3">Producto eliminado exitosamente</h3>
+        <v-row class="pa-3 justify-center justify-space-around">
+          <v-btn color="amber" @click="externalBeerDeleted = false">Ok</v-btn>
+        </v-row>
+      </v-card>
     </v-dialog>
 
     <!-- EDITAR -->
@@ -60,14 +70,18 @@
       <EditExternalBeerForm
         :beer="beer"
         @cancelEdition="closeEditionDialog"
-        @completeEdition="closeEditionDialog"
+        @completeEdition="closeEditionDialog(value)"
       />
     </v-dialog>
 
     <!-- dialogo edicion exitosa -->
-    <v-dialog v-model="externalBeerEdited" persistent max-width="600px">
-      <p>Producto editado exitosamente</p>
-      <v-btn @click="externalBeerEdited = false"></v-btn>
+    <v-dialog v-model="externalBeerEdited" persistent max-width="320px">
+      <v-card class="pa-5 delete_dialog">
+        <h3 class="pa-3">Producto editado exitosamente</h3>
+        <v-row class="pa-3 justify-center justify-space-around">
+          <v-btn @click="externalBeerEdited = false"></v-btn>
+        </v-row>
+      </v-card>
     </v-dialog>
 
     <!-- <div class="delete_dialog">
@@ -117,8 +131,8 @@ export default {
     },
 
     deleteExternalBeer(beerId) {
-      store.dispatch("productos/deleteExternalBeer", beerId);
       this.externalBeerDeleted = true;
+      store.dispatch("productos/deleteExternalBeer", beerId);
     },
     // EDITAR
     showModalEditExternalBeer() {

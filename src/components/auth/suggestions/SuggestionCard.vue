@@ -33,6 +33,10 @@
               >{{ sugerencia.observaciones }}</v-card-text
             >
           </div>
+          <v-card-text class="py-0"
+            ><strong>Usuario: </strong
+            >{{ sugerencia.usuarioemail }}</v-card-text
+          >
         </v-col>
 
         <v-col class="mt-4">
@@ -224,7 +228,6 @@ export default {
   data: () => ({
     deleteDialog: false,
     editDialog: false,
-
     deleteSuccesDialog: false,
     editSuccessDialog: false,
   }),
@@ -233,22 +236,18 @@ export default {
       this.deleteDialog = true;
     },
     deleteSuggestion(sugerenciaId) {
-      console.log("eliminando");
       this.deleteDialog = false;
       store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
       this.deleteSuccesDialog = true;
     },
-
     showDialogEditSuggestion() {
       this.editDialog = true;
     },
     confirmEditSuggestion(sugerencia) {
       this.editDialog = false;
       store.dispatch("recomendaciones/editSuggestion", sugerencia);
-      store.dispatch("sesion/editUserSuggestion", sugerencia);
       this.editSuccessDialog = true;
     },
-
     required(value) {
       return !!value || "no dejar campo en blanco";
     },

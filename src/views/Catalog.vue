@@ -196,6 +196,7 @@ export default {
     createNewSuggestion() {
       console.log("guarda sugerencia");
       this.newSuggestionDialog = false;
+      this.$refs.form.reset();
     },
   },
   mounted() {},

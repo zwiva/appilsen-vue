@@ -90,19 +90,19 @@
 
     <!-- dialogo para confirmar cierre de sesion -->
     <v-dialog v-model="signOutDialog" width="300">
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">Atención:</v-card-title>
-        <v-card-text class="mt-5">Esta cerrando su sesión.</v-card-text>
-        <v-divider></v-divider>
-        <v-card d-flex flex-wrap class="pa-4 text-right">
-          <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="stayInSession()">
-            No, me quedo.
+      <v-card class="pa-4">
+        <h2 class="pa-2 subtitle_section text-center">Atención:</h2>
+        <v-card-text class="mt-5">
+          <h3 class="text-center">Estas cerrando tu sesión.</h3>
+        </v-card-text>
+        <div class="pa-4 text-right d-flex justify-space-between">
+          <v-btn color="gray" dark @click="stayInSession()">
+            Me quedo
           </v-btn>
-          <v-btn color="primary" text @click="confirmLogOutSession()">
-            Si, acepto.
+          <v-btn color="amber" class="ml-2" dark @click="confirmLogOutSession()">
+            Ok
           </v-btn>
-        </v-card>
+        </div>
       </v-card>
     </v-dialog>
 

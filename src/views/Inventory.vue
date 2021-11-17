@@ -6,7 +6,7 @@
       <div class="ma-6 text-center">
         <p>
           Edita tu inventario, puedes agregar, editar o eliminar cervezas:
-          <v-btn color="primary" class="ml-3" @click="showAddNewBeerDialog"
+          <v-btn color="primary" class="ml-3 zoom" @click="showAddNewBeerDialog"
             >Agregar nueva</v-btn
           >
         </p>
@@ -142,6 +142,7 @@ export default {
         );
         store.dispatch("productos/addNewExternalBeer", this.newExternalBeer);
       }
+      this.$refs.form.reset();
       this.newExternalBeerDialog = false;
     },
     cancelAddNewExternalBeer() {
