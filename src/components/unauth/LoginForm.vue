@@ -79,7 +79,7 @@
             rounded
             dark
             @click="registrarNuevoUsuario"
-            >Registrarse</v-btn
+            >Ir a registrarte</v-btn
           >
         </v-card-text>
       </v-card>
