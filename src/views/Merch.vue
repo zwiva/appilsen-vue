@@ -13,9 +13,9 @@
             v-for="merch in $store.state.productos.accesorios"
             :key="merch.id"
           >
-          <!-- <v-col cols="12" md="4"> -->
+            <!-- <v-col cols="12" md="4"> -->
             <MerchAndAccessoriesCard :merch="merch" />
-          <!-- </v-col> -->
+            <!-- </v-col> -->
           </div>
         </v-row>
       </v-layout>
@@ -26,15 +26,14 @@
 <script>
 import store from "../store";
 import MerchAndAccessoriesCard from "../components/auth/shop/catalogs/MerchAndAccessoriesCard.vue";
-
 export default {
   name: "Merch",
   components: { MerchAndAccessoriesCard },
   data: () => ({
     Merch: [],
   }),
-  mounted() {
-    store.dispatch("productos/getAllMerchAndAccessories");
+  async mounted() {
+    await store.dispatch("productos/getAllMerchAndAccessories");
   },
 };
 </script>

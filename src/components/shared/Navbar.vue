@@ -74,6 +74,8 @@
       </v-list-item>
       <!-- ADM STOCK -->
       <v-list-item
+        class="bg_beer"
+        light
         :to="items[7].to"
         v-if="this.$store.state.sesion.user.tipodeusuario === 'administrador'"
       >
@@ -179,6 +181,8 @@
             </v-list-item>
             <!-- ADM STOCK -->
             <v-list-item
+              class="bg_beer"
+              light
               :to="items[7].to"
               v-if="
                 this.$store.state.sesion.user.tipodeusuario === 'administrador'
@@ -252,5 +256,8 @@ export default {
 }
 div.v-toolbar__content {
   padding: 4px 0px;
+}
+.bg_beer {
+  background-color: #ffc107;
 }
 </style>

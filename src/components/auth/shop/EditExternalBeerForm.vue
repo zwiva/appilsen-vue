@@ -5,7 +5,6 @@
         <v-card-title>
           <span class="text-h5">Edita cerveza: </span>
         </v-card-title>
-
         <v-card-text>
           <v-form
             @submit.prevent="addNewExternalBeer"
@@ -90,9 +89,9 @@ export default {
     cancelEdition() {
       this.$emit("cancelEdition", false);
     },
-    confirmEdition(beer) {
-      store.dispatch("productos/editExternalBeer", beer);
-      this.$emit("completeEdition", false);
+    async confirmEdition(beer) {
+      await store.dispatch("productos/editExternalBeer", beer);
+      this.$emit("completeEdition");
     },
     required(value) {
       return !!value || "Campo obligatorio, por favor ingresar credenciales.";
@@ -100,4 +99,3 @@ export default {
   },
 };
 </script>
-

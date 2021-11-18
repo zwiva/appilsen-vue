@@ -2,7 +2,13 @@
   <div>
     <v-container>
       <v-card elevation="7" class="pa-3 mx-auto" max-width="280px">
-        <v-img class="zoom" :src="beer.imagen" max-width="280px" contain />
+        <v-img
+          class="zoom"
+          :src="beer.imagen"
+          max-width="280px"
+          height="256px"
+          contain
+        />
         <v-list-item>
           <v-list-item-content>
             <div class="my-4">
@@ -26,10 +32,10 @@
               >
             </div>
             <v-card-actions class="d-flex justify-center">
-              <v-btn color="gray" dark @click="showModalEditExternalBeer()"
+              <v-btn color="gray" dark @click="showModalEditExternalBeer"
                 ><v-icon>mdi-pencil</v-icon></v-btn
               >
-              <v-btn color="gray" dark @click="showModalDeleteExternalBeer()"
+              <v-btn color="gray" dark @click="showModalDeleteExternalBeer"
                 ><v-icon>mdi-delete</v-icon></v-btn
               >
             </v-card-actions>
@@ -37,10 +43,9 @@
         </v-list-item>
       </v-card>
     </v-container>
-
     <!-- BORRAR -->
     <!-- dialogo confirmacion borrar -->
-    <v-dialog v-model="showDeleteExternalBeer" persistent max-width="320px">
+    <v-dialog v-model="showDeleteExternalBeer" max-width="320px">
       <v-card class="pa-5 delete_dialog">
         <h3 class="pa-3">Desea eliminar este producto</h3>
         <v-row class="pa-3 justify-center justify-space-around">
@@ -53,65 +58,38 @@
         </v-row>
       </v-card>
     </v-dialog>
-
     <!-- dialogo borrado exitosa -->
-    <v-dialog v-model="externalBeerDeleted" persistent max-width="320px">
+    <v-dialog v-model="externalBeerDeleted" max-width="320px">
       <v-card class="pa-5 delete_dialog">
         <h3 class="pa-3">Producto eliminado exitosamente</h3>
         <v-row class="pa-3 justify-center justify-space-around">
-          <v-btn color="amber" @click="externalBeerDeleted = false">Ok</v-btn>
+          <v-btn color="amber" @click="afterDelete">Ok</v-btn>
         </v-row>
       </v-card>
     </v-dialog>
-
     <!-- EDITAR -->
     <!-- dialogo para editar -->
-    <v-dialog v-model="showEditExternalBeerForm" persistent max-width="600px">
+    <v-dialog v-model="showEditExternalBeerForm" max-width="600px">
       <EditExternalBeerForm
         :beer="beer"
         @cancelEdition="closeEditionDialog"
-        @completeEdition="closeEditionDialog(value)"
+        @completeEdition="editExternalBeer(beer)"
       />
     </v-dialog>
-
     <!-- dialogo edicion exitosa -->
-    <v-dialog v-model="externalBeerEdited" persistent max-width="320px">
+    <v-dialog v-model="externalBeerEdited" max-width="320px">
       <v-card class="pa-5 delete_dialog">
         <h3 class="pa-3">Producto editado exitosamente</h3>
         <v-row class="pa-3 justify-center justify-space-around">
-          <v-btn @click="externalBeerEdited = false"></v-btn>
+          <v-btn color="amber" @click="externalBeerEdited = false">Ok</v-btn>
         </v-row>
       </v-card>
     </v-dialog>
-
-    <!-- <div class="delete_dialog">
-      <v-dialog v-model="deleteDialog" max-width="400px">
-        <v-card class="pa-5 delete_dialog">
-          <div class="ma-4">
-            <h3 class="ma-3 py-5 text-center">
-              ¿Deseas eliminar esta recomendación?
-            </h3>
-            <v-row class="justify-center py-5">
-              <v-btn
-                class="mr-3 zoom"
-                color="amber"
-                dark
-                @click="deleteSuggestion(sugerencia.id)"
-                >Si</v-btn
-              >
-              <v-btn class="zoom" dark @click="deleteDialog = false">No</v-btn>
-            </v-row>
-          </div>
-        </v-card>
-      </v-dialog>
-    </div> -->
   </div>
 </template>
-
 <script>
 import store from "../../../store";
 import EditExternalBeerForm from "@/components/auth/shop/EditExternalBeerForm.vue";
-
 export default {
   name: "EditExternalBeerCard",
   components: { EditExternalBeerForm },
@@ -129,27 +107,30 @@ export default {
     showModalDeleteExternalBeer() {
       this.showDeleteExternalBeer = true;
     },
-
-    deleteExternalBeer(beerId) {
+    async deleteExternalBeer(beerId) {
+      this.showDeleteExternalBeer = false;
       this.externalBeerDeleted = true;
-      store.dispatch("productos/deleteExternalBeer", beerId);
+      await store.dispatch("productos/deleteExternalBeer", beerId);
+    },
+    async afterDelete() {
+      this.externalBeerDeleted = false;
+      await store.dispatch("productos/getAllexternalBeers");
     },
     // EDITAR
     showModalEditExternalBeer() {
       this.showEditExternalBeerForm = true;
     },
-    editExternalBeer(beer) {
+    async editExternalBeer(beer) {
       this.showEditExternalBeerForm = false;
-      store.dispatch("productos/editExternalBeer", beer);
+      await store.dispatch("productos/editExternalBeer", beer);
       this.externalBeerEdited = true;
     },
-    closeEditionDialog(value) {
-      this.showEditExternalBeerForm = value;
+    closeEditionDialog() {
+      this.showEditExternalBeerForm = false;
     },
   },
 };
 </script>
-
 <style>
 .zoom {
   transition: transform 0.5s;

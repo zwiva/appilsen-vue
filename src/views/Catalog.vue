@@ -27,7 +27,6 @@
         </v-row>
       </v-layout>
     </div>
-
     <!-- dialogo: agregar nueva sugerencia-->
     <div>
       <v-dialog v-model="newSuggestionDialog" max-width="800px">
@@ -39,7 +38,7 @@
               "Recomendaciones"
             </p>
             <v-form
-              @submit.prevent="guardarSugerencias(newSuggestion)"
+              @submit.prevent="guardarSugerencias"
               class="my-5"
               ref="form"
             >
@@ -114,11 +113,7 @@
               <v-btn color="grey" dark @click="cancelAddNewSuggestion">
                 CANCELAR
               </v-btn>
-              <v-btn
-                color="gray"
-                dark
-                @click="guardarSugerencias(newSuggestion)"
-              >
+              <v-btn color="gray" dark @click="guardarSugerencias">
                 GUARDAR
               </v-btn>
             </v-card-actions>
@@ -135,10 +130,7 @@
                 <h2>Muchas gracias!</h2>
               </h3>
               <v-row class="justify-center py-5">
-                <v-btn
-                  color="amber"
-                  class="zoom"
-                  @click="suggestionSuccessful = false"
+                <v-btn color="amber" class="zoom" @click="afterAddition"
                   >Ok</v-btn
                 >
               </v-row>
@@ -155,8 +147,8 @@ import ExternalBeerCard from "../components/auth/shop/catalogs/ExternalBeerCard.
 export default {
   name: "Catalog",
   components: { ExternalBeerCard },
-  beforeRouteEnter(to, from, next) {
-    store.dispatch("productos/getAllexternalBeers");
+  async beforeRouteEnter(to, from, next) {
+    await store.dispatch("productos/getAllexternalBeers");
     next();
   },
   data: () => ({
@@ -174,29 +166,48 @@ export default {
     },
   }),
   methods: {
-    guardarSugerencias(newSuggestion) {
+    async guardarSugerencias() {
       if (this.$refs.form.validate()) {
-        console.log("funciona validacion");
-        store.dispatch("recomendaciones/addSuggestion", newSuggestion);
+        this.newSuggestion = {
+          usuarioid: this.$store.state.sesion.user.id,
+          usuarioemail: this.$store.state.sesion.user.email,
+          ...this.newSuggestion,
+        };
+        await store.dispatch(
+          "recomendaciones/addSuggestion",
+          this.newSuggestion
+        );
+        store.dispatch(
+          "recomendaciones/setUsuarioEmail",
+          this.$store.state.sesion.user.email
+        );
+        await store.dispatch(
+          "recomendaciones/getUserSuggestionsFirestore",
+          this.newSuggestion
+        );
+        this.$refs.form.reset();
         this.newSuggestionDialog = false;
-        this.suggestionSuccessful = true;
       }
+      this.suggestionSuccessful = true;
     },
-    required(v) {
-      return !!v || "Este campo es obligatorio";
+    afterAddition() {
+      this.suggestionSuccessful = false;
     },
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
-      console.log("muestra dialogo");
+      // console.log("muestra dialogo");
     },
     cancelAddNewSuggestion() {
       this.newSuggestionDialog = false;
-      console.log("cancela nueva sugerencia");
+      // console.log("cancela nueva sugerencia");
     },
     createNewSuggestion() {
-      console.log("guarda sugerencia");
+      // console.log("guarda sugerencia");
       this.newSuggestionDialog = false;
       this.$refs.form.reset();
+    },
+    required(v) {
+      return !!v || "Este campo es obligatorio";
     },
   },
   mounted() {},

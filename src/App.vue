@@ -24,9 +24,9 @@ export default {
     SupNavbar,
     Banner,
   },
-  mounted() {
-    this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario
-    this.$store.dispatch("sesion/getRegisteredUsers");
+  async mounted() {
+    await this.$store.dispatch("sesion/signOut"); // descomentar para resetar usuario
+    await this.$store.dispatch("sesion/getRegisteredUsers");
     this.$store.dispatch("sesion/showAuthUser");
   },
 };

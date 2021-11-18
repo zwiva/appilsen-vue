@@ -38,7 +38,6 @@
             >{{ sugerencia.usuarioemail }}</v-card-text
           >
         </v-col>
-
         <v-col class="mt-4">
           <v-card-actions class="">
             <v-spacer></v-spacer>
@@ -53,18 +52,16 @@
             </v-row>
           </v-card-actions>
         </v-col>
-
         <v-col cols="12" class="text-center mb-4">
-          <v-btn class="zoom" @click="showDialogEditSuggestion()"
+          <v-btn class="zoom" @click="showDialogEditSuggestion"
             ><v-icon> mdi-pencil</v-icon></v-btn
           >
-          <v-btn class="ml-3 zoom" @click="showDialogDeleteSuggestion()"
+          <v-btn class="ml-3 zoom" @click="showDialogDeleteSuggestion"
             ><v-icon>mdi-delete</v-icon></v-btn
           >
         </v-col>
       </v-row>
     </v-card>
-
     <!-- dialogo para editar  -->
     <div class="">
       <v-dialog v-model="editDialog" class="ma-6" max-width="800px">
@@ -153,7 +150,6 @@
         </v-card>
       </v-dialog>
     </div>
-
     <!-- dialogo de aviso de edicion completada -->
     <div class="">
       <v-dialog v-model="editSuccessDialog" max-width="400px">
@@ -174,7 +170,6 @@
         </v-card>
       </v-dialog>
     </div>
-
     <!-- dialogo de pregunta para eliminar  -->
     <div class="delete_dialog">
       <v-dialog v-model="deleteDialog" max-width="400px">
@@ -197,7 +192,6 @@
         </v-card>
       </v-dialog>
     </div>
-
     <!-- dialogo de aviso de eliminacion  -->
     <div class="delete_dialog">
       <v-dialog v-model="deleteSuccesDialog" max-width="400px">
@@ -207,12 +201,7 @@
               Recomendacion eliminada satisfactoriamente.
             </h3>
             <v-row class="justify-center py-5">
-              <v-btn
-                color="amber"
-                class="zoom"
-                @click="deleteSuccesDialog = false"
-                >Ok</v-btn
-              >
+              <v-btn color="amber" class="zoom" @click="afterDelete">Ok</v-btn>
             </v-row>
           </div>
         </v-card>
@@ -220,7 +209,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import store from "../../../store";
 export default {
@@ -235,17 +223,21 @@ export default {
     showDialogDeleteSuggestion() {
       this.deleteDialog = true;
     },
-    deleteSuggestion(sugerenciaId) {
+    async deleteSuggestion(sugerenciaId) {
       this.deleteDialog = false;
-      store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
       this.deleteSuccesDialog = true;
+      await store.dispatch("recomendaciones/deleteSuggestion", sugerenciaId);
+    },
+    async afterDelete() {
+      await store.dispatch("recomendaciones/getUserSuggestionsFirestore");
+      this.deleteSuccesDialog = false;
     },
     showDialogEditSuggestion() {
       this.editDialog = true;
     },
-    confirmEditSuggestion(sugerencia) {
+    async confirmEditSuggestion(sugerencia) {
       this.editDialog = false;
-      store.dispatch("recomendaciones/editSuggestion", sugerencia);
+      await store.dispatch("recomendaciones/editSuggestion", sugerencia);
       this.editSuccessDialog = true;
     },
     required(value) {

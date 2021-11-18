@@ -21,16 +21,15 @@ export const moduloProductos = {
       state.todosLosProductos.push(products);
     },
     DELETE_EXTERNAL_BEER(state, beerId) {
-      const beerToDelete = state.cervezasCatalogo.filter(
+      let beerToDelete = state.cervezasCatalogo.filter(
         (beer) => beer.id === beerId
       );
-      const indexOfBeer = state.cervezasCatalogo.indexOf(beerToDelete[0]);
+      let indexOfBeer = state.cervezasCatalogo.indexOf(beerToDelete[0]);
       state.cervezasCatalogo.splice(indexOfBeer, 1);
-      state.beerToDelete = [];
+      beerToDelete = [];
     },
     ADD_EXTERNAL_BEER(state, newExternalBeer) {
       state.cervezasCatalogo.push(newExternalBeer);
-      console.log("state.sugerencias", state.cervezasCatalogo);
     },
   },
   actions: {
@@ -60,39 +59,62 @@ export const moduloProductos = {
     },
 
     // CRUD INVENTARIO
-    addNewExternalBeer(context, newExternalBeer) {
-      Firebase.firestore()
+    async addNewExternalBeer(context, newExternalBeer) {
+      await Firebase.firestore()
         .collection("externalBeers")
         .add(newExternalBeer)
         .catch((e) => {
           console.log(e);
         });
+      Firebase.firestore()
+        .collection("externalBeers")
+        .get()
+        .then((documents) => {
+          const externalBeers = [];
+          documents.forEach((document) => {
+            externalBeers.push({ id: document.id, ...document.data() });
+          });
+          context.commit("SET_EXTERNALBEERS_DATA", externalBeers);
+        });
       context.commit("ADD_EXTERNAL_BEER", newExternalBeer);
     },
-    deleteExternalBeer(context, beerId) {
-      Firebase.firestore()
+    async deleteExternalBeer(context, beerId) {
+      await Firebase.firestore()
         .collection("externalBeers")
         .doc(beerId)
         .delete()
-        .then(() => {
-          console.log("la cerveza se borro satisfactoriamente");
-        })
         .catch((error) => {
           console.error("error: ", error);
         });
       context.commit("DELETE_EXTERNAL_BEER", beerId);
-    },
-
-    editExternalBeer(context, beer) {
       Firebase.firestore()
+        .collection("externalBeers")
+        .get()
+        .then((documents) => {
+          const externalBeers = [];
+          documents.forEach((document) => {
+            externalBeers.push({ id: document.id, ...document.data() });
+          });
+          context.commit("SET_EXTERNALBEERS_DATA", externalBeers);
+        });
+    },
+    async editExternalBeer(context, beer) {
+      await Firebase.firestore()
         .collection("externalBeers")
         .doc(beer.id)
         .update(beer)
-        .then(() => {
-          console.log("edicion crud probando");
-        })
         .catch((e) => {
           console.log(e);
+        });
+      Firebase.firestore()
+        .collection("externalBeers")
+        .get()
+        .then((documents) => {
+          const externalBeers = [];
+          documents.forEach((document) => {
+            externalBeers.push({ id: document.id, ...document.data() });
+          });
+          context.commit("SET_EXTERNALBEERS_DATA", externalBeers);
         });
     },
   },

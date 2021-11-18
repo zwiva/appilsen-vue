@@ -31,17 +31,12 @@ export const moduloRecomendaciones = {
       // console.log("state.sugerencias", state.sugerencias);
     },
     DELETE_SUGGESTION(state, suggestionId) {
-      // console.log("id que llega", suggestionId);
-      const sugerenciaAeliminar = state.sugerencias.filter(
+      let sugerenciaAeliminar = state.sugerencias.filter(
         (suggestion) => suggestion.id === suggestionId
       );
-      // desde aca al borrar un elemento se hace en tiempo real
-      const indexOfSuggestion = state.sugerencias.indexOf(
-        sugerenciaAeliminar[0]
-      );
+      let indexOfSuggestion = state.sugerencias.indexOf(sugerenciaAeliminar[0]);
       state.sugerencias.splice(indexOfSuggestion, 1);
-      state.sugerenciaAeliminar = [];
-      /* console.log("probando id eliminar", sugerenciaAeliminar); */
+      sugerenciaAeliminar = [];
     },
   },
   actions: {
@@ -74,8 +69,8 @@ export const moduloRecomendaciones = {
           context.commit("SET_USER_SUGGESTIONS", allSuggestions);
         });
     },
-    addSuggestion(context, newSuggestion) {
-      Firebase.firestore()
+    async addSuggestion(context, newSuggestion) {
+      await Firebase.firestore()
         .collection("recomendaciones")
         .add(newSuggestion)
         .catch((e) => {
@@ -83,25 +78,20 @@ export const moduloRecomendaciones = {
         });
       context.commit("ADD_SUGGESTION", newSuggestion);
     },
-
     // aca borramos alguna sugerencia
-    deleteSuggestion(context, id) {
-      Firebase.firestore()
+    async deleteSuggestion(context, id) {
+      await Firebase.firestore()
         .collection("recomendaciones")
         .doc(id)
         .delete()
-        .then(() => {
-          console.log("la sugerencia se borro satisfactoriamente");
-        })
         .catch((error) => {
           console.error("Error removing document: ", error);
         });
       context.commit("DELETE_SUGGESTION", id);
     },
 
-    editSuggestion(context, sugerencia) {
-      console.log("sugerencia en modulo recomendaciones: ", sugerencia);
-      Firebase.firestore()
+    async editSuggestion(context, sugerencia) {
+      await Firebase.firestore()
         .collection("recomendaciones")
         .doc(sugerencia.id)
         .update(sugerencia)
@@ -111,7 +101,7 @@ export const moduloRecomendaciones = {
         .catch((e) => {
           console.log(e);
         });
-      console.log("context", context);
+      // console.log("context", context);
     },
   },
 };

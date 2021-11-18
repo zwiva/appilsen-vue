@@ -96,10 +96,13 @@
           <h3 class="text-center">Estas cerrando tu sesión.</h3>
         </v-card-text>
         <div class="pa-4 text-right d-flex justify-space-between">
-          <v-btn color="gray" dark @click="stayInSession()">
-            Me quedo
-          </v-btn>
-          <v-btn color="amber" class="ml-2" dark @click="confirmLogOutSession()">
+          <v-btn color="gray" dark @click="stayInSession()"> Me quedo </v-btn>
+          <v-btn
+            color="amber"
+            class="ml-2"
+            dark
+            @click="confirmLogOutSession()"
+          >
             Ok
           </v-btn>
         </div>
@@ -152,9 +155,9 @@ export default {
     stayInSession() {
       this.signOutDialog = false; // se queda en sesion
     },
-    confirmLogOutSession() {
+    async confirmLogOutSession() {
       // cierra sesion con firebase
-      store.dispatch("sesion/signOut");
+      await store.dispatch("sesion/signOut");
       this.signOutDialog = false;
       this.$router.push("/login");
     },

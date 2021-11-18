@@ -107,10 +107,10 @@ export default {
   }),
   components: { RegisterForm },
   methods: {
-    iniciarSesion() {
+    async iniciarSesion() {
       if (this.$refs.form.validate()) {
         store.dispatch("sesion/setCurrentUser", this.signInForm);
-        store.dispatch("sesion/signInRegisteredUser", this.signInForm);
+        await store.dispatch("sesion/signInRegisteredUser", this.signInForm);
         store.dispatch("sesion/showAuthUser");
       }
       if (this.$store.state.sesion.user) {

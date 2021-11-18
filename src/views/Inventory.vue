@@ -22,9 +22,8 @@
         </v-row>
       </v-layout>
     </div>
-
     <!-- dialogo para crear -->
-    <v-dialog v-model="newExternalBeerDialog" persistent max-width="600px">
+    <v-dialog v-model="newExternalBeerDialog" max-width="600px">
       <template>
         <v-card elevation="7" class="pa-3">
           <v-card-title>
@@ -90,7 +89,6 @@
                 </v-col>
               </v-row>
             </v-form>
-
             <!-- <small>*indicates required field</small> -->
           </v-card-text>
           <v-card-actions>
@@ -105,12 +103,19 @@
         </v-card>
       </template>
     </v-dialog>
+    <v-dialog v-model="confirmAddition" max-width="320px">
+      <v-card class="pa-5 delete_dialog">
+        <h3 class="pa-3">Producto agregado exitosamente</h3>
+        <v-row class="pa-3 justify-center justify-space-around">
+          <v-btn color="amber" @click="afterAddition">Ok</v-btn>
+        </v-row>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 <script>
 import store from "../store";
 import EditExternalBeerCard from "../components/auth/shop/EditExternalBeerCard.vue";
-
 export default {
   name: "Inventory",
   components: { EditExternalBeerCard },
@@ -122,32 +127,35 @@ export default {
       estilo: "",
       alcohol: 0,
       formato: "",
-      imagen: "",
+      imagen:
+        "https://sleepinggiantbrewing.ca/site-content/uploads/2019/01/beer-club-e1605742197844.png",
       stock: 0,
     },
+    confirmAddition: false,
   }),
-  mounted() {
-    store.dispatch("productos/getAllexternalBeers");
-    console.log("mounted");
+  async mounted() {
+    await store.dispatch("productos/getAllexternalBeers");
   },
   methods: {
     // CREANDO
     showAddNewBeerDialog() {
       this.newExternalBeerDialog = true;
     },
-    addNewExternalBeer() {
+    async addNewExternalBeer() {
       if (this.$refs.form.validate()) {
-        console.log(
-          "hacer dispatch para agregar nueva cerveza externa, enviar objeto con data a la store"
+        await store.dispatch(
+          "productos/addNewExternalBeer",
+          this.newExternalBeer
         );
-        store.dispatch("productos/addNewExternalBeer", this.newExternalBeer);
       }
-      this.$refs.form.reset();
       this.newExternalBeerDialog = false;
+      this.confirmAddition = true;
+    },
+    afterAddition() {
+      this.confirmAddition = false;
     },
     cancelAddNewExternalBeer() {
       this.newExternalBeerDialog = false;
-      console.log("cierra dialogo");
     },
     required(value) {
       return !!value || "Campo obligatorio, por favor ingresar credenciales.";

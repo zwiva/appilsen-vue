@@ -8,12 +8,14 @@
           Si encuentras una cerveza que no está en nuestro catalogo, por favor
           completa el formulario con los datos que nos permitan buscarla para
           que intentemos agregarla a nuesta oferta:
-          <v-btn @click="showNewSuggestionDialog" class="ml-3" color="primary"
+          <v-btn
+            @click="showNewSuggestionDialog"
+            class="ml-3 zoom"
+            color="primary"
             >Agrega nueva</v-btn
           >
         </p>
       </div>
-
       <div
         v-if="this.$store.state.sesion.user.tipodeusuario === 'administrador'"
       >
@@ -36,7 +38,6 @@
           </v-row>
         </v-layout>
       </div>
-
       <div v-else>
         <h3 class="text-center subtitle_section">Tus recomendadas:</h3>
         <v-layout align-center justify-space-between class="my-6 mx-auto">
@@ -59,7 +60,6 @@
         </v-layout>
       </div>
     </div>
-
     <!-- dialogo para agregar sugerencia-->
     <v-dialog v-model="newSuggestionDialog" max-width="800px">
       <template>
@@ -156,6 +156,24 @@
         </v-card>
       </template>
     </v-dialog>
+
+    <div class="">
+      <v-dialog v-model="confirmAddition" max-width="400px">
+        <v-card class="pa-5">
+          <div class="ma-4">
+            <h3 class="ma-3 py-5 text-center">
+              Hemos registrado tu recomendación.
+              <h2>Muchas gracias!</h2>
+            </h3>
+            <v-row class="justify-center py-5">
+              <v-btn color="amber" class="zoom" @click="afterAddition"
+                >Ok</v-btn
+              >
+            </v-row>
+          </div>
+        </v-card>
+      </v-dialog>
+    </div>
   </v-container>
 </template>
 <script>
@@ -181,28 +199,37 @@ export default {
       observaciones: "",
       imagen: "",
     },
+    confirmAddition: false,
   }),
   methods: {
-    guardarSugerencias() {
+    async guardarSugerencias() {
       if (this.$refs.form.validate()) {
         this.newSuggestion = {
           usuarioid: this.$store.state.sesion.user.id,
           usuarioemail: this.$store.state.sesion.user.email,
           ...this.newSuggestion,
         };
-        store.dispatch("recomendaciones/addSuggestion", this.newSuggestion);
+        await store.dispatch(
+          "recomendaciones/addSuggestion",
+          this.newSuggestion
+        );
         store.dispatch(
           "recomendaciones/setUsuarioEmail",
           this.$store.state.sesion.user.email
         );
-        store.dispatch(
+        await store.dispatch(
           "recomendaciones/getUserSuggestionsFirestore",
           this.newSuggestion
         );
         this.$refs.form.reset();
         this.newSuggestionDialog = false;
       }
+      this.confirmAddition = true;
     },
+    afterAddition() {
+      this.confirmAddition = false;
+    },
+
     showNewSuggestionDialog() {
       this.newSuggestionDialog = true;
       // console.log("muestra dialogo");
@@ -219,12 +246,12 @@ export default {
       return !!v || "Este campo es obligatorio";
     },
   },
-  mounted() {
+  async mounted() {
     store.dispatch(
       "recomendaciones/setUsuarioEmail",
       this.$store.state.sesion.user.email
     );
-    store.dispatch(
+    await store.dispatch(
       "recomendaciones/getUserSuggestionsFirestore",
       this.newSuggestion
     );

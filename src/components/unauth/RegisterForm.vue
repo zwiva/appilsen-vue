@@ -108,15 +108,16 @@ export default {
     showRegisterDialogConfirmation: false,
   }),
   methods: {
-    executeRegistration() {
-      store.dispatch("sesion/registerNewUser", this.register);
+    async executeRegistration() {
+      await store.dispatch("sesion/registerNewUser", this.register);
       this.$emit("closeRegisterForm");
       this.showRegisterDialogConfirmation = true;
     },
-    confirmRegistration() {
-      store.dispatch("sesion/setCurrentUser", this.register);
-      store.dispatch("sesion/signInRegisteredUser", this.register);
+    async confirmRegistration() {
+      await store.dispatch("sesion/setCurrentUser", this.register);
+      await store.dispatch("sesion/signInRegisteredUser", this.register);
       this.showRegisterDialogConfirmation = false;
+      store.dispatch("sesion/showAuthUser");
       this.$emit("closeRegistrationModal");
     },
   },
