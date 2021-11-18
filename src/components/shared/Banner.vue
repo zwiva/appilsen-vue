@@ -40,7 +40,9 @@
         </p>
 
         <div class="d-flex justify-center">
-          <v-btn color="amber" class="zoom" @click="showDialogRandom = false">Ok</v-btn>
+          <v-btn color="amber" class="zoom" @click="showDialogRandom = false"
+            >Ok</v-btn
+          >
         </div>
       </v-card>
     </v-dialog>
@@ -171,39 +173,39 @@ export default {
   mounted() {
     // CARGAR CLIMA -> descomentar miercoles
 
-    //   const options = {
-    //     method: "GET",
-    //     url: "https://community-open-weather-map.p.rapidapi.com/weather",
-    //     params: {
-    //       q: `${this.region},cl`,
-    //       lat: "0",
-    //       lon: "0",
-    //       callback: "test",
-    //       id: "2172797",
-    //       lang: "null",
-    //       units: "metric",
-    //       mode: "xml",
-    //     },
-    //     headers: {
-    //       "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-    //       "x-rapidapi-key": "c2f27815c0msha15f4594d3f25acp12ea13jsna3099c739b37",
-    //     },
-    //   };
-    //   axios
-    //     .request(options)
-    //     .then((rawdata) => {
-    //       // //console.log(rawdata.data);
-    //       this.result = JSON.parse(
-    //         rawdata.data.slice(5, rawdata.data.length - 1)
-    //       );
-    //       // console.log("result", this.result);
-    //       this.maxTemperature = Math.floor(this.result.main.temp_max);
-    //       this.skyStatus = this.result.weather[0].description;
-    //       this.setIconWeather(this.skyStatus);
-    //     })
-    //     .catch(function (error) {
-    //       console.error(error);
-    //     });
+    const options = {
+      method: "GET",
+      url: "https://community-open-weather-map.p.rapidapi.com/weather",
+      params: {
+        q: `${this.region},cl`,
+        lat: "0",
+        lon: "0",
+        callback: "test",
+        id: "2172797",
+        lang: "null",
+        units: "metric",
+        mode: "xml",
+      },
+      headers: {
+        "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+        "x-rapidapi-key": "c2f27815c0msha15f4594d3f25acp12ea13jsna3099c739b37",
+      },
+    };
+    axios
+      .request(options)
+      .then((rawdata) => {
+        // //console.log(rawdata.data);
+        this.result = JSON.parse(
+          rawdata.data.slice(5, rawdata.data.length - 1)
+        );
+        // console.log("result", this.result);
+        this.maxTemperature = Math.floor(this.result.main.temp_max);
+        this.skyStatus = this.result.weather[0].description;
+        this.setIconWeather(this.skyStatus);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
     //------------------------------------------------
     //TRAER CERVEZA RANDOM:
     let rand = Math.random() * (300 - 1) + 1;
